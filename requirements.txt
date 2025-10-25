@@ -22,3 +22,8 @@ scikit-learn # General ML utilities
 # Vector Database (Start with a local option like Chroma/Milvus client)
 chromadb     # Easy local start for development
 # Optional: pymilvus (If you choose Milvus)
+
+# YouTube Scraper
+pytube
+youtube-transcript-api
+yt-dlp
