@@ -1,0 +1,24 @@
+# Core LangChain/LangGraph for Orchestration
+langchain
+langgraph
+pydantic
+python-dotenv  # For loading environment variables
+
+# LLM Connectors (choose at least one to start)
+google-generativeai # For Google Gemini
+# openai
+# anthropic    # For Claude
+
+# Web Scraping & Data Processing
+scrapy
+playwright   # For dynamic scraping/YouTube transcripts
+pandas       # For data manipulation
+beautifulsoup4
+
+# Sentiment Analysis (Transformer Model)
+transformers
+scikit-learn # General ML utilities
+
+# Vector Database (Start with a local option like Chroma/Milvus client)
+chromadb     # Easy local start for development
+# Optional: pymilvus (If you choose Milvus)

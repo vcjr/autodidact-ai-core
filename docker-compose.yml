@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # 1. ChromaDB Vector Store
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: autodidact_chromadb
+    restart: always
+    ports:
+      # Expose port 8000 on the host machine
+      - "8000:8000"
+    volumes:
+      # Persist the database data to a local directory named 'chroma_data'
+      - ./chroma_data:/chroma/data
+    environment:
+      # Environment variables for ChromaDB
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/data
+      # Set to FALSE to disable anonymous usage tracking
+      - ANONYMIZED_TELEMETRY=FALSE
+    
+volumes:
+  # Define the volume for clarity (optional, but good practice)
+  chroma_data:
+    driver: local
