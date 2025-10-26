@@ -1,29 +1,55 @@
-# Core LangChain/LangGraph for Orchestration
-langchain
-langgraph
-pydantic
-python-dotenv  # For loading environment variables
+# ============================================================================
+# Autodidact AI Core - Dependencies (Python 3.13.5)
+# ============================================================================
 
-# LLM Connectors (choose at least one to start)
-google-generativeai # For Google Gemini
-# openai
-# anthropic    # For Claude
+# Core Orchestration & Schema Validation
+langchain>=0.1.0
+langgraph>=0.0.20
+pydantic>=2.5.0              # v2 for better performance and validation
+python-dotenv>=1.0.0
 
-# Web Scraping & Data Processing
-scrapy
-playwright   # For dynamic scraping/YouTube transcripts
-pandas       # For data manipulation
-beautifulsoup4
+# LLM Providers
+google-generativeai>=0.3.0   # Google Gemini (primary)
+# openai>=1.0.0              # Optional: OpenAI GPT-4
+# anthropic>=0.7.0           # Optional: Claude
 
-# Sentiment Analysis (Transformer Model)
-transformers
-scikit-learn # General ML utilities
+# Vector Database & Embeddings
+chromadb>=0.4.22             # Vector store (HTTP client mode)
+sentence-transformers>=2.3.0 # For all-mpnet-base-v2 embeddings (768d)
 
-# Vector Database (Start with a local option like Chroma/Milvus client)
-chromadb     # Easy local start for development
-# Optional: pymilvus (If you choose Milvus)
+# Web Scraping & Content Extraction
+scrapy>=2.11.0
+playwright>=1.40.0           # Dynamic page rendering
+beautifulsoup4>=4.12.0
+lxml>=4.9.0                  # Fast HTML/XML parsing
+newspaper3k>=0.2.8           # Article extraction for blogs
 
-# YouTube Scraper
-pytube
-youtube-transcript-api
-yt-dlp
+# YouTube Integration
+youtube-transcript-api>=0.6.0
+yt-dlp>=2023.12.0            # Modern youtube-dl replacement
+
+# Reddit Integration
+praw>=7.7.0                  # Python Reddit API Wrapper
+
+# Data Processing
+pandas>=2.1.0
+numpy>=1.26.0
+
+# NLP & Quality Scoring
+transformers>=4.36.0         # HuggingFace models for sentiment/quality
+scikit-learn>=1.3.0          # ML utilities
+torch>=2.1.0                 # Required by transformers (CPU version)
+
+# Caching & Deduplication (Phase 2)
+redis>=5.0.0                 # For deduplication hashes and rate limiting
+
+# Utilities
+requests>=2.31.0
+urllib3>=2.1.0
+certifi>=2023.0.0
+
+# Development & Testing (optional but recommended)
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.12.0               # Code formatting
+ruff>=0.1.0                  # Fast linting

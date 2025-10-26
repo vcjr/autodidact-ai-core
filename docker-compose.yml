@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # 1. ChromaDB Vector Store
@@ -18,8 +18,21 @@ services:
       - PERSIST_DIRECTORY=/chroma/data
       # Set to FALSE to disable anonymous usage tracking
       - ANONYMIZED_TELEMETRY=FALSE
-    
+
+  # 2. Redis (for deduplication & rate limiting)
+  redis:
+    image: redis:7-alpine
+    container_name: autodidact_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+
 volumes:
-  # Define the volume for clarity (optional, but good practice)
+  # Define the volumes for clarity (optional, but good practice)
   chroma_data:
+    driver: local
+  redis_data:
     driver: local
