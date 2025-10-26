@@ -1,0 +1,168 @@
+{
+  "question_templates": [
+    {
+      "id": 351,
+      "category": "GETTING_STARTED",
+      "template": "How quickly can an absolute beginner become proficient in ${DOMAIN}?",
+      "placeholders": ["DOMAIN"],
+      "example": "How quickly can an absolute beginner become proficient in machine learning?",
+      "platforms": ["reddit", "quora"],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 352,
+      "category": "GETTING_STARTED",
+      "template": "What are the essential concepts to learn first in ${DOMAIN}?",
+      "placeholders": ["DOMAIN"],
+      "example": "What are the essential concepts to learn first in music theory?",
+      "platforms": ["youtube", "blogs", "quora"],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 353,
+      "category": "GETTING_STARTED",
+      "template": "I have zero experience, where should I click first to start learning ${DOMAIN}?",
+      "placeholders": ["DOMAIN"],
+      "example": "I have zero experience, where should I click first to start learning 3D modeling?",
+      "platforms": ["reddit", "quora"],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 354,
+      "category": "RESOURCE_DISCOVERY",
+      "template": "Are there any comprehensive free ${RESOURCE} series for ${DOMAIN} on YouTube?",
+      "placeholders": ["RESOURCE", "DOMAIN"],
+      "example": "Are there any comprehensive free tutorial series for Python on YouTube?",
+      "platforms": ["youtube", "reddit"],
+      "skill_level": "all"
+    },
+    {
+      "id": 355,
+      "category": "RESOURCE_DISCOVERY",
+      "template": "What is the most highly recommended ${RESOURCE} for ${LEVEL} learners in ${DOMAIN}?",
+      "placeholders": ["RESOURCE", "LEVEL", "DOMAIN"],
+      "example": "What is the most highly recommended book for intermediate learners in calculus?",
+      "platforms": ["reddit", "quora", "blogs"],
+      "skill_level": "all"
+    },
+    {
+      "id": 356,
+      "category": "RESOURCE_DISCOVERY",
+      "template": "Must-read ${RESOURCE} list for mastering ${DOMAIN} theory?",
+      "placeholders": ["RESOURCE", "DOMAIN"],
+      "example": "Must-read articles list for mastering financial analysis theory?",
+      "platforms": ["blogs", "reddit"],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 357,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "What are the best drills for improving ${SKILL} speed in ${DOMAIN}?",
+      "placeholders": ["SKILL", "DOMAIN"],
+      "example": "What are the best drills for improving touch typing speed in competitive programming?",
+      "platforms": ["youtube", "blogs"],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 358,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "How do I transition from practicing ${SKILL_A} to applying ${SKILL_B} in ${DOMAIN}?",
+      "placeholders": ["SKILL_A", "SKILL_B", "DOMAIN"],
+      "example": "How do I transition from practicing chord shapes to applying improvisation in guitar?",
+      "platforms": ["reddit", "quora"],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 359,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "Tips and tricks for immediate improvement in ${SKILL}?",
+      "placeholders": ["SKILL"],
+      "example": "Tips and tricks for immediate improvement in public speaking?",
+      "platforms": ["youtube", "blogs"],
+      "skill_level": "all"
+    },
+    {
+      "id": 360,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "How to practice ${SKILL} when you don't have a partner/team?",
+      "placeholders": ["SKILL"],
+      "example": "How to practice sparring when you don't have a partner/team?",
+      "platforms": ["reddit", "quora"],
+      "skill_level": "all"
+    },
+    {
+      "id": 361,
+      "category": "TOOL & EQUIPMENT",
+      "template": "Is ${TOOL} worth the investment for a serious ${DOMAIN} learner?",
+      "placeholders": ["TOOL", "DOMAIN"],
+      "example": "Is Adobe Creative Cloud worth the investment for a serious graphic design learner?",
+      "platforms": ["reddit", "quora"],
+      "skill_level": "all"
+    },
+    {
+      "id": 362,
+      "category": "TOOL & EQUIPMENT",
+      "template": "What essential ${TOOL} accessories are necessary for ${DOMAIN}?",
+      "placeholders": ["TOOL", "DOMAIN"],
+      "example": "What essential camera accessories are necessary for landscape photography?",
+      "platforms": ["youtube", "blogs"],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 363,
+      "category": "TOOL & EQUIPMENT",
+      "template": "Budget-friendly alternatives to ${EXPENSIVE_TOOL} for ${DOMAIN}?",
+      "placeholders": ["EXPENSIVE_TOOL", "DOMAIN"],
+      "example": "Budget-friendly alternatives to Ableton Live for music production?",
+      "platforms": ["reddit", "blogs"],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 364,
+      "category": "LEARNING PATH & PROGRESSION",
+      "template": "What does a typical ${LEVEL} curriculum look like for ${DOMAIN}?",
+      "placeholders": ["LEVEL", "DOMAIN"],
+      "example": "What does a typical intermediate curriculum look like for organic chemistry?",
+      "platforms": ["quora", "blogs"],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 365,
+      "category": "LEARNING PATH & PROGRESSION",
+      "template": "I finished the beginner tutorials, what is the next step in my ${DOMAIN} learning path?",
+      "placeholders": ["DOMAIN"],
+      "example": "I finished the beginner tutorials, what is the next step in my JavaScript learning path?",
+      "platforms": ["reddit", "quora"],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 366,
+      "category": "LEARNING PATH & PROGRESSION",
+      "template": "Detailed roadmap for learning ${TOPIC} in ${DOMAIN} from start to finish.",
+      "placeholders": ["TOPIC", "DOMAIN"],
+      "example": "Detailed roadmap for learning linear algebra in mathematics from start to finish.",
+      "platforms": ["blogs", "youtube"],
+      "skill_level": "all"
+    },
+    {
+      "id": 367,
+      "category": "COMMON PROBLEMS & TROUBLESHOOTING",
+      "template": "Why do I keep making this specific mistake when executing ${SKILL}?",
+      "placeholders": ["SKILL"],
+      "example": "Why do I keep making this specific mistake when executing the reverse triangle choke?",
+      "platforms": ["reddit", "quora"],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 368,
+      "category": "COMMON PROBLEMS & TROUBLESHOOTING",
+      "template": "How to fix ${PROBLEM} when working on ${DOMAIN} projects?",
+      "placeholders": ["PROBLEM", "DOMAIN"],
+      "example": "How to fix rendering lag when working on video editing projects?",
+      "platforms": ["youtube", "reddit", "blogs"],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 369,
+      "category": "COMMON PROBLEMS & TROUBLESHOOTING",
+      "template": "What are the most common mental blocks

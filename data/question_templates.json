@@ -1,0 +1,2284 @@
+{
+  "question_templates": [
+    {
+      "id": 1,
+      "category": "GETTING_STARTED",
+      "template": "What is the absolute minimum I need to know before starting ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What is the absolute minimum I need to know before starting coding?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 2,
+      "category": "GETTING_STARTED",
+      "template": "Learning ${DOMAIN} from scratch: A complete guide?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Learning Python from scratch: A complete guide?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 3,
+      "category": "GETTING_STARTED",
+      "template": "Is ${DOMAIN} too difficult for a beginner with no prior experience?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Is quantum physics too difficult for a beginner with no prior experience?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 4,
+      "category": "RESOURCE_DISCOVERY",
+      "template": "Best free ${RESOURCE} to learn ${DOMAIN} for ${LEVEL} learners?",
+      "placeholders": [
+        "RESOURCE",
+        "DOMAIN",
+        "LEVEL"
+      ],
+      "example": "Best free tutorials to learn data science for intermediate learners?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 5,
+      "category": "RESOURCE_DISCOVERY",
+      "template": "Are there any good structured ${RESOURCE} for ${DOMAIN} that cover ${TOPIC}?",
+      "placeholders": [
+        "RESOURCE",
+        "DOMAIN",
+        "TOPIC"
+      ],
+      "example": "Are there any good structured courses for web development that cover backend security?",
+      "platforms": [
+        "quora",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 6,
+      "category": "RESOURCE_DISCOVERY",
+      "template": "Top 5 YouTube channels for ${DOMAIN} tutorials and ${SKILL} demonstrations.",
+      "placeholders": [
+        "DOMAIN",
+        "SKILL"
+      ],
+      "example": "Top 5 YouTube channels for guitar tutorials and fingerstyle demonstrations.",
+      "platforms": [
+        "youtube",
+        "reddit"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 7,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "What is the ideal learning roadmap for ${DOMAIN} from ${LEVEL} to professional?",
+      "placeholders": [
+        "DOMAIN",
+        "LEVEL"
+      ],
+      "example": "What is the ideal learning roadmap for graphic design from beginner to professional?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 8,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "What are the core concepts I must master in ${DOMAIN} before moving to ${LEVEL}?",
+      "placeholders": [
+        "DOMAIN",
+        "LEVEL"
+      ],
+      "example": "What are the core concepts I must master in BJJ before moving to blue belt?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 9,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "What essential ${SKILL} should I learn after the basics of ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "What essential data structures should I learn after the basics of Python?",
+      "platforms": [
+        "blogs",
+        "youtube"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 10,
+      "category": "TOOL_AND_EQUIPMENT",
+      "template": "Which ${TOOL} is the best value for money for a ${LEVEL} ${DOMAIN} student?",
+      "placeholders": [
+        "TOOL",
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "Which camera is the best value for money for an intermediate landscape photography student?",
+      "platforms": [
+        "reddit",
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 11,
+      "category": "TOOL_AND_EQUIPMENT",
+      "template": "Do I really need an expensive ${TOOL} to achieve proficiency in ${DOMAIN}?",
+      "placeholders": [
+        "TOOL",
+        "DOMAIN"
+      ],
+      "example": "Do I really need an expensive drawing tablet to achieve proficiency in digital painting?",
+      "platforms": [
+        "quora",
+        "reddit"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 12,
+      "category": "TOOL_AND_EQUIPMENT",
+      "template": "${TOOL} vs ${TOOL}: Which is better for ${DOMAIN} development?",
+      "placeholders": [
+        "TOOL"
+      ],
+      "example": "VSCode vs PyCharm: Which is better for Python development?",
+      "platforms": [
+        "youtube",
+        "blogs",
+        "reddit"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 13,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "How to effectively practice ${SKILL} without a teacher in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "How to effectively practice sight-reading without a teacher in piano?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 14,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "${LEVEL} techniques for improving ${SKILL} speed and accuracy in ${DOMAIN}.",
+      "placeholders": [
+        "LEVEL",
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "Advanced techniques for improving typing speed and accuracy in competitive programming.",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 15,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "What exercises or drills help solidify understanding of ${SKILL} in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "What exercises or drills help solidify understanding of chord progressions in music theory?",
+      "platforms": [
+        "youtube",
+        "blogs",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 16,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "Why am I struggling to grasp ${SKILL} in ${DOMAIN}? What am I doing wrong?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "Why am I struggling to grasp recursion in coding? What am I doing wrong?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 17,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "Common mistakes ${LEVEL} learners make when attempting ${SKILL} in ${DOMAIN}.",
+      "placeholders": [
+        "LEVEL",
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "Common mistakes beginner learners make when attempting guard passing in BJJ.",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 18,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "Should I focus on learning ${SKILL} or ${SKILL} first for ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "Should I focus on learning HTML/CSS or JavaScript first for web development?",
+      "platforms": [
+        "quora",
+        "reddit"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 19,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "What is the difference between ${TOPIC} and ${TOPIC} in ${DOMAIN}?",
+      "placeholders": [
+        "TOPIC",
+        "DOMAIN"
+      ],
+      "example": "What is the difference between supervised and unsupervised learning in machine learning?",
+      "platforms": [
+        "blogs",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 20,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "Best practical projects for a ${LEVEL} learner of ${DOMAIN} to build a portfolio.",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "Best practical projects for an intermediate learner of UX design to build a portfolio.",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 21,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "How to simulate real-world ${DOMAIN} scenarios for effective practice?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to simulate real-world data engineering scenarios for effective practice?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 22,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "How much dedicated practice time is required daily to reach ${LEVEL} proficiency in ${DOMAIN} in ${TIME}?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN",
+        "TIME"
+      ],
+      "example": "How much dedicated practice time is required daily to reach intermediate proficiency in Spanish in 6 months?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 23,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "What are the time-saving shortcuts or automation techniques in ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What are the time-saving shortcuts or automation techniques in video editing?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 24,
+      "category": "THEORETICAL_UNDERSTANDING",
+      "template": "What is the foundational theory behind ${TOPIC} in ${DOMAIN}?",
+      "placeholders": [
+        "TOPIC",
+        "DOMAIN"
+      ],
+      "example": "What is the foundational theory behind color grading in photography?",
+      "platforms": [
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 25,
+      "category": "THEORETICAL_UNDERSTANDING",
+      "template": "Explain ${TOPIC} in ${DOMAIN} like I'm five (ELI5).",
+      "placeholders": [
+        "TOPIC",
+        "DOMAIN"
+      ],
+      "example": "Explain quantum entanglement in physics like I'm five (ELI5).",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 26,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "What are the essential ${SKILL} techniques for ${LEVEL} ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "What are the essential soloing techniques for intermediate electric guitar?",
+      "platforms": [
+        "youtube",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 27,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "How to break through a plateau in ${SKILL} related to ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "How to break through a plateau in debugging related to Python?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 28,
+      "category": "TOOL_AND_EQUIPMENT",
+      "template": "Affordable alternatives to ${TOOL} for ${DOMAIN}?",
+      "placeholders": [
+        "TOOL",
+        "DOMAIN"
+      ],
+      "example": "Affordable alternatives to Adobe Illustrator for graphic design?",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 29,
+      "category": "TOOL_AND_EQUIPMENT",
+      "template": "Review of ${TOOL} for ${LEVEL} ${DOMAIN} learners",
+      "placeholders": [
+        "TOOL",
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "Review of Logic Pro for beginner music production learners",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 30,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "What is the ideal roadmap for learning ${DOMAIN} from scratch?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What is the ideal roadmap for learning cinematography from scratch?",
+      "platforms": [
+        "blogs",
+        "reddit"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 31,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "What are the prerequisites before diving into ${TOPIC} in ${DOMAIN}?",
+      "placeholders": [
+        "TOPIC",
+        "DOMAIN"
+      ],
+      "example": "What are the prerequisites before diving into quantum physics?",
+      "platforms": [
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 32,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "What are the biggest conceptual hurdles when learning ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What are the biggest conceptual hurdles when learning calculus?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 33,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "Why is my ${SKILL} not improving in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "Why is my speed drawing not improving in visual arts?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 34,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "How to fix ${PROBLEM} when doing ${SKILL} in ${DOMAIN}?",
+      "placeholders": [
+        "PROBLEM",
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "How to fix synchronization issues when doing video editing?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 35,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "I'm overwhelmed by ${DOMAIN}. Where should I refocus?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "I'm overwhelmed by data science. Where should I refocus?",
+      "platforms": [
+        "reddit"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 36,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "Is ${DOMAIN_A} or ${DOMAIN_B} more relevant for a career in ${FIELD}?",
+      "placeholders": [
+        "DOMAIN_A",
+        "DOMAIN_B",
+        "FIELD"
+      ],
+      "example": "Is Python or R more relevant for a career in data analysis?",
+      "platforms": [
+        "quora",
+        "reddit"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 37,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "What is the fundamental difference between ${CONCEPT_A} and ${CONCEPT_B} in ${DOMAIN}?",
+      "placeholders": [
+        "CONCEPT_A",
+        "CONCEPT_B",
+        "DOMAIN"
+      ],
+      "example": "What is the fundamental difference between supervised and unsupervised learning in Machine Learning?",
+      "platforms": [
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 38,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "Give me ${PROJECT_TYPE} project ideas for ${LEVEL} ${DOMAIN} learners.",
+      "placeholders": [
+        "PROJECT_TYPE",
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "Give me portfolio-building project ideas for intermediate web frontend learners.",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 39,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "How to transition from tutorials to real-world ${DOMAIN} application?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to transition from tutorials to real-world JavaScript application?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 40,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "What is the most effective daily practice routine for ${DOMAIN} mastery?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What is the most effective daily practice routine for BJJ mastery?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 41,
+      "category": "ASSESSMENT_AND_VALIDATION",
+      "template": "What are the benchmarks for being considered an ${LEVEL} in ${DOMAIN}?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "What are the benchmarks for being considered an advanced photographer?",
+      "platforms": [
+        "quora",
+        "reddit"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 42,
+      "category": "ASSESSMENT_AND_VALIDATION",
+      "template": "How can I test my knowledge of ${TOPIC} in ${DOMAIN} without formal exams?",
+      "placeholders": [
+        "TOPIC",
+        "DOMAIN"
+      ],
+      "example": "How can I test my knowledge of music theory without formal exams?",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 43,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "How to maintain motivation when learning ${DOMAIN} gets boring?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to maintain motivation when learning organic chemistry gets boring?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 44,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "Should I focus on breadth or depth when learning ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Should I focus on breadth or depth when learning languages?",
+      "platforms": [
+        "quora",
+        "reddit"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 45,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "What are the cutting-edge ${SKILL} techniques used by experts in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "What are the cutting-edge rendering techniques used by experts in game development?",
+      "platforms": [
+        "blogs",
+        "youtube"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 46,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "How can I optimize my ${TOOL} workflow for maximum efficiency in ${DOMAIN}?",
+      "placeholders": [
+        "TOOL",
+        "DOMAIN"
+      ],
+      "example": "How can I optimize my VSCode workflow for maximum efficiency in Python?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 47,
+      "category": "COMMUNITY_AND_NETWORKING",
+      "template": "Where can I find study partners or accountability buddies for ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Where can I find study partners or accountability buddies for Mathematics?",
+      "platforms": [
+        "reddit"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 48,
+      "category": "CAREER_AND_MONETIZATION",
+      "template": "What is the fastest way to build a portfolio in ${DOMAIN} that attracts clients?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What is the fastest way to build a portfolio in UX design that attracts clients?",
+      "platforms": [
+        "blogs",
+        "youtube",
+        "reddit"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 49,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "Can I realistically achieve ${SKILL} in ${DOMAIN} within ${TIME}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN",
+        "TIME"
+      ],
+      "example": "Can I realistically achieve fluency in Spanish within 6 months?",
+      "platforms": [
+        "quora",
+        "reddit"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 50,
+      "category": "THEORETICAL_UNDERSTANDING",
+      "template": "Explain ${CONCEPT} in ${DOMAIN} as if I were a ${LEVEL}.",
+      "placeholders": [
+        "CONCEPT",
+        "DOMAIN",
+        "LEVEL"
+      ],
+      "example": "Explain recursion in programming as if I were a beginner.",
+      "platforms": [
+        "quora",
+        "youtube"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 51,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "What is the standard curriculum or roadmap for ${DOMAIN} mastery?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What is the standard curriculum or roadmap for JavaScript mastery?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 52,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "I'm ${LEVEL} in ${DOMAIN}, what specific ${TOPIC} should I focus on next to improve?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN",
+        "TOPIC"
+      ],
+      "example": "I'm intermediate in Python, what specific data structures should I focus on next to improve?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 53,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "What are the prerequisites I absolutely need before starting ${TOPIC} in ${DOMAIN}?",
+      "placeholders": [
+        "TOPIC",
+        "DOMAIN"
+      ],
+      "example": "What are the prerequisites I absolutely need before starting calculus in Mathematics?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 54,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "Why am I stuck at the ${LEVEL} plateau in ${DOMAIN}, and how do I break through it?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "Why am I stuck at the intermediate plateau in BJJ, and how do I break through it?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 55,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "What are the most common beginner mistakes when practicing ${SKILL}?",
+      "placeholders": [
+        "SKILL"
+      ],
+      "example": "What are the most common beginner mistakes when practicing fingerstyle guitar?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 56,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "How to fix ${PROBLEM} when working on a ${DOMAIN} project?",
+      "placeholders": [
+        "PROBLEM",
+        "DOMAIN"
+      ],
+      "example": "How to fix namespace collisions when working on a web development project?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 57,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "Is ${APPROACH_A} or ${APPROACH_B} better for learning ${SKILL} in ${DOMAIN}?",
+      "placeholders": [
+        "APPROACH_A",
+        "APPROACH_B",
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "Is rote memorization or active recall better for learning vocabulary in Spanish?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 58,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "What is the key difference between ${CONCEPT_A} and ${CONCEPT_B} in ${DOMAIN}?",
+      "placeholders": [
+        "CONCEPT_A",
+        "CONCEPT_B",
+        "DOMAIN"
+      ],
+      "example": "What is the key difference between supervised learning and unsupervised learning in Machine Learning?",
+      "platforms": [
+        "youtube",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 59,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "Should I specialize in ${DOMAIN_A} or generalize in ${DOMAIN_B} for better career prospects?",
+      "placeholders": [
+        "DOMAIN_A",
+        "DOMAIN_B"
+      ],
+      "example": "Should I specialize in UI Design or generalize in UX Design for better career prospects?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 60,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "How to create a strong portfolio of projects for ${DOMAIN} to attract clients/employers?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to create a strong portfolio of projects for photography to attract clients/employers?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 61,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "What are good drill exercises for daily ${DOMAIN} practice to improve ${SKILL}?",
+      "placeholders": [
+        "DOMAIN",
+        "SKILL"
+      ],
+      "example": "What are good drill exercises for daily coding practice to improve algorithm speed?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 62,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "How to apply ${THEORETICAL_KNOWLEDGE} in a real-world ${DOMAIN} scenario?",
+      "placeholders": [
+        "THEORETICAL_KNOWLEDGE",
+        "DOMAIN"
+      ],
+      "example": "How to apply color theory in a real-world graphic design scenario?",
+      "platforms": [
+        "youtube",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 63,
+      "category": "ASSESSMENT_AND_VALIDATION",
+      "template": "What are the key milestones and performance metrics for an ${LEVEL} learner in ${DOMAIN}?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "What are the key milestones and performance metrics for an intermediate learner in public speaking?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 64,
+      "category": "ASSESSMENT_AND_VALIDATION",
+      "template": "How and where can I get unbiased feedback on my ${DOMAIN} work/performance?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How and where can I get unbiased feedback on my creative writing work?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 65,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "How to overcome procrastination and build consistent habits when learning ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to overcome procrastination and build consistent habits when learning Japanese?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 66,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "What to do if I feel overwhelmed by the complexity or vastness of ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What to do if I feel overwhelmed by the complexity or vastness of Electrical Engineering?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 67,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "What are the most effective advanced techniques used by professionals in ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What are the most effective advanced techniques used by professionals in video editing?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 68,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "How do I optimize my workflow/speed when executing ${SKILL} in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "How do I optimize my workflow/speed when executing complex queries in SQL?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 69,
+      "category": "COMMUNITY_AND_NETWORKING",
+      "template": "What are the best online communities/forums for ${ADVANCED} ${DOMAIN} learners and practitioners?",
+      "placeholders": [
+        "ADVANCED",
+        "DOMAIN"
+      ],
+      "example": "What are the best online communities/forums for advanced blockchain development learners and practitioners?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 70,
+      "category": "COMMUNITY_AND_NETWORKING",
+      "template": "How to find a study partner or accountability buddy for learning ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to find a study partner or accountability buddy for learning German?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 71,
+      "category": "CAREER_AND_MONETIZATION",
+      "template": "What certifications or credentials matter most for a career in ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What certifications or credentials matter most for a career in cybersecurity?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 72,
+      "category": "CAREER_AND_MONETIZATION",
+      "template": "How much can a self-taught ${LEVEL} ${DOMAIN} practitioner earn in their first job?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "How much can a self-taught junior web developer practitioner earn in their first job?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 73,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "What is the most efficient way to learn ${DOMAIN} if I only have ${TIME} per week?",
+      "placeholders": [
+        "DOMAIN",
+        "TIME"
+      ],
+      "example": "What is the most efficient way to learn Mandarin if I only have 5 hours per week?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 74,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "Is it realistic to reach ${LEVEL} proficiency in ${DOMAIN} in ${TIME}?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN",
+        "TIME"
+      ],
+      "example": "Is it realistic to reach conversational proficiency in French in 6 months?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 75,
+      "category": "THEORETICAL_UNDERSTANDING",
+      "template": "What fundamental principles govern ${TOPIC} in ${DOMAIN} that I must understand?",
+      "placeholders": [
+        "TOPIC",
+        "DOMAIN"
+      ],
+      "example": "What fundamental principles govern composition in Visual Arts that I must understand?",
+      "platforms": [
+        "youtube",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 101,
+      "category": "THEORETICAL_UNDERSTANDING",
+      "template": "Explain ${CONCEPT} simply for ${DOMAIN} beginners.",
+      "placeholders": [
+        "CONCEPT",
+        "DOMAIN"
+      ],
+      "example": "Explain recursion simply for Python beginners.",
+      "platforms": [
+        "youtube",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 102,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "Is ${TOOL_A} or ${TOOL_B} better for ${DOMAIN} professionals?",
+      "placeholders": [
+        "TOOL_A",
+        "TOOL_B",
+        "DOMAIN"
+      ],
+      "example": "Is Photoshop or GIMP better for graphic design professionals?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 103,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "Daily 30-minute practice routine for ${DOMAIN} learners?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Daily 30-minute practice routine for Japanese learners?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 104,
+      "category": "CAREER_AND_MONETIZATION",
+      "template": "How much can I charge for freelance ${SKILL} related to ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "How much can I charge for freelance data visualization related to data science?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 105,
+      "category": "GETTING_STARTED",
+      "template": "What are the absolute prerequisites before starting ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What are the absolute prerequisites before starting Calculus?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 106,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "How do I optimize my workflow for ${SKILL} in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "How do I optimize my workflow for video editing in DaVinci Resolve?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 107,
+      "category": "RESOURCE_DISCOVERY",
+      "template": "Are there any hidden or underrated ${RESOURCE} for ${DOMAIN}?",
+      "placeholders": [
+        "RESOURCE",
+        "DOMAIN"
+      ],
+      "example": "Are there any hidden or underrated podcasts for music theory?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 108,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "Why is my ${SKILL} not improving after ${TIME} of practice?",
+      "placeholders": [
+        "SKILL",
+        "TIME"
+      ],
+      "example": "Why is my sight-reading not improving after 6 months of practice?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 109,
+      "category": "TOOL_AND_EQUIPMENT",
+      "template": "Cheapest professional ${TOOL} for starting ${DOMAIN}?",
+      "placeholders": [
+        "TOOL",
+        "DOMAIN"
+      ],
+      "example": "Cheapest professional camera for starting landscape photography?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 110,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "What are the core milestones in the ${DOMAIN} learning roadmap?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What are the core milestones in the Machine Learning learning roadmap?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 111,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "How to overcome burnout when learning ${DOMAIN} intensively?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to overcome burnout when learning Japanese intensively?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 112,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "Specific exercises to drill ${SKILL} for ${DOMAIN} improvement?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "Specific exercises to drill guard passing for BJJ improvement?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 113,
+      "category": "ASSESSMENT_AND_VALIDATION",
+      "template": "Portfolio projects to prove ${LEVEL} competence in ${DOMAIN}?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "Portfolio projects to prove intermediate competence in Web Development?",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 114,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "Best way to manage learning ${DOMAIN} alongside a full-time job?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Best way to manage learning Mandarin alongside a full-time job?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 115,
+      "category": "COMMUNITY_AND_NETWORKING",
+      "template": "Where can I get constructive feedback on my ${DOMAIN} ${PROJECT_TYPE}?",
+      "placeholders": [
+        "DOMAIN",
+        "PROJECT_TYPE"
+      ],
+      "example": "Where can I get constructive feedback on my Python script?",
+      "platforms": [
+        "reddit"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 116,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "What is the main difference between ${TOPIC_A} and ${TOPIC_B} in ${DOMAIN}?",
+      "placeholders": [
+        "TOPIC_A",
+        "TOPIC_B",
+        "DOMAIN"
+      ],
+      "example": "What is the main difference between Stoicism and Epicureanism in Philosophy?",
+      "platforms": [
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 117,
+      "category": "GETTING_STARTED",
+      "template": "Ultimate guide to setting up your first ${TOOL} for ${DOMAIN}.",
+      "placeholders": [
+        "TOOL",
+        "DOMAIN"
+      ],
+      "example": "Ultimate guide to setting up your first Gi for Brazilian Jiu-Jitsu.",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 118,
+      "category": "RESOURCE_DISCOVERY",
+      "template": "Are online ${RESOURCE} sufficient to master ${DOMAIN}, or do I need formal training?",
+      "placeholders": [
+        "RESOURCE",
+        "DOMAIN"
+      ],
+      "example": "Are online tutorials sufficient to master graphic design, or do I need formal training?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 119,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "What are the 5 essential ${SKILL} every ${LEVEL} ${DOMAIN} user must know?",
+      "placeholders": [
+        "SKILL",
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "What are the 5 essential algorithms every intermediate programmer must know?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 120,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "What are the most common mistakes beginners make when learning ${SKILL}?",
+      "placeholders": [
+        "SKILL"
+      ],
+      "example": "What are the most common mistakes beginners make when learning chord progressions?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 121,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "How to apply ${THEORY} knowledge to real-world ${DOMAIN} projects?",
+      "placeholders": [
+        "THEORY",
+        "DOMAIN"
+      ],
+      "example": "How to apply color theory knowledge to real-world painting projects?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 122,
+      "category": "ASSESSMENT_AND_VALIDATION",
+      "template": "How long should it realistically take to reach ${LEVEL} proficiency in ${DOMAIN}?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "How long should it realistically take to reach intermediate proficiency in Spanish?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 123,
+      "category": "CAREER_AND_MONETIZATION",
+      "template": "Should I specialize in ${SKILL_A} or generalize in ${DOMAIN} for better job prospects?",
+      "placeholders": [
+        "SKILL_A",
+        "DOMAIN"
+      ],
+      "example": "Should I specialize in React or generalize in Web Frontend for better job prospects?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 124,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "What are the industry standards and best practices for ${SKILL} in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "What are the industry standards and best practices for database normalization in SQL?",
+      "platforms": [
+        "blogs",
+        "quora"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 125,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "How to deal with imposter syndrome when learning ${DOMAIN} at the ${LEVEL}?",
+      "placeholders": [
+        "DOMAIN",
+        "LEVEL"
+      ],
+      "example": "How to deal with imposter syndrome when learning digital art at the advanced level?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 126,
+      "category": "GETTING_STARTED",
+      "template": "What are the absolute prerequisites for starting ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What are the absolute prerequisites for starting quantum physics?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 127,
+      "category": "GETTING_STARTED",
+      "template": "What foundational concepts must I master before moving past ${LEVEL} in ${DOMAIN}?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "What foundational concepts must I master before moving past intermediate in web development?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 128,
+      "category": "RESOURCE_DISCOVERY",
+      "template": "Which ${RESOURCE} offers the most comprehensive guide to ${SKILL}?",
+      "placeholders": [
+        "RESOURCE",
+        "SKILL"
+      ],
+      "example": "Which book offers the most comprehensive guide to advanced statistical modeling?",
+      "platforms": [
+        "reddit",
+        "blogs",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 129,
+      "category": "RESOURCE_DISCOVERY",
+      "template": "Are there any free, high-quality ${RESOURCE} for ${LEVEL} topics in ${DOMAIN}?",
+      "placeholders": [
+        "RESOURCE",
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "Are there any free, high-quality video tutorials for advanced concepts in organic chemistry?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 130,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "What is the most common pitfall when learning ${SKILL} in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "What is the most common pitfall when learning sight-reading in piano?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 131,
+      "category": "SKILL_DEVELOPMENT",
+      "template": "How do I transition from theoretical understanding of ${SKILL} to practical application in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "How do I transition from theoretical understanding of machine learning algorithms to practical application in data science?",
+      "platforms": [
+        "reddit",
+        "blogs",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 132,
+      "category": "TOOL_AND_EQUIPMENT",
+      "template": "Is ${TOOL_A} necessary, or can I use ${TOOL_B} for ${DOMAIN} projects?",
+      "placeholders": [
+        "TOOL_A",
+        "TOOL_B",
+        "DOMAIN"
+      ],
+      "example": "Is Adobe Premiere Pro necessary, or can I use DaVinci Resolve for video editing projects?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 133,
+      "category": "TOOL_AND_EQUIPMENT",
+      "template": "What essential ${TOOL} upgrades should an ${LEVEL} ${DOMAIN} learner consider?",
+      "placeholders": [
+        "TOOL",
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "What essential coding environment upgrades should an intermediate Python learner consider?",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 134,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "Detailed roadmap for learning ${DOMAIN} from scratch to industry-ready.",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Detailed roadmap for learning UX design from scratch to industry-ready.",
+      "platforms": [
+        "blogs",
+        "youtube",
+        "reddit"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 135,
+      "category": "LEARNING_PATH_AND_PROGRESSION",
+      "template": "What are the generally accepted milestones for ${LEVEL} proficiency in ${DOMAIN}?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "What are the generally accepted milestones for advanced proficiency in classical mechanics?",
+      "platforms": [
+        "quora",
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 136,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "I feel like I'm hitting a wall in ${DOMAIN}, how do I break past this plateau?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "I feel like I'm hitting a wall in watercolor painting, how do I break past this plateau?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 137,
+      "category": "COMMON_PROBLEMS_AND_TROUBLESHOOTING",
+      "template": "Why do my attempts at ${SKILL} in ${DOMAIN} always result in ${PROBLEM}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN",
+        "PROBLEM"
+      ],
+      "example": "Why do my attempts at guard passing in BJJ always result in getting swept?",
+      "platforms": [
+        "youtube",
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 138,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "What is the practical difference between ${CONCEPT_A} and ${CONCEPT_B} in ${DOMAIN}?",
+      "placeholders": [
+        "CONCEPT_A",
+        "CONCEPT_B",
+        "DOMAIN"
+      ],
+      "example": "What is the practical difference between React and Vue in frontend development?",
+      "platforms": [
+        "quora",
+        "blogs",
+        "reddit"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 139,
+      "category": "COMPARISON_AND_DECISION_MAKING",
+      "template": "Which learning methodology is superior for ${DOMAIN}: ${METHOD_A} or ${METHOD_B}?",
+      "placeholders": [
+        "DOMAIN",
+        "METHOD_A",
+        "METHOD_B"
+      ],
+      "example": "Which learning methodology is superior for language learning: immersion or structured grammar study?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 140,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "What kind of practical projects should I start in ${DOMAIN} after completing the basics?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What kind of practical projects should I start in JavaScript after completing the basics?",
+      "platforms": [
+        "reddit",
+        "blogs",
+        "youtube"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 141,
+      "category": "PRACTICE_AND_APPLICATION",
+      "template": "How to integrate ${SKILL} practice into my daily routine without burnout?",
+      "placeholders": [
+        "SKILL"
+      ],
+      "example": "How to integrate daily drawing practice into my daily routine without burnout?",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 142,
+      "category": "ASSESSMENT_AND_VALIDATION",
+      "template": "What are good interview questions or self-tests to assess ${LEVEL} proficiency in ${DOMAIN}?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "What are good interview questions or self-tests to assess intermediate proficiency in data engineering?",
+      "platforms": [
+        "blogs",
+        "quora",
+        "reddit"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 143,
+      "category": "ASSESSMENT_AND_VALIDATION",
+      "template": "How to build a portfolio for ${DOMAIN} that demonstrates ${SKILL}?",
+      "placeholders": [
+        "DOMAIN",
+        "SKILL"
+      ],
+      "example": "How to build a portfolio for digital design that demonstrates interaction patterns?",
+      "platforms": [
+        "youtube",
+        "blogs",
+        "reddit"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 144,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "How to regain interest in ${DOMAIN} after a long break?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to regain interest in oil painting after a long break?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 145,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "What are realistic expectations for progress in ${DOMAIN} when self-teaching?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What are realistic expectations for progress in cinematography when self-teaching?",
+      "platforms": [
+        "quora",
+        "reddit"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 146,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "What are the common workflow optimizations used by professional ${DOMAIN} experts?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What are the common workflow optimizations used by professional sound design experts?",
+      "platforms": [
+        "blogs",
+        "youtube",
+        "reddit"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 147,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "How to develop a unique personal style or voice within ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to develop a unique personal style or voice within landscape photography?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 148,
+      "category": "COMMUNITY_AND_NETWORKING",
+      "template": "Are there active Discord servers or online groups dedicated to ${LEVEL} ${DOMAIN} discussion?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "Are there active Discord servers or online groups dedicated to advanced mathematics discussion?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 149,
+      "category": "CAREER_AND_MONETIZATION",
+      "template": "Certifications vs portfolio: Which matters more for getting a job in ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Certifications vs portfolio: Which matters more for getting a job in cybersecurity?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 150,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "What are the highest leverage activities to learn ${DOMAIN} if I only have ${TIME} per day?",
+      "placeholders": [
+        "DOMAIN",
+        "TIME"
+      ],
+      "example": "What are the highest leverage activities to learn Mandarin if I only have 30 minutes per day?",
+      "platforms": [
+        "reddit",
+        "blogs",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 151,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "How to stay motivated learning ${DOMAIN} long-term?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to stay motivated learning data science long-term?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 152,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "Is it too late to start learning ${DOMAIN} at age ${AGE}?",
+      "placeholders": [
+        "DOMAIN",
+        "AGE"
+      ],
+      "example": "Is it too late to start learning cinematography at age 40?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 153,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "Dealing with burnout when practicing ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Dealing with burnout when practicing JavaScript?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 154,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "How to overcome the initial steep learning curve of ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to overcome the initial steep learning curve of advanced mathematics?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 155,
+      "category": "MOTIVATION_AND_MINDSET",
+      "template": "What mindset is necessary to master ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What mindset is necessary to master classical mechanics?",
+      "platforms": [
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 156,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "How to take my ${DOMAIN} skills from ${LEVEL_A} to ${LEVEL_B}?",
+      "placeholders": [
+        "DOMAIN",
+        "LEVEL_A",
+        "LEVEL_B"
+      ],
+      "example": "How to take my Python skills from intermediate to professional?",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 157,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "Advanced techniques in ${SKILL} for ${DOMAIN} practitioners?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "Advanced techniques in state management for React practitioners?",
+      "platforms": [
+        "youtube",
+        "blogs",
+        "reddit"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 158,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "What separates expert ${DOMAIN} users from intermediate ones?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "What separates expert sculptors from intermediate ones?",
+      "platforms": [
+        "quora",
+        "reddit"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 159,
+      "category": "ADVANCED_OPTIMIZATION",
+      "template": "Optimization strategies for ${SKILL} performance in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "Optimization strategies for memory usage performance in C++?",
+      "platforms": [
+        "blogs",
+        "reddit"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 160,
+      "category": "COMMUNITY_AND_NETWORKING",
+      "template": "Where is the best online community for ${DOMAIN} learners?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Where is the best online community for UX design learners?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 161,
+      "category": "COMMUNITY_AND_NETWORKING",
+      "template": "How to find a mentor in ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to find a mentor in quantum physics?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 162,
+      "category": "COMMUNITY_AND_NETWORKING",
+      "template": "Best forums or Discord servers for ${LEVEL} ${DOMAIN} discussion?",
+      "placeholders": [
+        "LEVEL",
+        "DOMAIN"
+      ],
+      "example": "Best forums or Discord servers for intermediate photography discussion?",
+      "platforms": [
+        "reddit"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 163,
+      "category": "COMMUNITY_AND_NETWORKING",
+      "template": "How to network with other ${DOMAIN} practitioners?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to network with other cinematography practitioners?",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 164,
+      "category": "CAREER_AND_MONETIZATION",
+      "template": "How to start freelancing with ${DOMAIN} skills?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "How to start freelancing with digital marketing skills?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 165,
+      "category": "CAREER_AND_MONETIZATION",
+      "template": "What are the high-paying jobs requiring ${SKILL} in ${DOMAIN}?",
+      "placeholders": [
+        "SKILL",
+        "DOMAIN"
+      ],
+      "example": "What are the high-paying jobs requiring machine learning in data science?",
+      "platforms": [
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 166,
+      "category": "CAREER_AND_MONETIZATION",
+      "template": "Do I need a certification or degree in ${DOMAIN} to get hired?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Do I need a certification or degree in cybersecurity to get hired?",
+      "platforms": [
+        "reddit",
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 167,
+      "category": "CAREER_AND_MONETIZATION",
+      "template": "Portfolio projects required to land a ${DOMAIN} job?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Portfolio projects required to land a web development job?",
+      "platforms": [
+        "youtube",
+        "blogs",
+        "reddit"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 168,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "What is the fastest way to learn ${DOMAIN} basics in ${TIME}?",
+      "placeholders": [
+        "DOMAIN",
+        "TIME"
+      ],
+      "example": "What is the fastest way to learn Spanish basics in 30 days?",
+      "platforms": [
+        "youtube",
+        "blogs"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 169,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "Effective study schedule for learning ${DOMAIN} while working full-time?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Effective study schedule for learning financial modeling while working full-time?",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 170,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "Learning ${DOMAIN}: How much time per week is necessary for solid progress?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Learning drawing: How much time per week is necessary for solid progress?",
+      "platforms": [
+        "quora",
+        "reddit"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 171,
+      "category": "TIME_AND_EFFICIENCY",
+      "template": "Are intensive bootcamps worth it for learning ${DOMAIN}?",
+      "placeholders": [
+        "DOMAIN"
+      ],
+      "example": "Are intensive bootcamps worth it for learning JavaScript?",
+      "platforms": [
+        "reddit",
+        "quora"
+      ],
+      "skill_level": "all"
+    },
+    {
+      "id": 172,
+      "category": "THEORETICAL_UNDERSTANDING",
+      "template": "Explain ${CONCEPT} in ${DOMAIN} like I'm five.",
+      "placeholders": [
+        "CONCEPT",
+        "DOMAIN"
+      ],
+      "example": "Explain asynchronous programming in JavaScript like I'm five.",
+      "platforms": [
+        "quora",
+        "youtube"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 173,
+      "category": "THEORETICAL_UNDERSTANDING",
+      "template": "What are the fundamental principles of ${TOPIC} in ${DOMAIN}?",
+      "placeholders": [
+        "TOPIC",
+        "DOMAIN"
+      ],
+      "example": "What are the fundamental principles of color theory in painting?",
+      "platforms": [
+        "blogs",
+        "youtube"
+      ],
+      "skill_level": "beginner"
+    },
+    {
+      "id": 174,
+      "category": "THEORETICAL_UNDERSTANDING",
+      "template": "Deep dive into the mechanics of ${CONCEPT} in ${DOMAIN}.",
+      "placeholders": [
+        "CONCEPT",
+        "DOMAIN"
+      ],
+      "example": "Deep dive into the mechanics of gravitational waves in physics.",
+      "platforms": [
+        "blogs",
+        "youtube"
+      ],
+      "skill_level": "advanced"
+    },
+    {
+      "id": 175,
+      "category": "THEORETICAL_UNDERSTANDING",
+      "template": "How does ${THEORY} relate to practical application in ${DOMAIN}?",
+      "placeholders": [
+        "THEORY",
+        "DOMAIN"
+      ],
+      "example": "How does music theory relate to practical application in jazz improvisation?",
+      "platforms": [
+        "quora",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    }
+  ]
+}
