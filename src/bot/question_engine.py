@@ -146,6 +146,7 @@ class QuestionEngine:
             '${LEVEL}': skill_level or self._get_random_skill_level(),
             '${RESOURCE}': self._get_random_resource(),
             '${TIMEFRAME}': self._get_random_timeframe(),
+            '${TIME}': self._get_random_timeframe(),  # Alias for TIMEFRAME
             '${SKILL}': self._get_random_skill(),
             '${CONCEPT}': self._get_random_concept(),
             '${THEORY}': self._get_random_theory(),
