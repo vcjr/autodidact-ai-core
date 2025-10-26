@@ -9,9 +9,11 @@ if project_root not in sys.path:
 import textwrap
 from google import generativeai
 from src.db_utils.llm_client import get_llm_client
-from src.db_utils.chroma_client import get_chroma_client
+from src.db_utils.chroma_client import get_chroma_client, get_or_create_collection, COLLECTION_NAME_V2
 from src.agents.scope_agent import ScopeAgent
-from src.agents.intake_agent import COLLECTION_NAME
+
+# Use v2 collection with 768d embeddings and UnifiedMetadata schema
+COLLECTION_NAME = COLLECTION_NAME_V2
 
 # --- 1. RETRIEVAL AGENT LOGIC (Integrated into the RAG class) ---
 
@@ -21,6 +23,11 @@ class QuestionAgent:
   1. Scopes the user query (Scope Agent).
   2. Retrieves filtered, relevant context (Retrieval Agent).
   3. Generates the custom curriculum using the augmented context.
+  
+  NOW USES:
+  - autodidact_ai_core_v2 collection (768d embeddings)
+  - UnifiedMetadata schema with domain_id/subdomain_id
+  - Enhanced context formatting with new metadata fields
   """
   def __init__(self, collection_name: str = COLLECTION_NAME):
     self.llm_client = get_llm_client()
@@ -28,13 +35,17 @@ class QuestionAgent:
     self.scope_agent = ScopeAgent()
     self.collection_name = collection_name
     
-    # Load the collection (assuming it was created by the Intake Agent)
-    self.collection = self.chroma_client.get_collection(name=self.collection_name)
+    # Load the v2 collection with 768d embeddings
+    self.collection = get_or_create_collection(
+        self.chroma_client, 
+        self.collection_name
+    )
     self.llm_model = "gemini-2.5-flash" # Use a capable model for generation
 
   def _retrieve_context(self, query: str, chroma_filter: dict, k: int = 5) -> str:
     """
     Retrieval Agent's core function: Queries ChromaDB with a filter and returns context.
+    Now uses UnifiedMetadata schema fields for enhanced context formatting.
     """
     print(f"\nRetrieval Agent: Searching for top {k} documents...")
     
@@ -46,16 +57,23 @@ class QuestionAgent:
         # The 'where' filter ensures only high-quality, relevant documents are considered
     )
     
-    # 2. Format the retrieved documents into a context string
+    # 2. Format the retrieved documents into a context string with new metadata
     context_parts = []
     
     for doc, meta in zip(results.get('documents', [[]])[0], results.get('metadatas', [[]])[0]):
+        # Extract UnifiedMetadata fields
         source = meta.get('source', 'N/A')
+        domain_id = meta.get('domain_id', 'N/A')
+        subdomain_id = meta.get('subdomain_id', 'N/A')
         technique = meta.get('technique', 'N/A')
+        platform = meta.get('platform', 'N/A')
+        difficulty = meta.get('difficulty', 'N/A')
+        quality_score = meta.get('helpfulness_score', meta.get('quality_score', 'N/A'))
         
-        # Format the context for the LLM
+        # Format the context for the LLM with enhanced metadata
         context_parts.append(
-            f"-- [Source: {source} | Technique: {technique}] --\n"
+            f"-- [Source: {source} | Platform: {platform} | Domain: {domain_id}/{subdomain_id}] --\n"
+            f"[Difficulty: {difficulty} | Quality Score: {quality_score} | Technique: {technique}]\n"
             f"{doc}"
         )
 

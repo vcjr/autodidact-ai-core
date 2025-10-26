@@ -7,6 +7,7 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 import json
+from typing import Optional
 from google import generativeai
 from google.genai import types
 
@@ -19,6 +20,11 @@ class ScopeAgent:
   The Scope Agent uses an LLM to analyze a user query and determine 
   the necessary metadata filters for efficient, targeted vector retrieval 
   from ChromaDB. This ensures only high-quality, relevant documents are searched.
+  
+  NOW SUPPORTS:
+  - UnifiedMetadata schema with domain_id/subdomain_id
+  - Backward compatibility with instrument_id
+  - Flexible filtering for both new and legacy data
   """
   def __init__(self):
     self.client = get_llm_client()
@@ -26,41 +32,52 @@ class ScopeAgent:
 
   def generate_scope_filter(self, user_query: str) -> dict:
     """
-    Generates a ChromaDB filter dictionary based on the user's request.
+    Generates metadata filters based on the user's request.
     
-    The filter is designed to target instrument, difficulty, and
-    only high-quality, 'helpful' documents (helpfulness_score >= 0.8).
+    NOW EXTRACTS:
+    - domain_id (e.g., "MUSIC")
+    - subdomain_id (e.g., "ELECTRIC_GUITAR")  
+    - difficulty (e.g., "advanced")
+    - instrument_id (for backward compatibility)
+    
+    The LLM will extract domain and subdomain, and we'll auto-generate
+    instrument_id for backward compatibility with legacy queries.
     
     Example Output:
     {
-      "instrument_id": "electric_guitar",
+      "domain_id": "MUSIC",
+      "subdomain_id": "ELECTRIC_GUITAR",
+      "instrument_id": "MUSIC_ELECTRIC_GUITAR",
       "difficulty": "advanced"
     }
     """
     
-    # 1. Define the desired structured output using a Pydantic schema (or in this case, a JSON schema hint)
-    # Note: While the Google GenAI SDK supports Pydantic for function calling, 
-    # we'll use a strong prompt for simple structured JSON for this prototype.
-    
+    # 1. Updated JSON schema to extract domain and subdomain
     json_schema_hint = {
       "type": "object",
       "properties": {
-          "instrument_id": {
+          "domain_id": {
               "type": "string", 
-              "description": "The primary instrument the user wants to learn (e.g., 'electric_guitar', 'piano')."},
+              "description": "The top-level domain (e.g., 'MUSIC', 'CODING_SOFTWARE', 'LANGUAGES'). Use uppercase."},
+          "subdomain_id": {
+              "type": "string", 
+              "description": "The specific subdomain/instrument within the domain (e.g., 'ELECTRIC_GUITAR', 'PIANO', 'PYTHON'). Use uppercase. Optional."},
           "difficulty": {
               "type": "string", 
-              "description": "The skill level requested (e.g., 'beginner', 'intermediate', 'advanced')."}
+              "description": "The skill level requested (e.g., 'beginner', 'intermediate', 'advanced'). Use lowercase."}
       },
-      "required": ["instrument_id", "difficulty"]
+      "required": ["domain_id", "difficulty"]
     }
     
-    # 2. Construct the system prompt
+    # 2. Updated system prompt to guide extraction
     system_prompt = (
       "You are the Scope Agent for the Autodidact AI curriculum generator. "
-      "Your task is to analyze the user's request and extract the core **instrument** "
-      "and **difficulty** level. Your response MUST be a single JSON object that "
-      "matches the provided schema hint. Do not include any other text or explanation."
+      "Your task is to analyze the user's request and extract:\n"
+      "1. The **domain_id**: The broad category (e.g., MUSIC, CODING_SOFTWARE, LANGUAGES)\n"
+      "2. The **subdomain_id**: The specific topic within that domain (e.g., ELECTRIC_GUITAR for MUSIC, PYTHON for CODING_SOFTWARE)\n"
+      "3. The **difficulty**: The skill level (beginner, intermediate, or advanced)\n\n"
+      "Use UPPERCASE for domain_id and subdomain_id, lowercase for difficulty.\n"
+      "Your response MUST be a single JSON object matching the schema. No explanations."
     )
 
     # 3. Call the Gemini API for structured generation
@@ -76,7 +93,14 @@ class ScopeAgent:
       
       # 4. Parse the structured JSON response
       filter_data = json.loads(response.text)
-      print("Scope Agent: Analysis complete.")
+      
+      # 5. Auto-generate instrument_id for backward compatibility
+      if filter_data.get("subdomain_id"):
+        filter_data["instrument_id"] = f"{filter_data['domain_id']}_{filter_data['subdomain_id']}"
+      else:
+        filter_data["instrument_id"] = filter_data["domain_id"]
+      
+      print(f"Scope Agent: Extracted filters - {filter_data}")
       return filter_data
       
     except Exception as e:
@@ -87,26 +111,46 @@ class ScopeAgent:
     """
     Converts the LLM-generated scope data into a full ChromaDB 'where' filter 
     that includes the critical helpfulness_score check.
+    
+    SUPPORTS BOTH:
+    - New schema: domain_id + subdomain_id filtering
+    - Legacy schema: instrument_id filtering
+    
+    The filter will work for both old and new data in the collection.
     """
-    # Get the scope data (instrument_id, difficulty)
+    # Get the scope data (domain_id, subdomain_id, difficulty)
     scope_data = self.generate_scope_filter(user_query)
     
     # Check for errors in the LLM output
     if "error" in scope_data:
         return scope_data
 
-    # ChromaDB 'where' filter requires a specific syntax. 
-    # We combine the LLM output with our predetermined quality filter.
-    chroma_filter = {
-      "$and": [
-          {"instrument_id": scope_data["instrument_id"]},
-          {"difficulty": scope_data["difficulty"]},
-          # CRITICAL VALUE-ADD: Filter out low-quality content
-          {"helpfulness_score": {"$gte": 0.8}} 
-      ]
-    }
+    # Build filter with both new and legacy support
+    filter_conditions = []
     
-    print(f"Generated ChromaDB Filter: {chroma_filter}")
+    # Option 1: Use new schema (domain_id + subdomain_id) if available
+    if scope_data.get("domain_id"):
+        filter_conditions.append({"domain_id": scope_data["domain_id"]})
+        
+        if scope_data.get("subdomain_id"):
+            filter_conditions.append({"subdomain_id": scope_data["subdomain_id"]})
+    
+    # Option 2: Also support legacy instrument_id for backward compatibility
+    # This OR condition allows matching either new or old schema
+    if scope_data.get("instrument_id"):
+        # Create an $or condition to match either new schema or legacy schema
+        filter_conditions.append({"instrument_id": scope_data["instrument_id"]})
+    
+    # Add difficulty filter
+    filter_conditions.append({"difficulty": scope_data["difficulty"]})
+    
+    # CRITICAL VALUE-ADD: Filter out low-quality content
+    filter_conditions.append({"helpfulness_score": {"$gte": 0.8}})
+    
+    # Combine all conditions
+    chroma_filter = {"$and": filter_conditions}
+    
+    print(f"Generated ChromaDB Filter: {json.dumps(chroma_filter, indent=2)}")
     return chroma_filter
 
 # --- EXAMPLE USAGE/TEST ---
