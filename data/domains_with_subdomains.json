@@ -1,0 +1,1460 @@
+[
+  {
+    "id": "MUSIC",
+    "description": "Instrument performance, theory, composition, and audio production.",
+    "subdomains": [
+      {
+        "id": "MUSIC_PIANO",
+        "description": "Piano technique, sight-reading, classical and contemporary repertoire."
+      },
+      {
+        "id": "MUSIC_GUITAR",
+        "description": "Acoustic and electric guitar, fingerstyle, strumming, and soloing."
+      },
+      {
+        "id": "MUSIC_DRUMS",
+        "description": "Percussion technique, rhythm, rudiments, and kit drumming."
+      },
+      {
+        "id": "MUSIC_VOICE",
+        "description": "Vocal technique, breathing, pitch control, and performance."
+      },
+      {
+        "id": "MUSIC_THEORY",
+        "description": "Harmony, scales, chord progressions, and musical analysis."
+      },
+      {
+        "id": "MUSIC_COMPOSITION",
+        "description": "Songwriting, arrangement, orchestration, and creative process."
+      },
+      {
+        "id": "MUSIC_PRODUCTION",
+        "description": "DAWs, mixing, mastering, and electronic music creation."
+      },
+      {
+        "id": "MUSIC_BASS",
+        "description": "Bass guitar and upright bass technique, groove, and theory."
+      },
+      {
+        "id": "MUSIC_STRINGS",
+        "description": "Violin, viola, cello, and orchestral string techniques."
+      },
+      {
+        "id": "MUSIC_BRASS",
+        "description": "Trumpet, trombone, horn, and brass performance techniques."
+      },
+      {
+        "id": "MUSIC_WOODWINDS",
+        "description": "Flute, clarinet, saxophone, and woodwind performance."
+      },
+      {
+        "id": "MUSIC_ELECTRONIC",
+        "description": "Synthesizers, MIDI, electronic composition, and sound design."
+      }
+    ]
+  },
+  {
+    "id": "CODING_SOFTWARE",
+    "description": "Programming languages, software architecture, and application development.",
+    "subdomains": [
+      {
+        "id": "CODING_PYTHON",
+        "description": "Python programming, scripting, automation, and frameworks like Django/Flask."
+      },
+      {
+        "id": "CODING_JAVASCRIPT",
+        "description": "JavaScript, TypeScript, Node.js, and modern ECMAScript features."
+      },
+      {
+        "id": "CODING_WEB_FRONTEND",
+        "description": "HTML, CSS, React, Vue, Angular, responsive design, and user interfaces."
+      },
+      {
+        "id": "CODING_WEB_BACKEND",
+        "description": "Server-side development, REST APIs, GraphQL, databases, and microservices."
+      },
+      {
+        "id": "CODING_MOBILE_DEV",
+        "description": "iOS (Swift), Android (Kotlin), React Native, Flutter mobile development."
+      },
+      {
+        "id": "CODING_DEVOPS",
+        "description": "CI/CD, Docker, Kubernetes, infrastructure as code, and cloud deployment."
+      },
+      {
+        "id": "CODING_JAVA",
+        "description": "Java programming, Spring framework, enterprise applications, and JVM."
+      },
+      {
+        "id": "CODING_CSHARP",
+        "description": "C# programming, .NET framework, ASP.NET, and Unity development."
+      },
+      {
+        "id": "CODING_CPP",
+        "description": "C++ programming, systems programming, game engines, and performance optimization."
+      },
+      {
+        "id": "CODING_RUST",
+        "description": "Rust systems programming, memory safety, and concurrent applications."
+      },
+      {
+        "id": "CODING_GO",
+        "description": "Go programming, concurrent systems, and cloud-native applications."
+      },
+      {
+        "id": "CODING_FUNCTIONAL",
+        "description": "Functional programming with Haskell, Scala, Elixir, or F#."
+      }
+    ]
+  },
+  {
+    "id": "DATA_SCIENCE",
+    "description": "Statistical analysis, machine learning, data engineering, and data visualization.",
+    "subdomains": [
+      {
+        "id": "DATA_SCIENCE_ML",
+        "description": "Machine learning algorithms, model training, and supervised/unsupervised learning."
+      },
+      {
+        "id": "DATA_SCIENCE_ENGINEERING",
+        "description": "Data pipelines, ETL processes, data warehousing, and big data tools."
+      },
+      {
+        "id": "DATA_SCIENCE_VISUALIZATION",
+        "description": "Tableau, D3.js, matplotlib, interactive dashboards, and visual storytelling."
+      },
+      {
+        "id": "DATA_SCIENCE_STATISTICS",
+        "description": "Statistical inference, hypothesis testing, and experimental design."
+      },
+      {
+        "id": "DATA_SCIENCE_NLP",
+        "description": "Natural language processing, text analysis, and language models."
+      },
+      {
+        "id": "DATA_SCIENCE_COMPUTER_VISION",
+        "description": "Image processing, object detection, and deep learning for vision tasks."
+      },
+      {
+        "id": "DATA_SCIENCE_DEEP_LEARNING",
+        "description": "Neural networks, PyTorch, TensorFlow, and advanced architectures."
+      }
+    ]
+  },
+  {
+    "id": "VISUAL_ARTS",
+    "description": "Drawing, painting, sculpture, and traditional art forms.",
+    "subdomains": [
+      {
+        "id": "VISUAL_ARTS_DRAWING",
+        "description": "Pencil, charcoal, ink drawing, sketching, and observational skills."
+      },
+      {
+        "id": "VISUAL_ARTS_PAINTING",
+        "description": "Oil, acrylic, watercolor painting techniques and color theory."
+      },
+      {
+        "id": "VISUAL_ARTS_SCULPTURE",
+        "description": "Clay modeling, stone carving, metal sculpture, and 3D form creation."
+      },
+      {
+        "id": "VISUAL_ARTS_PRINTMAKING",
+        "description": "Screen printing, lithography, etching, and relief printing."
+      },
+      {
+        "id": "VISUAL_ARTS_MIXED_MEDIA",
+        "description": "Collage, assemblage, and experimental mixed media techniques."
+      }
+    ]
+  },
+  {
+    "id": "DIGITAL_DESIGN",
+    "description": "Graphic design, UX/UI, 3D modeling, and digital illustration.",
+    "subdomains": [
+      {
+        "id": "DIGITAL_DESIGN_GRAPHIC",
+        "description": "Adobe Creative Suite, branding, layout design, and visual communication."
+      },
+      {
+        "id": "DIGITAL_DESIGN_UX",
+        "description": "User experience research, wireframing, prototyping, and usability testing."
+      },
+      {
+        "id": "DIGITAL_DESIGN_UI",
+        "description": "User interface design, design systems, and interaction patterns."
+      },
+      {
+        "id": "DIGITAL_DESIGN_3D",
+        "description": "Blender, Maya, 3ds Max, modeling, and rendering workflows."
+      },
+      {
+        "id": "DIGITAL_DESIGN_ILLUSTRATION",
+        "description": "Digital painting, character design, and concept art."
+      },
+      {
+        "id": "DIGITAL_DESIGN_MOTION",
+        "description": "After Effects, motion graphics, and animated content creation."
+      }
+    ]
+  },
+  {
+    "id": "PHOTOGRAPHY",
+    "description": "Camera techniques, lighting, post-processing, and visual storytelling.",
+    "subdomains": [
+      {
+        "id": "PHOTOGRAPHY_PORTRAIT",
+        "description": "Portrait lighting, posing, and studio photography techniques."
+      },
+      {
+        "id": "PHOTOGRAPHY_LANDSCAPE",
+        "description": "Landscape composition, long exposure, and natural light photography."
+      },
+      {
+        "id": "PHOTOGRAPHY_STREET",
+        "description": "Candid photography, urban environments, and documentary storytelling."
+      },
+      {
+        "id": "PHOTOGRAPHY_WILDLIFE",
+        "description": "Animal photography, telephoto techniques, and field craft."
+      },
+      {
+        "id": "PHOTOGRAPHY_MACRO",
+        "description": "Close-up photography, magnification techniques, and detail capture."
+      },
+      {
+        "id": "PHOTOGRAPHY_COMMERCIAL",
+        "description": "Product photography, advertising, and commercial lighting setups."
+      },
+      {
+        "id": "PHOTOGRAPHY_WEDDING",
+        "description": "Event coverage, wedding storytelling, and client management."
+      },
+      {
+        "id": "PHOTOGRAPHY_POST_PROCESSING",
+        "description": "Lightroom, Photoshop, color grading, and photo editing workflows."
+      }
+    ]
+  },
+  {
+    "id": "FILM_VIDEO",
+    "description": "Cinematography, editing, production, and screenwriting.",
+    "subdomains": [
+      {
+        "id": "FILM_VIDEO_CINEMATOGRAPHY",
+        "description": "Camera operation, shot composition, and visual storytelling techniques."
+      },
+      {
+        "id": "FILM_VIDEO_EDITING",
+        "description": "Premiere Pro, Final Cut, DaVinci Resolve, and narrative editing."
+      },
+      {
+        "id": "FILM_VIDEO_DIRECTING",
+        "description": "Vision development, actor direction, and production management."
+      },
+      {
+        "id": "FILM_VIDEO_COLOR_GRADING",
+        "description": "Color theory, LUT application, and grading workflows."
+      },
+      {
+        "id": "FILM_VIDEO_SCREENWRITING",
+        "description": "Story structure, dialogue, and screenplay formatting for film."
+      },
+      {
+        "id": "FILM_VIDEO_PRODUCTION",
+        "description": "Pre-production planning, set management, and crew coordination."
+      }
+    ]
+  },
+  {
+    "id": "MATHEMATICS",
+    "description": "Algebra, calculus, geometry, and advanced mathematical concepts.",
+    "subdomains": [
+      {
+        "id": "MATHEMATICS_ALGEBRA",
+        "description": "Linear algebra, abstract algebra, and algebraic structures."
+      },
+      {
+        "id": "MATHEMATICS_CALCULUS",
+        "description": "Differential and integral calculus, limits, and infinite series."
+      },
+      {
+        "id": "MATHEMATICS_STATISTICS",
+        "description": "Probability theory, statistical inference, and data analysis."
+      },
+      {
+        "id": "MATHEMATICS_GEOMETRY",
+        "description": "Euclidean geometry, non-Euclidean geometry, and spatial reasoning."
+      },
+      {
+        "id": "MATHEMATICS_NUMBER_THEORY",
+        "description": "Prime numbers, modular arithmetic, and cryptographic applications."
+      },
+      {
+        "id": "MATHEMATICS_TOPOLOGY",
+        "description": "Point-set topology, algebraic topology, and manifold theory."
+      },
+      {
+        "id": "MATHEMATICS_DISCRETE",
+        "description": "Graph theory, combinatorics, and discrete structures."
+      },
+      {
+        "id": "MATHEMATICS_DIFFERENTIAL_EQUATIONS",
+        "description": "ODEs, PDEs, and mathematical modeling of dynamic systems."
+      }
+    ]
+  },
+  {
+    "id": "PHYSICS",
+    "description": "Classical mechanics, quantum mechanics, thermodynamics, and astronomy.",
+    "subdomains": [
+      {
+        "id": "PHYSICS_CLASSICAL_MECHANICS",
+        "description": "Newtonian physics, kinematics, dynamics, and energy conservation."
+      },
+      {
+        "id": "PHYSICS_QUANTUM",
+        "description": "Quantum mechanics, wave-particle duality, and quantum systems."
+      },
+      {
+        "id": "PHYSICS_THERMODYNAMICS",
+        "description": "Heat transfer, entropy, and statistical mechanics."
+      },
+      {
+        "id": "PHYSICS_ELECTROMAGNETISM",
+        "description": "Electric and magnetic fields, Maxwell's equations, and EM waves."
+      },
+      {
+        "id": "PHYSICS_RELATIVITY",
+        "description": "Special and general relativity, spacetime, and gravitational theory."
+      },
+      {
+        "id": "PHYSICS_ASTROPHYSICS",
+        "description": "Stellar physics, cosmology, and large-scale universe structures."
+      },
+      {
+        "id": "PHYSICS_PARTICLE",
+        "description": "Standard model, particle interactions, and high-energy physics."
+      }
+    ]
+  },
+  {
+    "id": "CHEMISTRY",
+    "description": "Organic, inorganic, physical, and analytical chemistry.",
+    "subdomains": [
+      {
+        "id": "CHEMISTRY_ORGANIC",
+        "description": "Carbon compounds, reaction mechanisms, and synthesis techniques."
+      },
+      {
+        "id": "CHEMISTRY_INORGANIC",
+        "description": "Metal complexes, coordination chemistry, and materials science."
+      },
+      {
+        "id": "CHEMISTRY_PHYSICAL",
+        "description": "Thermodynamics, kinetics, and quantum chemistry applications."
+      },
+      {
+        "id": "CHEMISTRY_ANALYTICAL",
+        "description": "Instrumentation, spectroscopy, and qualitative/quantitative analysis."
+      },
+      {
+        "id": "CHEMISTRY_BIOCHEMISTRY",
+        "description": "Biological molecules, metabolic pathways, and enzyme mechanisms."
+      }
+    ]
+  },
+  {
+    "id": "BIOLOGY",
+    "description": "Genetics, cellular biology, ecology, and human anatomy.",
+    "subdomains": [
+      {
+        "id": "BIOLOGY_MOLECULAR",
+        "description": "DNA, RNA, protein synthesis, and molecular mechanisms."
+      },
+      {
+        "id": "BIOLOGY_CELLULAR",
+        "description": "Cell structure, organelles, and cellular processes."
+      },
+      {
+        "id": "BIOLOGY_GENETICS",
+        "description": "Heredity, gene expression, and genomics."
+      },
+      {
+        "id": "BIOLOGY_ECOLOGY",
+        "description": "Ecosystems, population dynamics, and environmental interactions."
+      },
+      {
+        "id": "BIOLOGY_MICROBIOLOGY",
+        "description": "Bacteria, viruses, fungi, and microbial systems."
+      },
+      {
+        "id": "BIOLOGY_ZOOLOGY",
+        "description": "Animal biology, behavior, and classification."
+      },
+      {
+        "id": "BIOLOGY_BOTANY",
+        "description": "Plant biology, photosynthesis, and plant physiology."
+      },
+      {
+        "id": "BIOLOGY_ANATOMY",
+        "description": "Human body systems, organs, and physiological processes."
+      }
+    ]
+  },
+  {
+    "id": "ENGINEERING",
+    "description": "Civil, mechanical, electrical, and aerospace engineering principles.",
+    "subdomains": [
+      {
+        "id": "ENGINEERING_CIVIL",
+        "description": "Structural design, construction management, and infrastructure."
+      },
+      {
+        "id": "ENGINEERING_MECHANICAL",
+        "description": "Thermodynamics, machine design, and manufacturing processes."
+      },
+      {
+        "id": "ENGINEERING_ELECTRICAL",
+        "description": "Circuit design, power systems, and signal processing."
+      },
+      {
+        "id": "ENGINEERING_AEROSPACE",
+        "description": "Aerodynamics, propulsion, and aircraft/spacecraft design."
+      },
+      {
+        "id": "ENGINEERING_CHEMICAL",
+        "description": "Process engineering, reaction kinetics, and industrial chemistry."
+      },
+      {
+        "id": "ENGINEERING_INDUSTRIAL",
+        "description": "Operations optimization, quality control, and systems engineering."
+      },
+      {
+        "id": "ENGINEERING_SOFTWARE",
+        "description": "Software design patterns, architecture, and development lifecycle."
+      }
+    ]
+  },
+  {
+    "id": "BUSINESS_MGMT",
+    "description": "Corporate strategy, operations management, and organizational leadership.",
+    "subdomains": [
+      {
+        "id": "BUSINESS_STRATEGY",
+        "description": "Strategic planning, competitive analysis, and business models."
+      },
+      {
+        "id": "BUSINESS_OPERATIONS",
+        "description": "Process optimization, supply chain, and operational excellence."
+      },
+      {
+        "id": "BUSINESS_FINANCE",
+        "description": "Corporate finance, budgeting, and financial decision-making."
+      },
+      {
+        "id": "BUSINESS_MARKETING",
+        "description": "Market research, brand management, and customer acquisition."
+      },
+      {
+        "id": "BUSINESS_HR",
+        "description": "Talent management, organizational development, and employee relations."
+      },
+      {
+        "id": "BUSINESS_PROJECT_MGMT",
+        "description": "Project planning, execution, and stakeholder management."
+      }
+    ]
+  },
+  {
+    "id": "FOREIGN_LANGUAGE",
+    "description": "Acquisition and fluency in languages (e.g., Spanish, Mandarin, Japanese).",
+    "subdomains": [
+      {
+        "id": "FOREIGN_LANGUAGE_SPANISH",
+        "description": "Spanish grammar, vocabulary, conversation, and regional dialects."
+      },
+      {
+        "id": "FOREIGN_LANGUAGE_MANDARIN",
+        "description": "Mandarin Chinese characters, tones, grammar, and HSK preparation."
+      },
+      {
+        "id": "FOREIGN_LANGUAGE_FRENCH",
+        "description": "French pronunciation, grammar, and conversational fluency."
+      },
+      {
+        "id": "FOREIGN_LANGUAGE_GERMAN",
+        "description": "German cases, verb conjugation, and language proficiency."
+      },
+      {
+        "id": "FOREIGN_LANGUAGE_JAPANESE",
+        "description": "Hiragana, katakana, kanji, and Japanese language structure."
+      },
+      {
+        "id": "FOREIGN_LANGUAGE_ARABIC",
+        "description": "Arabic script, grammar, and Modern Standard Arabic."
+      },
+      {
+        "id": "FOREIGN_LANGUAGE_ITALIAN",
+        "description": "Italian pronunciation, grammar, and cultural expressions."
+      },
+      {
+        "id": "FOREIGN_LANGUAGE_PORTUGUESE",
+        "description": "Portuguese grammar, Brazilian vs. European variants, and fluency."
+      },
+      {
+        "id": "FOREIGN_LANGUAGE_RUSSIAN",
+        "description": "Cyrillic alphabet, Russian grammar, and language acquisition."
+      },
+      {
+        "id": "FOREIGN_LANGUAGE_KOREAN",
+        "description": "Hangul, Korean grammar, and conversational practice."
+      },
+      {
+        "id": "FOREIGN_LANGUAGE_HINDI",
+        "description": "Devanagari script, Hindi grammar, and spoken fluency."
+      }
+    ]
+  },
+  {
+    "id": "CREATIVE_WRITING",
+    "description": "Fiction, non-fiction, poetry, and developing narrative skills.",
+    "subdomains": [
+      {
+        "id": "CREATIVE_WRITING_FICTION",
+        "description": "Novel writing, short stories, plot development, and character creation."
+      },
+      {
+        "id": "CREATIVE_WRITING_NONFICTION",
+        "description": "Memoir, essays, narrative journalism, and creative nonfiction."
+      },
+      {
+        "id": "CREATIVE_WRITING_POETRY",
+        "description": "Poetic forms, rhythm, imagery, and contemporary poetry."
+      },
+      {
+        "id": "CREATIVE_WRITING_FANTASY",
+        "description": "World-building, magic systems, and fantasy storytelling."
+      },
+      {
+        "id": "CREATIVE_WRITING_SCIFI",
+        "description": "Science fiction concepts, speculative fiction, and futuristic narratives."
+      }
+    ]
+  },
+  {
+    "id": "HISTORY",
+    "description": "World history, regional studies, and historical analysis.",
+    "subdomains": [
+      {
+        "id": "HISTORY_ANCIENT",
+        "description": "Ancient civilizations, classical antiquity, and early human societies."
+      },
+      {
+        "id": "HISTORY_MEDIEVAL",
+        "description": "Middle Ages, feudalism, and medieval European history."
+      },
+      {
+        "id": "HISTORY_MODERN",
+        "description": "Modern era from Renaissance to contemporary times."
+      },
+      {
+        "id": "HISTORY_AMERICAN",
+        "description": "United States history, colonial period to present day."
+      },
+      {
+        "id": "HISTORY_EUROPEAN",
+        "description": "European history, revolutions, and continental developments."
+      },
+      {
+        "id": "HISTORY_ASIAN",
+        "description": "East Asian, South Asian, and Southeast Asian historical studies."
+      },
+      {
+        "id": "HISTORY_AFRICAN",
+        "description": "African history, civilizations, and post-colonial studies."
+      },
+      {
+        "id": "HISTORY_MILITARY",
+        "description": "Warfare, military strategy, and conflict analysis through history."
+      }
+    ]
+  },
+  {
+    "id": "PSYCHOLOGY",
+    "description": "Cognitive science, social psychology, and clinical approaches.",
+    "subdomains": [
+      {
+        "id": "PSYCHOLOGY_COGNITIVE",
+        "description": "Memory, perception, decision-making, and mental processes."
+      },
+      {
+        "id": "PSYCHOLOGY_CLINICAL",
+        "description": "Mental health disorders, therapy techniques, and psychopathology."
+      },
+      {
+        "id": "PSYCHOLOGY_SOCIAL",
+        "description": "Group behavior, social influence, and interpersonal dynamics."
+      },
+      {
+        "id": "PSYCHOLOGY_DEVELOPMENTAL",
+        "description": "Human development across the lifespan and developmental stages."
+      },
+      {
+        "id": "PSYCHOLOGY_NEURO",
+        "description": "Brain-behavior relationships and neuropsychological assessment."
+      }
+    ]
+  },
+  {
+    "id": "SPORTS_ATHLETICS",
+    "description": "Team sports, individual sports, and competitive training.",
+    "subdomains": [
+      {
+        "id": "SPORTS_BASKETBALL",
+        "description": "Shooting, dribbling, defense, and team strategy."
+      },
+      {
+        "id": "SPORTS_SOCCER",
+        "description": "Ball control, passing, tactics, and positional play."
+      },
+      {
+        "id": "SPORTS_TENNIS",
+        "description": "Stroke mechanics, court positioning, and match strategy."
+      },
+      {
+        "id": "SPORTS_SWIMMING",
+        "description": "Stroke technique, breathing, turns, and competitive swimming."
+      },
+      {
+        "id": "SPORTS_TRACK_FIELD",
+        "description": "Sprinting, distance running, jumping, and throwing events."
+      },
+      {
+        "id": "SPORTS_VOLLEYBALL",
+        "description": "Setting, spiking, blocking, and team rotation systems."
+      },
+      {
+        "id": "SPORTS_BASEBALL",
+        "description": "Hitting, pitching, fielding, and game strategy."
+      },
+      {
+        "id": "SPORTS_GOLF",
+        "description": "Swing mechanics, course management, short game, and putting."
+      }
+    ]
+  },
+  {
+    "id": "FITNESS_TRAINING",
+    "description": "Weightlifting, calisthenics, cardio, and physical conditioning.",
+    "subdomains": [
+      {
+        "id": "FITNESS_STRENGTH",
+        "description": "Resistance training, progressive overload, and muscle building."
+      },
+      {
+        "id": "FITNESS_CARDIO",
+        "description": "Aerobic conditioning, heart health, and endurance training."
+      },
+      {
+        "id": "FITNESS_HIIT",
+        "description": "High-intensity interval training and metabolic conditioning."
+      },
+      {
+        "id": "FITNESS_BODYWEIGHT",
+        "description": "Calisthenics, gymnastics strength, and equipment-free training."
+      },
+      {
+        "id": "FITNESS_FLEXIBILITY",
+        "description": "Stretching, mobility work, and range of motion development."
+      }
+    ]
+  },
+  {
+    "id": "COOKING_CULINARY",
+    "description": "Specific cuisines, baking, and professional chef techniques.",
+    "subdomains": [
+      {
+        "id": "COOKING_ITALIAN",
+        "description": "Pasta making, regional Italian dishes, and traditional techniques."
+      },
+      {
+        "id": "COOKING_JAPANESE",
+        "description": "Sushi, ramen, tempura, and Japanese cooking fundamentals."
+      },
+      {
+        "id": "COOKING_FRENCH",
+        "description": "Classical French techniques, sauces, and haute cuisine."
+      },
+      {
+        "id": "COOKING_MEXICAN",
+        "description": "Traditional Mexican recipes, salsas, and regional specialties."
+      },
+      {
+        "id": "COOKING_THAI",
+        "description": "Thai curries, stir-fries, and Southeast Asian flavors."
+      },
+      {
+        "id": "COOKING_INDIAN",
+        "description": "Spice blends, curries, breads, and Indian regional cuisines."
+      },
+      {
+        "id": "COOKING_CHINESE",
+        "description": "Wok cooking, dumplings, and Chinese culinary traditions."
+      },
+      {
+        "id": "COOKING_BAKING",
+        "description": "Bread, pastries, cakes, and baking science."
+      },
+      {
+        "id": "COOKING_GRILLING_BBQ",
+        "description": "Smoking, grilling techniques, and barbecue styles."
+      }
+    ]
+  },
+  {
+    "id": "MARTIAL_ARTS",
+    "description": "Karate, Jiu-Jitsu, Muay Thai, and self-defense techniques.",
+    "subdomains": [
+      {
+        "id": "MARTIAL_ARTS_BJJ",
+        "description": "Brazilian Jiu-Jitsu grappling, submissions, and ground fighting."
+      },
+      {
+        "id": "MARTIAL_ARTS_MUAY_THAI",
+        "description": "Thai boxing, clinch work, and eight-limb striking."
+      },
+      {
+        "id": "MARTIAL_ARTS_KARATE",
+        "description": "Traditional karate forms, kata, and striking techniques."
+      },
+      {
+        "id": "MARTIAL_ARTS_JUDO",
+        "description": "Throwing techniques, grappling, and competitive judo."
+      },
+      {
+        "id": "MARTIAL_ARTS_TAEKWONDO",
+        "description": "Korean martial art, kicking techniques, and forms."
+      },
+      {
+        "id": "MARTIAL_ARTS_MMA",
+        "description": "Mixed martial arts, combining multiple disciplines for competition."
+      },
+      {
+        "id": "MARTIAL_ARTS_BOXING",
+        "description": "Pugilism, footwork, punching technique, and ring strategy."
+      },
+      {
+        "id": "MARTIAL_ARTS_KRAV_MAGA",
+        "description": "Israeli self-defense system and practical combat techniques."
+      }
+    ]
+  },
+  {
+    "id": "GAME_DEVELOPMENT",
+    "description": "Unity, Unreal Engine, game design patterns, and interactive storytelling.",
+    "subdomains": [
+      {
+        "id": "GAME_DEV_UNITY",
+        "description": "Unity engine, C# scripting, and 2D/3D game creation."
+      },
+      {
+        "id": "GAME_DEV_UNREAL",
+        "description": "Unreal Engine, Blueprints, C++, and AAA game development."
+      },
+      {
+        "id": "GAME_DEV_DESIGN",
+        "description": "Game mechanics, level design, and player experience."
+      },
+      {
+        "id": "GAME_DEV_PROGRAMMING",
+        "description": "Game logic, physics systems, and gameplay programming."
+      },
+      {
+        "id": "GAME_DEV_ART",
+        "description": "3D modeling, texturing, animation for games."
+      }
+    ]
+  },
+  {
+    "id": "ANIMATION",
+    "description": "2D/3D animation, motion graphics, and character rigging.",
+    "subdomains": [
+      {
+        "id": "ANIMATION_2D",
+        "description": "Traditional animation, frame-by-frame, and digital 2D techniques."
+      },
+      {
+        "id": "ANIMATION_3D",
+        "description": "3D character animation, keyframing, and Maya/Blender workflows."
+      },
+      {
+        "id": "ANIMATION_RIGGING",
+        "description": "Character rigging, skeleton setup, and deformation systems."
+      },
+      {
+        "id": "ANIMATION_MOTION_GRAPHICS",
+        "description": "After Effects, kinetic typography, and animated graphics."
+      },
+      {
+        "id": "ANIMATION_STOP_MOTION",
+        "description": "Claymation, puppet animation, and stop-motion techniques."
+      }
+    ]
+  },
+  {
+    "id": "IT_NETWORKING",
+    "description": "Cloud infrastructure (AWS/Azure), network management, and server administration.",
+    "subdomains": [
+      {
+        "id": "IT_CLOUD_AWS",
+        "description": "Amazon Web Services, EC2, S3, and AWS architecture."
+      },
+      {
+        "id": "IT_CLOUD_AZURE",
+        "description": "Microsoft Azure services, deployment, and cloud solutions."
+      },
+      {
+        "id": "IT_NETWORKING",
+        "description": "TCP/IP, routing, switching, and network protocols."
+      },
+      {
+        "id": "IT_SERVER_ADMIN",
+        "description": "Linux/Windows server management and system administration."
+      },
+      {
+        "id": "IT_VIRTUALIZATION",
+        "description": "VMware, Docker, containerization, and virtual infrastructure."
+      }
+    ]
+  },
+  {
+    "id": "CYBERSECURITY",
+    "description": "Ethical hacking, penetration testing, and digital defense.",
+    "subdomains": [
+      {
+        "id": "CYBERSECURITY_PENTESTING",
+        "description": "Penetration testing methodologies and vulnerability assessment."
+      },
+      {
+        "id": "CYBERSECURITY_ETHICAL_HACKING",
+        "description": "Ethical hacking techniques, exploits, and security research."
+      },
+      {
+        "id": "CYBERSECURITY_NETWORK_SECURITY",
+        "description": "Firewalls, IDS/IPS, and network defense strategies."
+      },
+      {
+        "id": "CYBERSECURITY_CRYPTOGRAPHY",
+        "description": "Encryption algorithms, cryptographic protocols, and secure communication."
+      },
+      {
+        "id": "CYBERSECURITY_INCIDENT_RESPONSE",
+        "description": "Threat detection, incident handling, and security operations."
+      }
+    ]
+  },
+  {
+    "id": "MARKETING_SALES",
+    "description": "SEO, content marketing, digital advertising, and sales techniques.",
+    "subdomains": [
+      {
+        "id": "MARKETING_SEO",
+        "description": "Search engine optimization, keyword research, and organic traffic."
+      },
+      {
+        "id": "MARKETING_CONTENT",
+        "description": "Content strategy, blogging, and content marketing campaigns."
+      },
+      {
+        "id": "MARKETING_SOCIAL_MEDIA",
+        "description": "Social platform strategies, community management, and engagement."
+      },
+      {
+        "id": "MARKETING_PPC",
+        "description": "Pay-per-click advertising, Google Ads, and campaign optimization."
+      },
+      {
+        "id": "MARKETING_EMAIL",
+        "description": "Email campaigns, automation, and conversion optimization."
+      },
+      {
+        "id": "MARKETING_ANALYTICS",
+        "description": "Marketing metrics, Google Analytics, and data-driven marketing."
+      }
+    ]
+  },
+  {
+    "id": "DANCE",
+    "description": "Ballet, contemporary, hip-hop, and choreography.",
+    "subdomains": [
+      {
+        "id": "DANCE_BALLET",
+        "description": "Classical ballet technique, positions, and repertoire."
+      },
+      {
+        "id": "DANCE_CONTEMPORARY",
+        "description": "Modern dance, improvisation, and contemporary movement."
+      },
+      {
+        "id": "DANCE_HIP_HOP",
+        "description": "Hip-hop styles, breaking, popping, and street dance."
+      },
+      {
+        "id": "DANCE_BALLROOM",
+        "description": "Partner dancing, waltz, tango, and competitive ballroom."
+      },
+      {
+        "id": "DANCE_CHOREOGRAPHY",
+        "description": "Dance composition, movement creation, and performance design."
+      },
+      {
+        "id": "DANCE_LATIN",
+        "description": "Salsa, bachata, merengue, and Latin social dancing."
+      }
+    ]
+  },
+  {
+    "id": "LAW_LEGAL",
+    "description": "Contract law, intellectual property, and civil procedure.",
+    "subdomains": [
+      {
+        "id": "LAW_CONTRACT",
+        "description": "Contract formation, interpretation, and enforcement."
+      },
+      {
+        "id": "LAW_INTELLECTUAL_PROPERTY",
+        "description": "Patents, trademarks, copyrights, and IP protection."
+      },
+      {
+        "id": "LAW_CIVIL_PROCEDURE",
+        "description": "Litigation process, pleadings, and civil court procedures."
+      },
+      {
+        "id": "LAW_CRIMINAL",
+        "description": "Criminal law, constitutional rights, and criminal procedure."
+      },
+      {
+        "id": "LAW_CORPORATE",
+        "description": "Business law, mergers, acquisitions, and corporate governance."
+      }
+    ]
+  },
+  {
+    "id": "FINANCE_INVESTING",
+    "description": "Personal finance, stock markets, accounting, and financial modeling.",
+    "subdomains": [
+      {
+        "id": "FINANCE_PERSONAL",
+        "description": "Budgeting, saving, debt management, and financial planning."
+      },
+      {
+        "id": "FINANCE_STOCK_MARKET",
+        "description": "Stock trading, market analysis, and equity investing."
+      },
+      {
+        "id": "FINANCE_ACCOUNTING",
+        "description": "Financial statements, bookkeeping, and accounting principles."
+      },
+      {
+        "id": "FINANCE_MODELING",
+        "description": "Excel modeling, valuation, and financial forecasting."
+      },
+      {
+        "id": "FINANCE_REAL_ESTATE_INVESTING",
+        "description": "Property investment, REITs, and real estate finance."
+      },
+      {
+        "id": "FINANCE_OPTIONS_DERIVATIVES",
+        "description": "Options trading, futures, and derivative instruments."
+      }
+    ]
+  },
+  {
+    "id": "ECONOMICS",
+    "description": "Microeconomics, macroeconomics, and economic theory.",
+    "subdomains": [
+      {
+        "id": "ECONOMICS_MICRO",
+        "description": "Supply and demand, market structures, and consumer behavior."
+      },
+      {
+        "id": "ECONOMICS_MACRO",
+        "description": "GDP, inflation, monetary policy, and economic growth."
+      },
+      {
+        "id": "ECONOMICS_INTERNATIONAL",
+        "description": "Trade theory, exchange rates, and global economics."
+      },
+      {
+        "id": "ECONOMICS_DEVELOPMENT",
+        "description": "Economic development, poverty, and emerging markets."
+      }
+    ]
+  },
+  {
+    "id": "ARCHITECTURE",
+    "description": "Building design, urban planning, and architectural history.",
+    "subdomains": [
+      {
+        "id": "ARCHITECTURE_DESIGN",
+        "description": "Architectural design principles, spatial planning, and aesthetics."
+      },
+      {
+        "id": "ARCHITECTURE_URBAN_PLANNING",
+        "description": "City planning, zoning, and sustainable urban development."
+      },
+      {
+        "id": "ARCHITECTURE_HISTORY",
+        "description": "Architectural movements, styles, and historical analysis."
+      },
+      {
+        "id": "ARCHITECTURE_SUSTAINABLE",
+        "description": "Green building, LEED certification, and eco-friendly design."
+      },
+      {
+        "id": "ARCHITECTURE_TECHNICAL",
+        "description": "Building codes, structural systems, and construction documentation."
+      }
+    ]
+  },
+  {
+    "id": "ENVIRONMENTAL_SCIENCE",
+    "description": "Ecology, climate science, and sustainability.",
+    "subdomains": [
+      {
+        "id": "ENVIRONMENTAL_ECOLOGY",
+        "description": "Ecosystem dynamics, biodiversity, and ecological relationships."
+      },
+      {
+        "id": "ENVIRONMENTAL_CLIMATE",
+        "description": "Climate change, atmospheric science, and global warming."
+      },
+      {
+        "id": "ENVIRONMENTAL_CONSERVATION",
+        "description": "Wildlife conservation, habitat protection, and resource management."
+      },
+      {
+        "id": "ENVIRONMENTAL_SUSTAINABILITY",
+        "description": "Sustainable practices, green technology, and environmental policy."
+      }
+    ]
+  },
+  {
+    "id": "PHILOSOPHY",
+    "description": "Ethics, metaphysics, logic, and critical thinking.",
+    "subdomains": [
+      {
+        "id": "PHILOSOPHY_ETHICS",
+        "description": "Moral philosophy, ethical theories, and applied ethics."
+      },
+      {
+        "id": "PHILOSOPHY_METAPHYSICS",
+        "description": "Reality, existence, causation, and ontology."
+      },
+      {
+        "id": "PHILOSOPHY_LOGIC",
+        "description": "Formal logic, reasoning, and argumentation."
+      },
+      {
+        "id": "PHILOSOPHY_EPISTEMOLOGY",
+        "description": "Theory of knowledge, belief, and justification."
+      },
+      {
+        "id": "PHILOSOPHY_POLITICAL",
+        "description": "Political theory, justice, and social philosophy."
+      }
+    ]
+  },
+  {
+    "id": "CRAFTS_DIY",
+    "description": "Knitting, sewing, jewelry making, and hobby crafts.",
+    "subdomains": [
+      {
+        "id": "CRAFTS_KNITTING",
+        "description": "Knitting patterns, techniques, and garment construction."
+      },
+      {
+        "id": "CRAFTS_SEWING",
+        "description": "Sewing machine use, pattern making, and clothing construction."
+      },
+      {
+        "id": "CRAFTS_JEWELRY",
+        "description": "Jewelry design, metalworking, and beading techniques."
+      },
+      {
+        "id": "CRAFTS_CROCHET",
+        "description": "Crochet stitches, patterns, and project creation."
+      },
+      {
+        "id": "CRAFTS_EMBROIDERY",
+        "description": "Hand embroidery, needlework, and decorative stitching."
+      }
+    ]
+  },
+  {
+    "id": "HOME_REPAIR",
+    "description": "Plumbing, electrical, basic carpentry, and general maintenance.",
+    "subdomains": [
+      {
+        "id": "HOME_REPAIR_PLUMBING",
+        "description": "Pipe repair, fixtures, and basic plumbing maintenance."
+      },
+      {
+        "id": "HOME_REPAIR_ELECTRICAL",
+        "description": "Wiring, outlets, switches, and electrical safety."
+      },
+      {
+        "id": "HOME_REPAIR_CARPENTRY",
+        "description": "Basic woodworking, repairs, and home improvement projects."
+      },
+      {
+        "id": "HOME_REPAIR_PAINTING",
+        "description": "Interior/exterior painting, surface preparation, and finishing."
+      },
+      {
+        "id": "HOME_REPAIR_HVAC",
+        "description": "Heating and cooling maintenance, filter changes, and troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "WOODWORKING",
+    "description": "Carpentry techniques, tool usage, and furniture making.",
+    "subdomains": [
+      {
+        "id": "WOODWORKING_FURNITURE",
+        "description": "Furniture design, joinery, and fine woodworking."
+      },
+      {
+        "id": "WOODWORKING_CARVING",
+        "description": "Wood carving techniques, relief carving, and sculpture."
+      },
+      {
+        "id": "WOODWORKING_FINISHING",
+        "description": "Staining, varnishing, and wood finishing techniques."
+      },
+      {
+        "id": "WOODWORKING_POWER_TOOLS",
+        "description": "Table saw, router, planer, and power tool mastery."
+      },
+      {
+        "id": "WOODWORKING_HAND_TOOLS",
+        "description": "Chisels, planes, saws, and traditional hand tool skills."
+      }
+    ]
+  },
+  {
+    "id": "GARDENING_HORTICULTURE",
+    "description": "Plant science, landscaping, and indoor/outdoor gardening.",
+    "subdomains": [
+      {
+        "id": "GARDENING_VEGETABLES",
+        "description": "Vegetable gardening, crop rotation, and kitchen gardens."
+      },
+      {
+        "id": "GARDENING_FLOWERS",
+        "description": "Flower cultivation, perennials, annuals, and garden design."
+      },
+      {
+        "id": "GARDENING_LANDSCAPING",
+        "description": "Landscape design, hardscaping, and outdoor spaces."
+      },
+      {
+        "id": "GARDENING_INDOOR",
+        "description": "Houseplants, indoor growing, and plant care."
+      },
+      {
+        "id": "GARDENING_ORGANIC",
+        "description": "Organic methods, composting, and sustainable gardening."
+      }
+    ]
+  },
+  {
+    "id": "NUTRITION_DIET",
+    "description": "Dietary science, meal planning, and specific dietary needs.",
+    "subdomains": [
+      {
+        "id": "NUTRITION_GENERAL",
+        "description": "Macronutrients, micronutrients, and balanced nutrition."
+      },
+      {
+        "id": "NUTRITION_SPORTS",
+        "description": "Athletic performance nutrition and supplementation."
+      },
+      {
+        "id": "NUTRITION_WEIGHT_LOSS",
+        "description": "Caloric deficit, sustainable weight loss, and diet strategies."
+      },
+      {
+        "id": "NUTRITION_MEAL_PREP",
+        "description": "Meal planning, batch cooking, and nutrition tracking."
+      },
+      {
+        "id": "NUTRITION_SPECIAL_DIETS",
+        "description": "Keto, vegan, paleo, and dietary restriction management."
+      }
+    ]
+  },
+  {
+    "id": "POLITICAL_SCIENCE",
+    "description": "Political theory, comparative politics, and international relations.",
+    "subdomains": [
+      {
+        "id": "POLITICAL_SCIENCE_THEORY",
+        "description": "Political philosophy, democratic theory, and governance."
+      },
+      {
+        "id": "POLITICAL_SCIENCE_COMPARATIVE",
+        "description": "Comparative government systems and political institutions."
+      },
+      {
+        "id": "POLITICAL_SCIENCE_INTERNATIONAL",
+        "description": "International relations, diplomacy, and global politics."
+      },
+      {
+        "id": "POLITICAL_SCIENCE_AMERICAN",
+        "description": "U.S. government, constitution, and American political system."
+      }
+    ]
+  },
+  {
+    "id": "ACTING_THEATER",
+    "description": "Performance techniques, improvisation, and stage presence.",
+    "subdomains": [
+      {
+        "id": "ACTING_STAGE",
+        "description": "Theater acting, character development, and stage performance."
+      },
+      {
+        "id": "ACTING_SCREEN",
+        "description": "Film and TV acting, camera technique, and on-screen presence."
+      },
+      {
+        "id": "ACTING_IMPROV",
+        "description": "Improvisational theater, spontaneity, and comedic timing."
+      },
+      {
+        "id": "ACTING_VOICE",
+        "description": "Vocal projection, accent work, and voice acting."
+      },
+      {
+        "id": "ACTING_MOVEMENT",
+        "description": "Physical theater, stage combat, and movement techniques."
+      }
+    ]
+  },
+  {
+    "id": "LINGUISTICS",
+    "description": "Language structure, phonetics, semantics, and language acquisition.",
+    "subdomains": [
+      {
+        "id": "LINGUISTICS_PHONETICS",
+        "description": "Sound production, phonetic transcription, and speech sounds."
+      },
+      {
+        "id": "LINGUISTICS_SYNTAX",
+        "description": "Sentence structure, grammar rules, and syntactic theory."
+      },
+      {
+        "id": "LINGUISTICS_SEMANTICS",
+        "description": "Meaning, word relationships, and semantic analysis."
+      },
+      {
+        "id": "LINGUISTICS_SOCIOLINGUISTICS",
+        "description": "Language variation, dialects, and social context."
+      },
+      {
+        "id": "LINGUISTICS_ACQUISITION",
+        "description": "Language learning, bilingualism, and cognitive development."
+      }
+    ]
+  },
+  {
+    "id": "NEUROSCIENCE",
+    "description": "Brain structure, neural pathways, and cognitive neuroscience.",
+    "subdomains": [
+      {
+        "id": "NEUROSCIENCE_COGNITIVE",
+        "description": "Brain mechanisms of cognition, memory, and perception."
+      },
+      {
+        "id": "NEUROSCIENCE_BEHAVIORAL",
+        "description": "Neural basis of behavior and behavioral neuroscience."
+      },
+      {
+        "id": "NEUROSCIENCE_MOLECULAR",
+        "description": "Molecular mechanisms, neurotransmitters, and cellular processes."
+      },
+      {
+        "id": "NEUROSCIENCE_CLINICAL",
+        "description": "Neurological disorders, brain injury, and clinical applications."
+      }
+    ]
+  },
+  {
+    "id": "SOUND_DESIGN",
+    "description": "Foley, synthesis, mixing, and audio engineering.",
+    "subdomains": [
+      {
+        "id": "SOUND_DESIGN_FOLEY",
+        "description": "Sound effects creation and foley artistry for film/games."
+      },
+      {
+        "id": "SOUND_DESIGN_SYNTHESIS",
+        "description": "Synthesizer programming, sound synthesis, and electronic sound."
+      },
+      {
+        "id": "SOUND_DESIGN_MIXING",
+        "description": "Audio mixing, balance, and sonic space creation."
+      },
+      {
+        "id": "SOUND_DESIGN_MASTERING",
+        "description": "Final audio polishing, loudness, and master preparation."
+      },
+      {
+        "id": "SOUND_DESIGN_GAME_AUDIO",
+        "description": "Interactive audio, adaptive music, and game sound implementation."
+      }
+    ]
+  },
+  {
+    "id": "ELECTRONICS_ROBOTICS",
+    "description": "Circuit design, microcontrollers (Arduino/Raspberry Pi), and automation.",
+    "subdomains": [
+      {
+        "id": "ELECTRONICS_CIRCUITS",
+        "description": "Circuit design, components, and electronic theory."
+      },
+      {
+        "id": "ELECTRONICS_ARDUINO",
+        "description": "Arduino programming, sensors, and embedded projects."
+      },
+      {
+        "id": "ELECTRONICS_RASPBERRY_PI",
+        "description": "Raspberry Pi projects, Linux, and single-board computing."
+      },
+      {
+        "id": "ELECTRONICS_ROBOTICS",
+        "description": "Robot construction, control systems, and autonomous behavior."
+      },
+      {
+        "id": "ELECTRONICS_IOT",
+        "description": "Internet of Things, connected devices, and smart systems."
+      }
+    ]
+  },
+  {
+    "id": "BIOTECHNOLOGY",
+    "description": "Genetic engineering, CRISPR, and biomedical innovation.",
+    "subdomains": [
+      {
+        "id": "BIOTECHNOLOGY_GENETIC_ENGINEERING",
+        "description": "Gene editing, recombinant DNA, and genetic modification."
+      },
+      {
+        "id": "BIOTECHNOLOGY_CRISPR",
+        "description": "CRISPR-Cas9 technology and genome editing applications."
+      },
+      {
+        "id": "BIOTECHNOLOGY_BIOMEDICAL",
+        "description": "Medical biotechnology, drug development, and therapeutics."
+      },
+      {
+        "id": "BIOTECHNOLOGY_INDUSTRIAL",
+        "description": "Industrial applications, biofuels, and bioprocessing."
+      }
+    ]
+  },
+  {
+    "id": "RENEWABLE_ENERGY",
+    "description": "Solar, wind, hydroelectric systems, and green technology.",
+    "subdomains": [
+      {
+        "id": "RENEWABLE_SOLAR",
+        "description": "Solar panel installation, photovoltaic systems, and solar energy."
+      },
+      {
+        "id": "RENEWABLE_WIND",
+        "description": "Wind turbine technology and wind energy systems."
+      },
+      {
+        "id": "RENEWABLE_HYDRO",
+        "description": "Hydroelectric power, water turbines, and renewable water energy."
+      },
+      {
+        "id": "RENEWABLE_STORAGE",
+        "description": "Battery technology, energy storage, and grid integration."
+      }
+    ]
+  },
+  {
+    "id": "METALWORKING",
+    "description": "Welding, blacksmithing, and fabrication techniques.",
+    "subdomains": [
+      {
+        "id": "METALWORKING_WELDING",
+        "description": "MIG, TIG, stick welding, and metal joining techniques."
+      },
+      {
+        "id": "METALWORKING_BLACKSMITHING",
+        "description": "Forge work, hammering, and traditional blacksmith skills."
+      },
+      {
+        "id": "METALWORKING_FABRICATION",
+        "description": "Metal cutting, bending, and custom fabrication."
+      },
+      {
+        "id": "METALWORKING_MACHINING",
+        "description": "Lathe, mill, CNC machining, and precision metalwork."
+      }
+    ]
+  },
+  {
+    "id": "POTTERY_CERAMICS",
+    "description": "Wheel throwing, glazing, and ceramic sculpture.",
+    "subdomains": [
+      {
+        "id": "POTTERY_WHEEL",
+        "description": "Wheel throwing techniques, centering, and vessel creation."
+      },
+      {
+        "id": "POTTERY_HANDBUILDING",
+        "description": "Coil, slab, and pinch pot construction methods."
+      },
+      {
+        "id": "POTTERY_GLAZING",
+        "description": "Glaze chemistry, application, and firing techniques."
+      },
+      {
+        "id": "POTTERY_SCULPTURE",
+        "description": "Ceramic sculpture, figurative work, and artistic ceramics."
+      }
+    ]
+  },
+  {
+    "id": "STATISTICS",
+    "description": "Probability theory, hypothesis testing, and statistical modeling.",
+    "subdomains": [
+      {
+        "id": "STATISTICS_DESCRIPTIVE",
+        "description": "Data summarization, measures of central tendency, and visualization."
+      },
+      {
+        "id": "STATISTICS_INFERENTIAL",
+        "description": "Hypothesis testing, confidence intervals, and statistical inference."
+      },
+      {
+        "id": "STATISTICS_REGRESSION",
+        "description": "Linear regression, multivariate analysis, and predictive modeling."
+      },
+      {
+        "id": "STATISTICS_BAYESIAN",
+        "description": "Bayesian inference, prior distributions, and probabilistic modeling."
+      },
+      {
+        "id": "STATISTICS_EXPERIMENTAL_DESIGN",
+        "description": "A/B testing, experimental methodology, and causal inference."
+      }
+    ]
+  }
+]

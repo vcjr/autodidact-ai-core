@@ -1,0 +1,870 @@
+[
+  {
+    "id": "MUSIC",
+    "description": "Instrument performance, theory, composition, and audio production."
+  },
+  {
+    "id": "CODING_SOFTWARE",
+    "description": "Programming languages, software architecture, and application development."
+  },
+  {
+    "id": "DATA_SCIENCE",
+    "description": "Statistical analysis, machine learning, data engineering, and data visualization."
+  },
+  {
+    "id": "VISUAL_ARTS",
+    "description": "Drawing, painting, sculpture, and traditional art forms."
+  },
+  {
+    "id": "DIGITAL_DESIGN",
+    "description": "Graphic design, UX/UI, 3D modeling, and digital illustration."
+  },
+  {
+    "id": "PHOTOGRAPHY",
+    "description": "Camera techniques, lighting, post-processing, and visual storytelling."
+  },
+  {
+    "id": "FILM_VIDEO",
+    "description": "Cinematography, editing, production, and screenwriting."
+  },
+  {
+    "id": "MATHEMATICS",
+    "description": "Algebra, calculus, geometry, and advanced mathematical concepts."
+  },
+  {
+    "id": "PHYSICS",
+    "description": "Classical mechanics, quantum mechanics, thermodynamics, and astronomy."
+  },
+  {
+    "id": "CHEMISTRY",
+    "description": "Organic, inorganic, physical, and analytical chemistry."
+  },
+  {
+    "id": "BIOLOGY",
+    "description": "Genetics, cellular biology, ecology, and human anatomy."
+  },
+  {
+    "id": "ENGINEERING",
+    "description": "Civil, mechanical, electrical, and aerospace engineering principles."
+  },
+  {
+    "id": "BUSINESS_MGMT",
+    "description": "Corporate strategy, operations management, and organizational leadership."
+  },
+  {
+    "id": "FINANCE_INVESTING",
+    "description": "Personal finance, stock markets, accounting, and financial modeling."
+  },
+  {
+    "id": "MARKETING_SALES",
+    "description": "SEO, content marketing, digital advertising, and sales techniques."
+  },
+  {
+    "id": "ENTREPRENEURSHIP",
+    "description": "Starting a business, fundraising, and startup strategies."
+  },
+  {
+    "id": "LEADERSHIP_MGMT",
+    "description": "Team building, decision-making, and executive management."
+  },
+  {
+    "id": "PRODUCTIVITY_ORG",
+    "description": "Time management, organization systems, and workflow optimization."
+  },
+  {
+    "id": "FOREIGN_LANGUAGE",
+    "description": "Acquisition and fluency in languages (e.g., Spanish, Mandarin, Japanese)."
+  },
+  {
+    "id": "CREATIVE_WRITING",
+    "description": "Fiction, non-fiction, poetry, and developing narrative skills."
+  },
+  {
+    "id": "PUBLIC_SPEAKING",
+    "description": "Presentation skills, rhetoric, and confidence in communication."
+  },
+  {
+    "id": "HISTORY",
+    "description": "World history, regional studies, and historical analysis."
+  },
+  {
+    "id": "PHILOSOPHY",
+    "description": "Ethics, metaphysics, logic, and critical thinking."
+  },
+  {
+    "id": "PSYCHOLOGY",
+    "description": "Cognitive science, social psychology, and clinical approaches."
+  },
+  {
+    "id": "SOCIOLOGY",
+    "description": "Cultural studies, social structures, and demographic analysis."
+  },
+  {
+    "id": "SPORTS_ATHLETICS",
+    "description": "Team sports, individual sports, and competitive training."
+  },
+  {
+    "id": "FITNESS_TRAINING",
+    "description": "Weightlifting, calisthenics, cardio, and physical conditioning."
+  },
+  {
+    "id": "NUTRITION_DIET",
+    "description": "Dietary science, meal planning, and specific dietary needs."
+  },
+  {
+    "id": "YOGA_PILATES",
+    "description": "Flexibility, core strength, and mind-body practices."
+  },
+  {
+    "id": "MEDITATION_WELLNESS",
+    "description": "Mindfulness, stress reduction, and mental health practices."
+  },
+  {
+    "id": "COOKING_CULINARY",
+    "description": "Specific cuisines, baking, and professional chef techniques."
+  },
+  {
+    "id": "HOME_REPAIR",
+    "description": "Plumbing, electrical, basic carpentry, and general maintenance."
+  },
+  {
+    "id": "WOODWORKING",
+    "description": "Carpentry techniques, tool usage, and furniture making."
+  },
+  {
+    "id": "GARDENING_HORTICULTURE",
+    "description": "Plant science, landscaping, and indoor/outdoor gardening."
+  },
+  {
+    "id": "MECHANICS_AUTO",
+    "description": "Automotive repair, engine diagnostics, and vehicle maintenance."
+  },
+  {
+    "id": "CRAFTS_DIY",
+    "description": "Knitting, sewing, jewelry making, and hobby crafts."
+  },
+  {
+    "id": "GAMING_ESPORTS",
+    "description": "Game strategy, competitive gaming, and game design analysis."
+  },
+  {
+    "id": "ASTRONOMY",
+    "description": "Celestial observation, cosmology, and astrophotography."
+  },
+  {
+    "id": "GEOGRAPHY",
+    "description": "Cartography, spatial analysis, and human/physical geography."
+  },
+  {
+    "id": "ARCHITECTURE",
+    "description": "Building design, urban planning, and architectural history."
+  },
+  {
+    "id": "SALES_NEGOTIATION",
+    "description": "Advanced sales psychology, closing techniques, and negotiation strategy."
+  },
+  {
+    "id": "PERSONAL_DEVELOPMENT",
+    "description": "Habit formation, emotional intelligence, and self-improvement."
+  },
+  {
+    "id": "CRITICAL_THINKING",
+    "description": "Logical reasoning, bias identification, and complex problem-solving."
+  },
+  {
+    "id": "IT_NETWORKING",
+    "description": "Cloud infrastructure (AWS/Azure), network management, and server administration."
+  },
+  {
+    "id": "CYBERSECURITY",
+    "description": "Ethical hacking, penetration testing, and digital defense."
+  },
+  {
+    "id": "DATA_MODELING",
+    "description": "Database design, SQL optimization, and NoSQL systems."
+  },
+  {
+    "id": "3D_PRINTING",
+    "description": "Modeling software, machine calibration, and material science."
+  },
+  {
+    "id": "ELECTRONICS_ROBOTICS",
+    "description": "Circuit design, microcontrollers (Arduino/Raspberry Pi), and automation."
+  },
+  {
+    "id": "AI_MLOPS",
+    "description": "Deployment, monitoring, and scaling of Machine Learning models."
+  },
+  {
+    "id": "VIRTUAL_REALITY",
+    "description": "VR development (Unity/Unreal), interaction design, and hardware."
+  },
+  {
+    "id": "LAW_LEGAL",
+    "description": "Contract law, intellectual property, and civil procedure."
+  },
+  {
+    "id": "JOURNALISM_MEDIA",
+    "description": "Investigative reporting, media ethics, and digital news gathering."
+  },
+  {
+    "id": "SUPPLY_CHAIN",
+    "description": "Logistics, inventory management, and operations research."
+  },
+  {
+    "id": "REAL_ESTATE",
+    "description": "Property investment, market analysis, and landlord management."
+  },
+  {
+    "id": "TRADES_HVAC",
+    "description": "Heating, ventilation, and air conditioning installation and repair."
+  },
+  {
+    "id": "TRADES_PLUMBING",
+    "description": "Pipe fitting, diagnostics, and water systems."
+  },
+  {
+    "id": "TRADES_ELECTRICAL",
+    "description": "Wiring, code compliance, and power system installation."
+  },
+  {
+    "id": "PUBLIC_POLICY",
+    "description": "Government structures, political analysis, and civic engagement."
+  },
+  {
+    "id": "ECOMMERCE",
+    "description": "Online store setup, conversion rate optimization, and platform management."
+  },
+  {
+    "id": "CRYPTOCURRENCY",
+    "description": "Blockchain technology, digital assets, and DeFi."
+  },
+  {
+    "id": "PET_CARE",
+    "description": "Animal training, health, and specialized breed care."
+  },
+  {
+    "id": "AQUARIUMS_VIVARIUMS",
+    "description": "Aquatic life maintenance, tank cycling, and terrarium building."
+  },
+  {
+    "id": "TRAVEL_EXPLORATION",
+    "description": "Budget travel, cultural immersion, and wilderness survival."
+  },
+  {
+    "id": "SURVIVAL_PREPPING",
+    "description": "Emergency readiness, first aid, and self-sufficiency skills."
+  },
+  {
+    "id": "HUNTING_FISHING",
+    "description": "Tracking, gear selection, and ethical harvesting techniques."
+  },
+  {
+    "id": "WEAPONRY_FENCING",
+    "description": "Martial arts with weapons, historical fencing, and tactical skills."
+  },
+  {
+    "id": "MARTIAL_ARTS",
+    "description": "Karate, Jiu-Jitsu, Muay Thai, and self-defense techniques."
+  },
+  {
+    "id": "SOCIAL_SKILLS",
+    "description": "Conversation starting, networking, and charisma development."
+  },
+  {
+    "id": "PARENTING",
+    "description": "Child development, discipline, and educational support."
+  },
+  {
+    "id": "HOME_ORGANIZATION",
+    "description": "Minimalism, decluttering, and efficient household management."
+  },
+  {
+    "id": "RETIREMENT_PLANNING",
+    "description": "Pensions, 401k/IRA management, and long-term financial independence."
+  },
+  {
+    "id": "DIY_ELECTRONICS",
+    "description": "Soldering, circuit board design, and hobbyist electronics projects."
+  },
+  {
+    "id": "CULTIVATION_FARMING",
+    "description": "Agricultural techniques, crop rotation, and sustainable farming."
+  },
+  {
+    "id": "INTERIOR_DESIGN",
+    "description": "Decorating, color theory, and space planning."
+  },
+  {
+    "id": "FASHION_STYLING",
+    "description": "Wardrobe building, tailoring, and personal style development."
+  },
+  {
+    "id": "HOME_BREWING",
+    "description": "Beer, wine, and spirit making techniques and fermentation science."
+  },
+  {
+    "id": "COFFEE_TEA",
+    "description": "Barista skills, brewing methods, and flavor profile analysis."
+  },
+  {
+    "id": "CIGARS_TOBACCO",
+    "description": "Tasting, storage, and cultural history."
+  },
+  {
+    "id": "MIXOLOGY",
+    "description": "Cocktail crafting, bar management, and spirit knowledge."
+  },
+  {
+    "id": "WINE_SOMMELIER",
+    "description": "Tasting notes, regional knowledge, and pairing."
+  },
+  {
+    "id": "PHOTOREALISM_CGI",
+    "description": "Rendering, texturing, and creating realistic 3D environments."
+  },
+  {
+    "id": "VOICEOVER_PODCASTING",
+    "description": "Audio editing, vocal technique, and content planning."
+  },
+  {
+    "id": "ASTROLOGY_OCCULT",
+    "description": "Tarot, natal chart reading, and spiritual practices."
+  },
+  {
+    "id": "MODEL_BUILDING",
+    "description": "Scale models, miniature painting, and diorama creation."
+  },
+  {
+    "id": "LEATHERWORKING",
+    "description": "Tooling, stitching, and creating leather goods."
+  },
+  {
+    "id": "METALWORKING",
+    "description": "Welding, blacksmithing, and fabrication techniques."
+  },
+  {
+    "id": "LOCKSMITHING",
+    "description": "Lock picking, key cutting, and security systems."
+  },
+  {
+    "id": "FIREARMS_SAFETY",
+    "description": "Marksmanship, handling, and maintenance."
+  },
+  {
+    "id": "HIKING_BACKPACKING",
+    "description": "Trail navigation, gear selection, and wilderness skills."
+  },
+  {
+    "id": "ROCK_CLIMBING",
+    "description": "Bouldering, top-roping, and anchor building."
+  },
+  {
+    "id": "SURFING_WAKEBOARDING",
+    "description": "Water sports techniques and safety."
+  },
+  {
+    "id": "ECONOMICS",
+    "description": "Microeconomics, macroeconomics, and economic theory."
+  },
+  {
+    "id": "STATISTICS",
+    "description": "Probability theory, hypothesis testing, and statistical modeling."
+  },
+  {
+    "id": "GAME_DEVELOPMENT",
+    "description": "Unity, Unreal Engine, game design patterns, and interactive storytelling."
+  },
+  {
+    "id": "ANIMATION",
+    "description": "2D/3D animation, motion graphics, and character rigging."
+  },
+  {
+    "id": "SOUND_DESIGN",
+    "description": "Foley, synthesis, mixing, and audio engineering."
+  },
+  {
+    "id": "MUSIC_PRODUCTION",
+    "description": "DAWs, mixing, mastering, and electronic music creation."
+  },
+  {
+    "id": "LINGUISTICS",
+    "description": "Language structure, phonetics, semantics, and language acquisition."
+  },
+  {
+    "id": "ANTHROPOLOGY",
+    "description": "Cultural evolution, ethnography, and human societies."
+  },
+  {
+    "id": "NEUROSCIENCE",
+    "description": "Brain structure, neural pathways, and cognitive neuroscience."
+  },
+  {
+    "id": "POLITICAL_SCIENCE",
+    "description": "Political theory, comparative politics, and international relations."
+  },
+  {
+    "id": "ENVIRONMENTAL_SCIENCE",
+    "description": "Ecology, climate science, and sustainability."
+  },
+  {
+    "id": "RENEWABLE_ENERGY",
+    "description": "Solar, wind, hydroelectric systems, and green technology."
+  },
+  {
+    "id": "BIOTECHNOLOGY",
+    "description": "Genetic engineering, CRISPR, and biomedical innovation."
+  },
+  {
+    "id": "PRODUCT_DESIGN",
+    "description": "Industrial design, prototyping, and user-centered design."
+  },
+  {
+    "id": "PROJECT_MANAGEMENT",
+    "description": "Agile, Scrum, waterfall methodologies, and team coordination."
+  },
+  {
+    "id": "TECHNICAL_WRITING",
+    "description": "Documentation, API guides, and clear technical communication."
+  },
+  {
+    "id": "COPYWRITING",
+    "description": "Persuasive writing, ad copy, and content marketing."
+  },
+  {
+    "id": "TEACHING_PEDAGOGY",
+    "description": "Educational theory, curriculum design, and instructional methods."
+  },
+  {
+    "id": "SIGN_LANGUAGE",
+    "description": "ASL, BSL, and deaf culture communication."
+  },
+  {
+    "id": "ACTING_THEATER",
+    "description": "Performance techniques, improvisation, and stage presence."
+  },
+  {
+    "id": "DANCE",
+    "description": "Ballet, contemporary, hip-hop, and choreography."
+  },
+  {
+    "id": "MAGIC_ILLUSION",
+    "description": "Sleight of hand, mentalism, and performance magic."
+  },
+  {
+    "id": "COMEDY_STANDUP",
+    "description": "Joke writing, timing, and comedic performance."
+  },
+  {
+    "id": "CHESS_STRATEGY",
+    "description": "Openings, endgames, tactics, and strategic thinking."
+  },
+  {
+    "id": "POKER_CARD_GAMES",
+    "description": "Game theory, probability, and competitive card play."
+  },
+  {
+    "id": "SPEEDCUBING",
+    "description": "Rubik's cube algorithms, finger tricks, and solving methods."
+  },
+  {
+    "id": "MEMORY_TECHNIQUES",
+    "description": "Mnemonics, memory palaces, and cognitive enhancement."
+  },
+  {
+    "id": "SPEED_READING",
+    "description": "Rapid comprehension, skimming techniques, and information retention."
+  },
+  {
+    "id": "CALLIGRAPHY",
+    "description": "Hand lettering, brush writing, and typography."
+  },
+  {
+    "id": "TYPOGRAPHY_DESIGN",
+    "description": "Font design, type systems, and visual hierarchy."
+  },
+  {
+    "id": "BOOKBINDING",
+    "description": "Paper crafts, binding techniques, and book restoration."
+  },
+  {
+    "id": "ORIGAMI_PAPER_ARTS",
+    "description": "Paper folding, kirigami, and 3D paper structures."
+  },
+  {
+    "id": "BEEKEEPING",
+    "description": "Hive management, honey production, and pollinator care."
+  },
+  {
+    "id": "PERMACULTURE",
+    "description": "Sustainable agriculture, food forests, and regenerative design."
+  },
+  {
+    "id": "MUSHROOM_CULTIVATION",
+    "description": "Mycology, growing techniques, and identification."
+  },
+  {
+    "id": "FORAGING",
+    "description": "Wild edibles, plant identification, and sustainable harvesting."
+  },
+  {
+    "id": "SAILING_NAVIGATION",
+    "description": "Seamanship, weather reading, and maritime skills."
+  },
+  {
+    "id": "AVIATION_PILOTING",
+    "description": "Flight theory, navigation, and aircraft operation."
+  },
+  {
+    "id": "DRONE_OPERATION",
+    "description": "UAV piloting, aerial photography, and regulations."
+  },
+  {
+    "id": "AMATEUR_RADIO",
+    "description": "Radio operation, antenna building, and communication protocols."
+  },
+  {
+    "id": "GENEALOGY",
+    "description": "Family history research, DNA analysis, and archival methods."
+  },
+  {
+    "id": "NUMISMATICS",
+    "description": "Coin collecting, grading, and historical monetary systems."
+  },
+  {
+    "id": "PHILATELY",
+    "description": "Stamp collecting, postal history, and preservation."
+  },
+  {
+    "id": "ANTIQUES_APPRAISAL",
+    "description": "Authentication, valuation, and historical artifact knowledge."
+  },
+  {
+    "id": "WATCH_HOROLOGY",
+    "description": "Watch mechanics, repair, and timepiece collecting."
+  },
+  {
+    "id": "AUTOMOTIVE_DETAILING",
+    "description": "Paint correction, ceramic coating, and vehicle aesthetics."
+  },
+  {
+    "id": "SNEAKER_CULTURE",
+    "description": "Sneaker history, restoration, and collection management."
+  },
+  {
+    "id": "KNIFE_MAKING",
+    "description": "Bladesmithing, heat treating, and tool crafting."
+  },
+  {
+    "id": "GLASSBLOWING",
+    "description": "Hot glass techniques, kiln work, and glass art."
+  },
+  {
+    "id": "POTTERY_CERAMICS",
+    "description": "Wheel throwing, glazing, and ceramic sculpture."
+  },
+  {
+    "id": "QUILTING",
+    "description": "Pattern design, fabric selection, and stitching techniques."
+  },
+  {
+    "id": "SOAP_MAKING",
+    "description": "Cold process, hot process, and natural ingredient formulation."
+  },
+  {
+    "id": "CANDLE_MAKING",
+    "description": "Wax types, scent blending, and wick selection."
+  },
+  {
+    "id": "PERFUMERY",
+    "description": "Fragrance composition, note pyramids, and essential oils."
+  },
+  {
+    "id": "DISTILLING_SPIRITS",
+    "description": "Fermentation science, still operation, and spirit aging."
+  },
+  {
+    "id": "CHEESE_MAKING",
+    "description": "Culturing, aging, and artisanal cheese production."
+  },
+  {
+    "id": "BREAD_BAKING",
+    "description": "Sourdough, yeast science, and artisan techniques."
+  },
+  {
+    "id": "PASTRY_ARTS",
+    "description": "French pastry, lamination, and dessert plating."
+  },
+  {
+    "id": "CHOCOLATE_WORK",
+    "description": "Tempering, molding, and bean-to-bar production."
+  },
+  {
+    "id": "URBAN_PLANNING",
+    "description": "City design, zoning, and sustainable development."
+  },
+  {
+    "id": "CARTOGRAPHY",
+    "description": "Map making, GIS systems, and spatial visualization."
+  },
+  {
+    "id": "METEOROLOGY",
+    "description": "Weather forecasting, atmospheric science, and climate patterns."
+  },
+  {
+    "id": "GEOLOGY",
+    "description": "Rock formation, mineralogy, and Earth sciences."
+  },
+  {
+    "id": "PALEONTOLOGY",
+    "description": "Fossil study, prehistoric life, and evolutionary history."
+  },
+  {
+    "id": "ARCHAEOLOGY",
+    "description": "Excavation techniques, artifact analysis, and ancient civilizations."
+  },
+  {
+    "id": "ART_HISTORY",
+    "description": "Movements, styles, and historical analysis of visual arts."
+  },
+  {
+    "id": "MUSIC_THEORY",
+    "description": "Harmony, counterpoint, composition, and analysis."
+  },
+  {
+    "id": "LITERATURE",
+    "description": "Literary analysis, classic works, and narrative structures."
+  },
+  {
+    "id": "SCREENWRITING",
+    "description": "Story structure, dialogue, and screenplay formatting."
+  },
+  {
+    "id": "GRANT_WRITING",
+    "description": "Proposal development, fundraising, and nonprofit writing."
+  },
+  {
+    "id": "RESUME_CAREER",
+    "description": "Job search strategies, interviewing, and career development."
+  },
+  {
+    "id": "ACCESSIBILITY_DESIGN",
+    "description": "WCAG standards, inclusive design, and assistive technology."
+  },
+  {
+    "id": "SEO_SEM",
+    "description": "Search optimization, keyword research, and digital visibility."
+  },
+  {
+    "id": "SOCIAL_MEDIA_MGMT",
+    "description": "Platform strategies, content calendars, and community management."
+  },
+  {
+    "id": "INFLUENCER_MARKETING",
+    "description": "Brand partnerships, content creation, and audience building."
+  },
+  {
+    "id": "EMAIL_MARKETING",
+    "description": "Campaign design, automation, and conversion optimization."
+  },
+  {
+    "id": "BRAND_STRATEGY",
+    "description": "Identity development, positioning, and brand architecture."
+  },
+  {
+    "id": "CUSTOMER_SUCCESS",
+    "description": "Client retention, relationship management, and value delivery."
+  },
+  {
+    "id": "HUMAN_RESOURCES",
+    "description": "Recruiting, employee relations, and organizational development."
+  },
+  {
+    "id": "LEGAL_COMPLIANCE",
+    "description": "Regulatory frameworks, risk management, and corporate governance."
+  },
+  {
+    "id": "TAX_PLANNING",
+    "description": "Tax strategy, deductions, and financial optimization."
+  },
+  {
+    "id": "INSURANCE",
+    "description": "Coverage types, risk assessment, and policy selection."
+  },
+  {
+    "id": "ESTATE_PLANNING",
+    "description": "Wills, trusts, and wealth transfer strategies."
+  },
+  {
+    "id": "SPEECH_THERAPY",
+    "description": "Articulation, fluency disorders, and communication rehabilitation."
+  },
+  {
+    "id": "PHYSICAL_THERAPY",
+    "description": "Rehabilitation exercises, mobility, and injury recovery."
+  },
+  {
+    "id": "MASSAGE_THERAPY",
+    "description": "Techniques, anatomy, and bodywork modalities."
+  },
+  {
+    "id": "ACUPUNCTURE_TCM",
+    "description": "Traditional Chinese medicine, meridians, and holistic health."
+  },
+  {
+    "id": "HERBALISM",
+    "description": "Medicinal plants, tinctures, and natural remedies."
+  },
+  {
+    "id": "AROMATHERAPY",
+    "description": "Essential oil applications, blending, and therapeutic use."
+  },
+  {
+    "id": "SLEEP_SCIENCE",
+    "description": "Sleep hygiene, circadian rhythms, and rest optimization."
+  },
+  {
+    "id": "BIOHACKING",
+    "description": "Self-experimentation, optimization, and quantified self."
+  },
+  {
+    "id": "INTERMITTENT_FASTING",
+    "description": "Fasting protocols, metabolic benefits, and timing strategies."
+  },
+  {
+    "id": "KETO_LOW_CARB",
+    "description": "Ketogenic diet science, meal planning, and metabolic adaptation."
+  },
+  {
+    "id": "VEGAN_PLANT_BASED",
+    "description": "Plant-based nutrition, protein sources, and ethical eating."
+  },
+  {
+    "id": "SPORTS_NUTRITION",
+    "description": "Performance fueling, supplementation, and recovery nutrition."
+  },
+  {
+    "id": "STRENGTH_COACHING",
+    "description": "Programming, periodization, and athletic development."
+  },
+  {
+    "id": "RUNNING_ENDURANCE",
+    "description": "Training plans, biomechanics, and race preparation."
+  },
+  {
+    "id": "SWIMMING",
+    "description": "Stroke technique, breathing, and competitive swimming."
+  },
+  {
+    "id": "CYCLING",
+    "description": "Bike mechanics, training, and route planning."
+  },
+  {
+    "id": "TRIATHLON",
+    "description": "Multi-sport training, transitions, and race strategy."
+  },
+  {
+    "id": "OLYMPIC_LIFTING",
+    "description": "Snatch, clean & jerk technique, and power development."
+  },
+  {
+    "id": "POWERLIFTING",
+    "description": "Squat, bench, deadlift optimization, and competition prep."
+  },
+  {
+    "id": "BODYBUILDING",
+    "description": "Hypertrophy training, posing, and physique development."
+  },
+  {
+    "id": "CROSSFIT",
+    "description": "Functional fitness, WODs, and competitive training."
+  },
+  {
+    "id": "SKATEBOARDING",
+    "description": "Tricks, park riding, and street skating."
+  },
+  {
+    "id": "SNOWBOARDING_SKIING",
+    "description": "Mountain techniques, safety, and equipment selection."
+  },
+  {
+    "id": "SCUBA_DIVING",
+    "description": "Certification levels, equipment, and underwater navigation."
+  },
+  {
+    "id": "FREE_DIVING",
+    "description": "Breath hold, equalization, and underwater technique."
+  },
+  {
+    "id": "PARKOUR_FREERUNNING",
+    "description": "Movement flow, vaults, and urban acrobatics."
+  },
+  {
+    "id": "GYMNASTICS",
+    "description": "Apparatus work, flexibility, and body control."
+  },
+  {
+    "id": "ARCHERY",
+    "description": "Bow types, form, and precision shooting."
+  },
+  {
+    "id": "DISC_GOLF",
+    "description": "Throwing techniques, course strategy, and disc selection."
+  },
+  {
+    "id": "BOWLING",
+    "description": "Hook technique, lane reading, and ball selection."
+  },
+  {
+    "id": "POOL_BILLIARDS",
+    "description": "Shot angles, English, and competitive play."
+  },
+  {
+    "id": "DARTS",
+    "description": "Throwing technique, scoring strategies, and competitive formats."
+  },
+  {
+    "id": "TABLE_TENNIS",
+    "description": "Spin control, footwork, and competitive tactics."
+  },
+  {
+    "id": "BADMINTON",
+    "description": "Racket technique, court positioning, and rally strategies."
+  },
+  {
+    "id": "TENNIS",
+    "description": "Strokes, court strategy, and match play."
+  },
+  {
+    "id": "GOLF",
+    "description": "Swing mechanics, course management, and putting."
+  },
+  {
+    "id": "BASEBALL_SOFTBALL",
+    "description": "Hitting, pitching, fielding fundamentals, and game strategy."
+  },
+  {
+    "id": "BASKETBALL",
+    "description": "Shooting form, ball handling, and team offense/defense."
+  },
+  {
+    "id": "SOCCER_FOOTBALL",
+    "description": "Touch, passing, tactics, and positional play."
+  },
+  {
+    "id": "VOLLEYBALL",
+    "description": "Serving, setting, spiking, and team rotation."
+  },
+  {
+    "id": "RUGBY",
+    "description": "Tackling, rucking, and game strategy."
+  },
+  {
+    "id": "CRICKET",
+    "description": "Batting, bowling, fielding, and match formats."
+  },
+  {
+    "id": "ICE_HOCKEY",
+    "description": "Skating, stickhandling, and team systems."
+  }
+]
