@@ -51,6 +51,8 @@ try:
         Difficulty
     )
     from src.bot.question_engine import SearchQuery
+    from src.bot.quality_scorer import QualityScorer, ContentMetrics, QualityScore
+    from src.bot.proxy_manager import ProxyManager
 except ModuleNotFoundError:
     # When running as script, add project root to path
     import sys
@@ -63,6 +65,8 @@ except ModuleNotFoundError:
         Difficulty
     )
     from src.bot.question_engine import SearchQuery
+    from src.bot.quality_scorer import QualityScorer, ContentMetrics, QualityScore
+    from src.bot.proxy_manager import ProxyManager
 
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -90,6 +94,16 @@ class VideoResult:
     transcript_language: str = "en"
 
 
+@dataclass
+class IndexableContent:
+    """
+    Container for content ready to be indexed.
+    Includes both metadata and the actual text content.
+    """
+    metadata: UnifiedMetadata
+    content: str  # Full text: title + description + transcript
+
+
 class YouTubeCrawler:
     """
     YouTube content crawler with quota-aware searching and transcript extraction.
@@ -112,7 +126,11 @@ class YouTubeCrawler:
         self,
         api_key: Optional[str] = None,
         max_quota: int = 10000,
-        max_results_per_query: int = 10
+        max_results_per_query: int = 10,
+        min_quality_score: float = 0.0,
+        use_quality_scorer: bool = True,
+        use_proxies: bool = False,
+        proxy_config: Optional[str] = None
     ):
         """
         Initialize YouTube crawler.
@@ -121,6 +139,10 @@ class YouTubeCrawler:
             api_key: YouTube Data API v3 key (defaults to YOUTUBE_API_KEY env var)
             max_quota: Daily quota limit (default 10,000)
             max_results_per_query: Max videos per search query (default 10)
+            min_quality_score: Minimum quality score to index (0.0-1.0, default 0.0)
+            use_quality_scorer: Enable intelligent quality scoring (default True)
+            use_proxies: Enable proxy rotation for transcript requests (default False)
+            proxy_config: Path to proxy config file or None for default
         """
         self.api_key = api_key or os.getenv("YOUTUBE_API_KEY")
         if not self.api_key:
@@ -139,9 +161,22 @@ class YouTubeCrawler:
         # Deduplication
         self.seen_video_ids = set()
         
+        # Quality scoring
+        self.use_quality_scorer = use_quality_scorer
+        self.quality_scorer = QualityScorer(min_score_threshold=min_quality_score) if use_quality_scorer else None
+        
+        # Proxy management
+        self.use_proxies = use_proxies
+        self.proxy_manager = ProxyManager(config_file=proxy_config) if use_proxies else None
+        
         print(f"✅ YouTubeCrawler initialized:")
         print(f"   📊 Daily quota: {self.max_quota:,} units")
         print(f"   🔍 Max results per query: {self.max_results_per_query}")
+        if use_quality_scorer:
+            print(f"   ⭐ Quality scoring: enabled (min threshold: {min_quality_score:.2f})")
+        if use_proxies:
+            proxy_count = len(self.proxy_manager.stats) if self.proxy_manager else 0
+            print(f"   🔄 Proxy rotation: enabled ({proxy_count} proxies loaded)")
     
     def search_videos(
         self,
@@ -274,7 +309,7 @@ class YouTubeCrawler:
     
     def get_transcript(self, video_id: str, languages: List[str] = ['en']) -> Optional[str]:
         """
-        Extract transcript from YouTube video.
+        Extract transcript from YouTube video with optional proxy support.
         
         Args:
             video_id: YouTube video ID
@@ -283,8 +318,58 @@ class YouTubeCrawler:
         Returns:
             Full transcript text or None if unavailable
         """
+        # Try with proxy rotation if enabled
+        if self.use_proxies and self.proxy_manager:
+            from youtube_transcript_api.proxies import GenericProxyConfig
+            for attempt in range(3):  # Max 3 attempts with different proxies
+                proxy_url = self.proxy_manager.get_proxy()
+                
+                # Ensure proxy_url has scheme
+                if proxy_url and not proxy_url.startswith("http"):
+                    proxy_url = "http://" + proxy_url
+                
+                # Log which proxy we're using
+                masked_proxy = self.proxy_manager._mask_proxy(proxy_url) if proxy_url else "Direct"
+                print(f"🔄 Attempt {attempt + 1}/3: Using proxy {masked_proxy}")
+                
+                try:
+                    # Create proxy config for both HTTP and HTTPS
+                    proxy_config = GenericProxyConfig(
+                        http_url=proxy_url,
+                        https_url=proxy_url
+                    ) if proxy_url else None
+                    
+                    print(f"   📡 Fetching transcript for {video_id}...")
+                    api = YouTubeTranscriptApi(proxy_config=proxy_config)
+                    transcript = api.fetch(video_id, languages=languages)
+                    
+                    # Success - record proxy performance
+                    if proxy_url:
+                        self.proxy_manager.record_success(proxy_url, response_time=1.0)
+                    
+                    print(f"   ✅ Success! Transcript retrieved ({len(transcript.snippets)} snippets)")
+                    
+                    # Concatenate text from transcript snippets
+                    full_text = ' '.join([snippet.text for snippet in transcript.snippets])
+                    return full_text
+                    
+                except Exception as e:
+                    error_type = type(e).__name__
+                    error_msg = str(e)[:200]  # Truncate long errors
+                    print(f"   ❌ Failed: {error_type}: {error_msg}")
+                    
+                    # Record proxy failure
+                    if proxy_url:
+                        self.proxy_manager.record_failure(proxy_url)
+                    
+                    # Last attempt failed - log and return None
+                    if attempt == 2:
+                        print(f"❌ All proxy attempts failed for {video_id}: {e}")
+                        return None
+                    continue
+        
+        # Direct connection (no proxies)
         try:
-            # Create API instance and fetch transcript
             api = YouTubeTranscriptApi()
             transcript = api.fetch(video_id, languages=languages)
             
@@ -300,9 +385,6 @@ class YouTubeCrawler:
             return None
         except VideoUnavailable:
             print(f"⚠️  Video {video_id} unavailable")
-            return None
-        except Exception as e:
-            print(f"❌ Unexpected error getting transcript for {video_id}: {e}")
             return None
         except Exception as e:
             print(f"❌ Unexpected error getting transcript for {video_id}: {e}")
@@ -357,19 +439,18 @@ class YouTubeCrawler:
     def to_unified_metadata(
         self,
         video: VideoResult,
-        query: SearchQuery,
-        helpfulness_score: float = 0.5
-    ) -> UnifiedMetadata:
+        query: SearchQuery
+    ) -> IndexableContent:
         """
-        Convert VideoResult to UnifiedMetadata schema.
+        Convert VideoResult to IndexableContent (metadata + content text).
+        Uses QualityScorer to calculate intelligent quality metrics.
         
         Args:
             video: VideoResult from extract_video()
             query: Original SearchQuery used to find this video
-            helpfulness_score: Quality score (default 0.5, should use QualityScorer)
         
         Returns:
-            UnifiedMetadata instance ready for ChromaDB storage
+            IndexableContent with UnifiedMetadata and full content text
         """
         # Parse difficulty from query skill level
         difficulty_map = {
@@ -397,15 +478,44 @@ class YouTubeCrawler:
         except Exception:
             created_at = None
         
-        # Calculate text length
-        full_text = f"{video.title}\n\n{video.description}"
+        # Build full content text
+        full_content = f"Title: {video.title}\n\nDescription: {video.description}\n\n"
         if video.transcript:
-            full_text += f"\n\n{video.transcript}"
+            full_content += f"Transcript:\n{video.transcript}"
         
-        text_length = len(full_text)
+        text_length = len(full_content)
+        
+        # Calculate quality score if enabled
+        if self.use_quality_scorer and self.quality_scorer:
+            # Build ContentMetrics for scoring
+            content_metrics = ContentMetrics(
+                query=query.query,
+                title=video.title,
+                description=video.description,
+                transcript=video.transcript or "",
+                tags=[],  # YouTube tags not available in current API response
+                channel_name=video.channel_title,
+                subscriber_count=0,  # TODO: Fetch from channel API
+                is_verified=False,  # TODO: Fetch from channel API
+                view_count=video.view_count,
+                like_count=video.like_count,
+                comment_count=video.comment_count,
+                published_at=created_at,
+                duration_seconds=video.duration_seconds,
+                has_captions=bool(video.transcript)
+            )
+            
+            # Calculate quality score
+            quality_score = self.quality_scorer.score_content(content_metrics)
+            helpfulness_score = quality_score.overall
+            quality_breakdown = quality_score.to_dict()
+        else:
+            # Fallback to placeholder score
+            helpfulness_score = 0.5
+            quality_breakdown = None
         
         # Build UnifiedMetadata
-        return UnifiedMetadata(
+        metadata = UnifiedMetadata(
             # Identifiers
             domain_id=query.domain_id,
             subdomain_id=query.subdomain_id,
@@ -425,9 +535,9 @@ class YouTubeCrawler:
             technique=video.title[:200],  # Use title as technique
             tags=[query.category] if query.category else [],
             
-            # Quality metrics (placeholder - should use QualityScorer)
+            # Quality metrics (from QualityScorer)
             helpfulness_score=helpfulness_score,
-            quality_breakdown=None,  # TODO: Implement QualityScorer
+            quality_breakdown=quality_breakdown,
             
             # Engagement metrics
             engagement_metrics=engagement_metrics,
@@ -440,12 +550,14 @@ class YouTubeCrawler:
             prerequisites=[],
             learning_outcomes=[]
         )
+        
+        return IndexableContent(metadata=metadata, content=full_content)
     
     def search_and_extract(
         self,
         query: SearchQuery,
         max_results: Optional[int] = None
-    ) -> List[UnifiedMetadata]:
+    ) -> List[IndexableContent]:
         """
         Search YouTube for query and extract video metadata + transcripts.
         
@@ -454,7 +566,7 @@ class YouTubeCrawler:
             max_results: Max videos to extract (default: self.max_results_per_query)
         
         Returns:
-            List of UnifiedMetadata instances
+            List of IndexableContent instances (metadata + content text)
         """
         print(f"\n🎬 Searching YouTube: '{query.query}'")
         print(f"   Domain: {query.domain_id}/{query.subdomain_id or 'N/A'}")
@@ -472,20 +584,35 @@ class YouTubeCrawler:
         
         # Extract video details + transcripts
         results = []
+        filtered_count = 0
+        
         for video_data in videos_data:
             try:
                 video = self.extract_video(video_data, include_transcript=True)
                 if video and video.transcript:
-                    metadata = self.to_unified_metadata(
+                    # Convert to metadata (quality scoring happens here)
+                    indexable = self.to_unified_metadata(
                         video=video,
-                        query=query,
-                        helpfulness_score=0.5  # TODO: Use QualityScorer
+                        query=query
                     )
-                    results.append(metadata)
-                    print(f"   ✅ Extracted: {video.title[:60]}... ({len(video.transcript)} chars)")
+                    
+                    # Filter by quality threshold if scorer is enabled
+                    if self.use_quality_scorer and self.quality_scorer:
+                        quality_score = indexable.metadata.helpfulness_score
+                        if not self.quality_scorer.passes_threshold(type('obj', (object,), {'overall': quality_score})()):
+                            print(f"   ⚠️  Filtered (low quality {quality_score:.2f}): {video.title[:60]}...")
+                            filtered_count += 1
+                            continue
+                    
+                    results.append(indexable)
+                    score_text = f" (quality: {indexable.metadata.helpfulness_score:.2f})" if self.use_quality_scorer else ""
+                    print(f"   ✅ Extracted{score_text}: {video.title[:60]}... ({len(video.transcript)} chars)")
             except Exception as e:
                 print(f"   ❌ Error extracting {video_data.get('video_id')}: {e}")
                 continue
+        
+        if filtered_count > 0:
+            print(f"   🚫 Filtered {filtered_count} low-quality videos")
         
         print(f"\n📊 Extracted {len(results)}/{len(videos_data)} videos with transcripts")
         return results
@@ -495,7 +622,7 @@ class YouTubeCrawler:
         queries: List[SearchQuery],
         max_results_per_query: Optional[int] = None,
         delay_seconds: float = 1.0
-    ) -> List[UnifiedMetadata]:
+    ) -> List[IndexableContent]:
         """
         Execute multiple search queries with rate limiting.
         
@@ -505,7 +632,7 @@ class YouTubeCrawler:
             delay_seconds: Delay between queries (default 1.0s)
         
         Returns:
-            Combined list of UnifiedMetadata from all queries
+            Combined list of IndexableContent from all queries
         """
         all_results = []
         
@@ -569,13 +696,23 @@ class YouTubeCrawler:
     
     def get_statistics(self) -> Dict[str, Any]:
         """Get crawler statistics."""
-        return {
+        stats = {
             'quota_used': self.quota_used,
             'max_quota': self.max_quota,
             'quota_remaining': self.max_quota - self.quota_used,
             'videos_seen': len(self.seen_video_ids),
             'max_results_per_query': self.max_results_per_query
         }
+        
+        # Add quality scorer stats if enabled
+        if self.use_quality_scorer and self.quality_scorer:
+            stats['quality_scorer'] = self.quality_scorer.get_statistics()
+        
+        # Add proxy stats if enabled
+        if self.use_proxies and self.proxy_manager:
+            stats['proxy_manager'] = self.proxy_manager.get_statistics()
+        
+        return stats
 
 
 # ============================================================================
@@ -631,7 +768,8 @@ if __name__ == "__main__":
     print("Extraction Results")
     print("=" * 70)
     
-    for i, metadata in enumerate(results, 1):
+    for i, indexable in enumerate(results, 1):
+        metadata = indexable.metadata
         print(f"\n📹 Video {i}:")
         print(f"   Title: {metadata.technique}")
         print(f"   Source: {metadata.source}")
@@ -642,6 +780,7 @@ if __name__ == "__main__":
         print(f"   Likes: {metadata.engagement_metrics.get('likes', 0):,}")
         print(f"   Duration: {metadata.engagement_metrics.get('duration_seconds', 0)} seconds")
         print(f"   Text Length: {metadata.text_length:,} characters")
+        print(f"   Content Preview: {indexable.content[:100]}...")
         print(f"   Quality Score: {metadata.helpfulness_score}")
     
     # Statistics
