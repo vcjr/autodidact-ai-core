@@ -72,9 +72,8 @@ class QualityScore:
     }
     
     def to_dict(self) -> Dict[str, float]:
-        """Convert to dictionary for logging/storage."""
+        """Convert to dictionary for logging/storage (5 factors only, no overall)."""
         return {
-            'overall': round(self.overall, 3),
             'relevance': round(self.relevance, 3),
             'authority': round(self.authority, 3),
             'engagement': round(self.engagement, 3),
@@ -271,10 +270,18 @@ class QualityScorer:
         - Verification status (30%)
         - View count (30%)
         """
+        # Ensure counts are integers (handle string values from APIs)
+        try:
+            subscriber_count = int(metrics.subscriber_count) if metrics.subscriber_count else 0
+            view_count = int(metrics.view_count) if metrics.view_count else 0
+        except (ValueError, TypeError):
+            subscriber_count = 0
+            view_count = 0
+        
         # Subscriber score (logarithmic scale)
         # 1K subs = 0.3, 10K = 0.5, 100K = 0.7, 1M+ = 0.9+
-        if metrics.subscriber_count > 0:
-            subscriber_score = min(1.0, math.log10(metrics.subscriber_count) / 6.5)
+        if subscriber_count > 0:
+            subscriber_score = min(1.0, math.log10(subscriber_count) / 6.5)
         else:
             subscriber_score = 0.0
         
@@ -283,8 +290,8 @@ class QualityScorer:
         
         # View count score (logarithmic scale)
         # 1K views = 0.3, 10K = 0.5, 100K = 0.7, 1M+ = 0.9+
-        if metrics.view_count > 0:
-            view_score = min(1.0, math.log10(metrics.view_count) / 6.5)
+        if view_count > 0:
+            view_score = min(1.0, math.log10(view_count) / 6.5)
         else:
             view_score = 0.0
         
@@ -309,9 +316,17 @@ class QualityScorer:
         - Like/view ratio (60%)
         - Comment activity (40%)
         """
+        # Ensure counts are integers (handle string values from APIs)
+        try:
+            view_count = int(metrics.view_count) if metrics.view_count else 0
+            like_count = int(metrics.like_count) if metrics.like_count else 0
+            comment_count = int(metrics.comment_count) if metrics.comment_count else 0
+        except (ValueError, TypeError):
+            return 0.0  # Invalid data
+        
         # Like ratio (aim for 3-5% as "good")
-        if metrics.view_count > 0:
-            like_ratio = metrics.like_count / metrics.view_count
+        if view_count > 0:
+            like_ratio = like_count / view_count
             # 5%+ = 1.0, 3% = 0.8, 1% = 0.5, <0.5% = lower
             like_score = min(1.0, like_ratio / 0.05)
         else:
@@ -319,8 +334,8 @@ class QualityScorer:
         
         # Comment activity (logarithmic scale)
         # 10 comments = 0.3, 100 = 0.6, 1000+ = 0.9+
-        if metrics.comment_count > 0:
-            comment_score = min(1.0, math.log10(metrics.comment_count + 1) / 3.5)
+        if comment_count > 0:
+            comment_score = min(1.0, math.log10(comment_count + 1) / 3.5)
         else:
             comment_score = 0.0
         
@@ -341,31 +356,45 @@ class QualityScorer:
         Score content recency (0.0 - 1.0).
         
         Factors:
-        - Age of content (decay curve)
-        - < 1 month = 1.0
-        - < 6 months = 0.9
-        - < 1 year = 0.7
-        - < 2 years = 0.5
-        - > 3 years = 0.3
+        - Age of content (gentle decay curve for educational content)
+        - < 6 months = 1.0
+        - < 1 year = 0.95
+        - < 2 years = 0.90
+        - < 3 years = 0.85
+        - < 5 years = 0.80
+        - > 5 years = 0.75 (still good for evergreen educational content)
+        
+        Note: Educational content remains valuable over time, so we use
+        a gentle decay curve that doesn't heavily penalize older videos.
         """
         if not metrics.published_at:
-            return 0.5  # Unknown age = neutral score
+            return 0.85  # Unknown age = assume reasonably recent
         
-        age = datetime.now() - metrics.published_at
+        # Handle both timezone-aware and naive datetimes
+        from datetime import timezone
+        now = datetime.now(timezone.utc)
+        published = metrics.published_at
+        
+        # If published_at is naive, make it UTC-aware
+        if published.tzinfo is None:
+            published = published.replace(tzinfo=timezone.utc)
+        
+        age = now - published
         age_days = age.total_seconds() / 86400
         
-        if age_days < 30:
+        # Gentle decay curve for educational content
+        if age_days < 180:  # 6 months
             return 1.0
-        elif age_days < 180:  # 6 months
-            return 0.9
         elif age_days < 365:  # 1 year
-            return 0.7
+            return 0.95
         elif age_days < 730:  # 2 years
-            return 0.5
+            return 0.90
         elif age_days < 1095:  # 3 years
-            return 0.3
+            return 0.85
+        elif age_days < 1825:  # 5 years
+            return 0.80
         else:
-            return 0.2
+            return 0.75  # Still valuable for evergreen content
     
     # ========================================================================
     # COMPLETENESS SCORING (10%)
@@ -381,6 +410,12 @@ class QualityScorer:
         - Caption availability (20%)
         - Description richness (10%)
         """
+        # Ensure duration is an integer (handle string values from APIs)
+        try:
+            duration_seconds = int(metrics.duration_seconds) if metrics.duration_seconds else 0
+        except (ValueError, TypeError):
+            duration_seconds = 0
+        
         # Transcript completeness
         # 500+ words = 1.0, 200-500 = 0.7, <100 = 0.3
         transcript_words = len(metrics.transcript.split()) if metrics.transcript else 0
@@ -395,7 +430,7 @@ class QualityScorer:
         
         # Duration (for video content)
         # 10-30 min = 1.0, 5-10 min = 0.8, <5 min = 0.5, >60 min = 0.7
-        duration_min = metrics.duration_seconds / 60 if metrics.duration_seconds else 0
+        duration_min = duration_seconds / 60 if duration_seconds else 0
         if 10 <= duration_min <= 30:
             duration_score = 1.0
         elif 5 <= duration_min < 10:

@@ -1,14 +1,1 @@
-{
-  "proxies": [
-    {
-      "url": "http://brd-customer-hl_1cc34631-zone-residential_proxy1:j0zj8p7yyka4@brd.superproxy.io:33335",
-      "type": "http",
-      "location": "random",
-      "notes": "BrightData residential proxy - Rotating residential IPs"
-    }
-  ],
-  "strategy": "performance",
-  "allow_direct": true,
-  "max_failures": 3,
-  "timeout_seconds": 10
-}
+config/proxy_config.json

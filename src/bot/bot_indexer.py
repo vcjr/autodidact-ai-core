@@ -42,6 +42,7 @@ from dotenv import load_dotenv
 try:
     from src.bot.question_engine import QuestionEngine, SearchQuery
     from src.bot.crawlers.youtube_crawler import YouTubeCrawler
+    from src.bot.crawlers.apify_youtube_crawler import ApifyYouTubeCrawler
     from src.bot.crawlers.mock_youtube_crawler import MockYouTubeCrawler
     from src.agents.intake_agent import IntakeAgent
     from src.models.unified_metadata_schema import UnifiedMetadata
@@ -51,6 +52,7 @@ except ModuleNotFoundError:
     sys.path.insert(0, project_root)
     from src.bot.question_engine import QuestionEngine, SearchQuery
     from src.bot.crawlers.youtube_crawler import YouTubeCrawler
+    from src.bot.crawlers.apify_youtube_crawler import ApifyYouTubeCrawler
     from src.bot.crawlers.mock_youtube_crawler import MockYouTubeCrawler
     from src.agents.intake_agent import IntakeAgent
     from src.models.unified_metadata_schema import UnifiedMetadata
@@ -75,9 +77,11 @@ class BotIndexer:
     def __init__(
         self,
         youtube_api_key: Optional[str] = None,
+        apify_api_token: Optional[str] = None,
         collection_name: Optional[str] = None,
         use_mock_crawler: bool = False,
-        min_quality_score: float = 0.6,
+        use_apify: bool = True,
+        min_quality_score: float = 0.55,
         use_quality_scorer: bool = True,
         use_proxies: bool = False,
         proxy_config: Optional[str] = None
@@ -86,13 +90,15 @@ class BotIndexer:
         Initialize bot indexer pipeline.
         
         Args:
-            youtube_api_key: YouTube Data API v3 key (defaults to env var)
+            youtube_api_key: YouTube Data API v3 key (defaults to env var) - DEPRECATED, use Apify instead
+            apify_api_token: Apify API token (defaults to APIFY_API_TOKEN env var)
             collection_name: ChromaDB collection name (defaults to v2)
             use_mock_crawler: Use MockYouTubeCrawler instead of real API (default False)
-            min_quality_score: Minimum quality score to index (0.0-1.0, default 0.6)
+            use_apify: Use Apify crawler instead of YouTube API (default True - RECOMMENDED)
+            min_quality_score: Minimum quality score to index (0.0-1.0, default 0.55 for educational content)
             use_quality_scorer: Enable intelligent quality scoring (default True)
-            use_proxies: Enable proxy rotation for transcript requests (default False)
-            proxy_config: Path to proxy config file or None for default
+            use_proxies: Enable proxy rotation for transcript requests (default False) - DEPRECATED
+            proxy_config: Path to proxy config file or None for default - DEPRECATED
         """
         print("=" * 70)
         print("Initializing Bot Indexer Pipeline")
@@ -104,10 +110,20 @@ class BotIndexer:
         if use_mock_crawler:
             print("\n⚠️  Using MOCK YouTube Crawler (no real API calls)")
             self.youtube_crawler = MockYouTubeCrawler(max_results_per_query=5)
+        elif use_apify:
+            print("\n🚀 Using Apify YouTube Crawler (managed scraping, no IP blocking)")
+            self.youtube_crawler = ApifyYouTubeCrawler(
+                api_token=apify_api_token,
+                max_results_per_query=5,
+                timeout_seconds=300,
+                min_quality_score=min_quality_score,
+                use_quality_scorer=use_quality_scorer
+            )
         else:
+            print("\n⚠️  Using legacy YouTube API Crawler (may hit quota/IP limits)")
             self.youtube_crawler = YouTubeCrawler(
                 api_key=youtube_api_key,
-                max_results_per_query=5,  # Conservative default
+                max_results_per_query=5,
                 min_quality_score=min_quality_score,
                 use_quality_scorer=use_quality_scorer,
                 use_proxies=use_proxies,
@@ -128,7 +144,7 @@ class BotIndexer:
         
         print("\n✅ Pipeline initialized successfully")
         print(f"   📊 QuestionEngine: {len(self.question_engine.templates)} templates")
-        print(f"   🎬 YouTubeCrawler: {self.youtube_crawler.max_results_per_query} videos/query")
+        print(f"   🎬 YouTubeCrawler: {self.youtube_crawler.max_results_per_query if hasattr(self.youtube_crawler, 'max_results_per_query') else 'N/A'} videos/query")
         print(f"   💾 IntakeAgent: {self.intake_agent.collection_name} collection\n")
     
     def index_domain(
@@ -244,14 +260,26 @@ class BotIndexer:
         print(f"⏱️  Duration: {duration:.1f} seconds")
         print(f"📈 Rate: {self.stats['videos_indexed'] / duration:.2f} videos/second")
         
-        # Quota info
-        quota_stats = self.youtube_crawler.get_statistics()
-        print(f"\n🔢 YouTube Quota:")
-        print(f"   Used: {quota_stats['quota_used']:,}/{quota_stats['max_quota']:,} units")
-        print(f"   Remaining: {quota_stats['quota_remaining']:,} units")
-        print(f"   Estimated searches left: ~{quota_stats['quota_remaining'] // 100}")
+        # Crawler-specific stats
+        crawler_stats = self.youtube_crawler.get_statistics()
         
-        return self.stats
+        # Check if using Apify or legacy YouTube API
+        if hasattr(self.youtube_crawler, 'stats') and 'apify_runs' in self.youtube_crawler.stats:
+            # Apify stats
+            print(f"\n🚀 Apify Stats:")
+            print(f"   Runs: {crawler_stats.get('apify_runs', 0)}")
+            print(f"   Transcripts: {crawler_stats.get('total_transcripts_extracted', 0)}")
+            print(f"   Success Rate: {crawler_stats.get('success_rate', 0):.1%}")
+            print(f"   Transcript Rate: {crawler_stats.get('transcript_rate', 0):.1%}")
+        elif hasattr(self.youtube_crawler, 'quota_used'):
+            # Legacy YouTube API quota info
+            print(f"\n🔢 YouTube Quota:")
+            print(f"   Used: {crawler_stats.get('quota_used', 0):,}/{crawler_stats.get('max_quota', 0):,} units")
+            print(f"   Remaining: {crawler_stats.get('quota_remaining', 0):,} units")
+            print(f"   Estimated searches left: ~{crawler_stats.get('quota_remaining', 0) // 100}")
+        
+        # Return a COPY of stats so it doesn't get overwritten by subsequent calls
+        return dict(self.stats)
     
     def index_batch(
         self,
@@ -355,7 +383,7 @@ if __name__ == "__main__":
         use_mock_crawler=False,
         use_proxies=True,
         proxy_config="proxy_config.json",
-        min_quality_score=0.6
+        min_quality_score=0.55
     )
     
     # Demo 1: Index single domain
