@@ -1,0 +1,19 @@
+{
+  "question_templates": [
+    {
+      "id": 101,
+      "category": "LEARNING_PATH_&_PROGRESSION",
+      "template": "What is the recommended learning sequence for ${TOPIC} in ${DOMAIN}?",
+      "placeholders": [
+        "TOPIC",
+        "DOMAIN"
+      ],
+      "example": "What is the recommended learning sequence for data structures in Python?",
+      "platforms": [
+        "reddit",
+        "blogs"
+      ],
+      "skill_level": "intermediate"
+    },
+    {
+      "id": 102,

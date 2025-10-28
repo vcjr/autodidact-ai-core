@@ -1,0 +1,26 @@
+{
+  "proxies": [
+    {
+      "url": "http://username:password@proxy1.brightdata.com:22225",
+      "type": "http",
+      "location": "us-east",
+      "notes": "BrightData residential proxy - US East"
+    },
+    {
+      "url": "socks5://username:password@proxy2.brightdata.com:22225",
+      "type": "socks5",
+      "location": "eu-west",
+      "notes": "BrightData residential proxy - EU West"
+    },
+    {
+      "url": "http://username:password@gate.smartproxy.com:7000",
+      "type": "http",
+      "location": "us-west",
+      "notes": "SmartProxy rotating proxy"
+    }
+  ],
+  "strategy": "performance",
+  "allow_direct": true,
+  "max_failures": 3,
+  "timeout_seconds": 10
+}
