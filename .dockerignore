@@ -1,0 +1,77 @@
+# Docker build context ignore file
+# Prevents large/unnecessary files from being copied into Docker images
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data directories (large!)
+chroma_data/
+redis_data/
+postgres_data/
+logs/
+reports/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+
+# Documentation (not needed in containers)
+docs/
+*.md
+!README.md
+
+# Node modules (if any)
+node_modules/
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+*.orig
+
+# Config that shouldn't be in images
+.env
+.env.*
+proxy_config.json
+!proxy_config.example.json
+
+# Large model files
+*.pth
+*.bin
+*.onnx
+*.safetensors
+
+# Tests (not needed in production containers)
+tests/
+test_*.py
+*_test.py
