@@ -68,8 +68,22 @@ def get_videos_to_rescore(all_videos=False):
         conn.close()
 
 
-def fetch_video_metadata(video_url):
-    """Fetch fresh metadata from YouTube API."""
+def fetch_video_metadata(video_id, video_url):
+    """Fetch metadata from GCS (fast) or YouTube API (slow)."""
+    from src.storage.gcs_manager import retrieve_video_from_gcs, video_exists_in_gcs
+    
+    # Try GCS first (instant, free)
+    if video_exists_in_gcs(video_id):
+        try:
+            content, metadata = retrieve_video_from_gcs(video_id)
+            if content and metadata:
+                print(f"   📦 Retrieved from GCS cache")
+                return content, metadata
+        except Exception as e:
+            print(f"   ⚠️  GCS retrieval failed: {e}")
+    
+    # Fallback to API (slow, costs money)
+    print(f"   🌐 Fetching from Apify (not in GCS)")
     from src.scrapers.youtube_transcript_fetcher import get_youtube_transcript
     
     try:
@@ -89,8 +103,8 @@ def rescore_video(video_data, dry_run=False):
     print(f"\n{'[DRY RUN] ' if dry_run else ''}Processing: {video_data['title'][:60]}...")
     print(f"   Old score: {old_score:.3f}")
     
-    # Fetch fresh metadata
-    content, metadata = fetch_video_metadata(video_url)
+    # Fetch metadata (from GCS if available)
+    content, metadata = fetch_video_metadata(video_id, video_url)
     
     if not content or not metadata:
         print(f"   ⚠️  Skipping - could not fetch metadata")
@@ -110,18 +124,19 @@ def rescore_video(video_data, dry_run=False):
     
     # Parse published date
     published_at = None
-    if metadata.get('upload_date'):
+    pub_date = metadata.get('published_at') or metadata.get('upload_date')
+    if pub_date:
         try:
-            published_at = datetime.fromisoformat(metadata['upload_date'].replace('Z', '+00:00'))
+            published_at = datetime.fromisoformat(str(pub_date).replace('Z', '+00:00'))
         except:
             pass
     
-    # Ensure counts are integers
+    # Ensure counts are integers (handle both old and new field names)
     subscriber_count = int(metadata.get('subscriber_count', 0) or 0)
-    view_count = int(metadata.get('view_count', 0) or 0)
-    like_count = int(metadata.get('like_count', 0) or 0)
-    comment_count = int(metadata.get('comment_count', 0) or 0)
-    duration_seconds = int(metadata.get('duration_seconds', 0) or 0)
+    view_count = int(metadata.get('view_count') or metadata.get('views', 0) or 0)
+    like_count = int(metadata.get('like_count') or metadata.get('likes', 0) or 0)
+    comment_count = int(metadata.get('comment_count') or metadata.get('comments', 0) or 0)
+    duration_seconds = int(metadata.get('duration_seconds') or metadata.get('video_length_seconds', 0) or 0)
     
     # Create metrics
     metrics = ContentMetrics(

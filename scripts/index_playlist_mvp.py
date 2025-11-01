@@ -100,6 +100,12 @@ def index_playlist(
     filtered_count = 0
     
     for i, video in enumerate(videos, 1):
+        # Skip if video is None or missing title
+        if not video or not video.get('title'):
+            print(f"\n[{i}/{len(videos)}] ⚠️  Invalid video data, skipping")
+            filtered_count += 1
+            continue
+            
         print(f"\n[{i}/{len(videos)}] {video['title'][:60]}...")
         
         # Check if already indexed
@@ -117,6 +123,49 @@ def index_playlist(
             print(f"   ⚠️  No transcript available, skipping")
             filtered_count += 1
             continue
+        
+        # Store in GCS immediately (even if quality is low - for future review)
+        video_id = video.get('video_id')
+        if video_id:
+            try:
+                from src.storage.gcs_manager import store_video_in_gcs
+                
+                # Parse duration string to seconds
+                duration_seconds = 0
+                duration_str = video.get('duration', '')
+                if duration_str:
+                    try:
+                        parts = duration_str.split(':')
+                        if len(parts) == 2:  # MM:SS
+                            duration_seconds = int(parts[0]) * 60 + int(parts[1])
+                        elif len(parts) == 3:  # HH:MM:SS
+                            duration_seconds = int(parts[0]) * 3600 + int(parts[1]) * 60 + int(parts[2])
+                    except:
+                        pass
+                
+                # Build complete metadata for GCS
+                gcs_metadata = {
+                    'video_id': video_id,
+                    'title': video.get('title'),
+                    'channel_name': video.get('channel_title'),
+                    'channel_id': video.get('channel_id'),
+                    'channel_url': f"https://www.youtube.com/channel/{video.get('channel_id')}" if video.get('channel_id') else None,
+                    'view_count': video.get('view_count', 0) or 0,
+                    'like_count': video.get('like_count', 0) or 0,
+                    'comment_count': video.get('comment_count', 0) or 0,
+                    'duration': video.get('duration'),
+                    'duration_seconds': duration_seconds,
+                    'video_length_seconds': duration_seconds,
+                    'published_at': video.get('published_at'),
+                    'description': video.get('description', ''),
+                    'thumbnail_url': video.get('thumbnail_url'),
+                    'source_url': video.get('url'),
+                }
+                
+                store_video_in_gcs(video_id, video['transcript'], gcs_metadata)
+                print(f"   💾 Stored in GCS")
+            except Exception as e:
+                print(f"   ⚠️  GCS storage failed: {e}")
         
         # Calculate quality score
         from src.bot.quality_scorer import QualityScorer, ContentMetrics
@@ -156,7 +205,7 @@ def index_playlist(
             like_count=video.get('like_count', 0) or 0,
             comment_count=video.get('comment_count', 0) or 0,
             published_at=published_at,
-            duration_seconds=video.get('duration', 0) or 0,
+            duration_seconds=duration_seconds,  # Use parsed duration
             has_captions=True
         )
         
@@ -174,6 +223,11 @@ def index_playlist(
         print(f"       Breakdown: R={quality_score.relevance:.2f} A={quality_score.authority:.2f} "
               f"E={quality_score.engagement:.2f} F={quality_score.freshness:.2f} C={quality_score.completeness:.2f}")
         
+        # Convert published_at to string for ChromaDB
+        published_at_str = None
+        if published_at:
+            published_at_str = published_at.isoformat() if hasattr(published_at, 'isoformat') else str(published_at)
+        
         # Create metadata
         metadata = UnifiedMetadata(
             source=video['url'],
@@ -186,7 +240,7 @@ def index_playlist(
             author=video.get('channel_title'),
             channel_id=video.get('channel_id'),
             channel_url=f"https://www.youtube.com/channel/{video.get('channel_id')}" if video.get('channel_id') else None,
-            created_at=video.get('published_at'),
+            created_at=published_at_str,  # Use string instead of datetime
             difficulty=Difficulty(difficulty.lower()),
             helpfulness_score=quality_score.overall,
             text_length=len(video['transcript']),
@@ -207,7 +261,7 @@ Transcript:
         try:
             collection.add(
                 documents=[content],
-                metadatas=[metadata.to_dict()],
+                metadatas=[metadata.model_dump()],  # Pydantic v2 uses model_dump()
                 ids=[f"video_{video['video_id']}"]
             )
             print(f"   ✅ Indexed successfully")

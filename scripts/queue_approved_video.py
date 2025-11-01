@@ -61,10 +61,22 @@ def get_video_data(video_id: str) -> dict:
 
 def get_transcript(video_id: str) -> str:
     """
-    Fetch transcript from the original source using Apify.
-    Since transcripts are not stored in the database, we need to re-fetch.
-    We use Apify explicitly to avoid IP blocking issues.
+    Fetch transcript from GCS (fast) or re-fetch from YouTube using Apify.
     """
+    # Try GCS first
+    from src.storage.gcs_manager import retrieve_video_from_gcs
+    
+    print(f"🔄 Fetching transcript for {video_id}...")
+    
+    transcript, metadata = retrieve_video_from_gcs(video_id)
+    
+    if transcript and metadata:
+        print(f"✅ Retrieved from GCS ({len(transcript)} chars) - No API cost!")
+        return transcript, metadata
+    
+    # Fallback: Re-fetch from YouTube (costs money)
+    print(f"⚠️  Not in GCS, re-fetching from YouTube using Apify...")
+    
     from src.scrapers.youtube_transcript_fetcher import get_youtube_transcript
     
     # Force use of Apify scraper to avoid IP blocking
@@ -73,13 +85,20 @@ def get_transcript(video_id: str) -> str:
     # Construct URL from video_id
     url = f"https://www.youtube.com/watch?v={video_id}"
     
-    print(f"🔄 Re-fetching transcript using Apify for {video_id}...")
     content, metadata = get_youtube_transcript(url, scraper=scraper)
     
     if not content:
         raise ValueError(f"Could not fetch transcript for {video_id}")
     
     print(f"✅ Fetched transcript ({len(content)} chars)")
+    
+    # Store in GCS for future use
+    from src.storage.gcs_manager import store_video_in_gcs
+    try:
+        store_video_in_gcs(video_id, content, metadata)
+        print(f"💾 Stored in GCS for future use")
+    except Exception as e:
+        print(f"⚠️  Could not store in GCS: {e}")
     
     return content, metadata
 
