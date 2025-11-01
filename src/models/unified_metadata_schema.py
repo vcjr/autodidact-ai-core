@@ -122,6 +122,18 @@ class UnifiedMetadata(BaseModel):
         max_length=200
     )
     
+    channel_id: Optional[str] = Field(
+        default=None,
+        description="Platform-specific channel/creator ID (e.g., YouTube channel ID)",
+        max_length=100
+    )
+    
+    channel_url: Optional[str] = Field(
+        default=None,
+        description="URL to the channel/creator profile",
+        max_length=500
+    )
+    
     created_at: Optional[datetime] = Field(
         default=None,
         description="Original content publication date"

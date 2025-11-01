@@ -45,6 +45,12 @@ torch>=2.1.0                 # Required by transformers (CPU version)
 # Caching & Deduplication (Phase 2)
 redis>=5.0.0                 # For deduplication hashes and rate limiting
 
+# Metadata Database
+psycopg2-binary>=2.9.9       # PostgreSQL adapter for Python
+
+# UI for Manual Review
+streamlit>=1.30.0            # Web app framework for review UI
+
 # Utilities
 requests>=2.31.0
 urllib3>=2.1.0

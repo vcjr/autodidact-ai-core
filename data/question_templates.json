@@ -173,9 +173,10 @@
     {
       "id": 12,
       "category": "TOOL_AND_EQUIPMENT",
-      "template": "${TOOL} vs ${TOOL}: Which is better for ${DOMAIN} development?",
+      "template": "${TOOL_A} vs ${TOOL_B}: Which is better for ${DOMAIN} development?",
       "placeholders": [
-        "TOOL"
+        "TOOL_A",
+        "TOOL_B"
       ],
       "example": "VSCode vs PyCharm: Which is better for Python development?",
       "platforms": [

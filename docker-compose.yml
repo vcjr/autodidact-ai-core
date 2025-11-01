@@ -30,9 +30,26 @@ services:
       - ./redis_data:/data
     command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
 
+  # 3. PostgreSQL Metadata Database
+  postgres_db:
+    image: postgres:15
+    container_name: metadata_db
+    restart: always
+    environment:
+      POSTGRES_USER: autodidact
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: video_metadata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./autodidact/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
 volumes:
   # Define the volumes for clarity (optional, but good practice)
   chroma_data:
     driver: local
   redis_data:
+    driver: local
+  postgres_data:
     driver: local

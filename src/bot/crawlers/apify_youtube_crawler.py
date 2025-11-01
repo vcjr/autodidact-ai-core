@@ -510,6 +510,8 @@ class ApifyYouTubeCrawler:
                         technique=video['title'],
                         # Optional/legacy fields below:
                         author=video.get('channel_title'),
+                        channel_id=video.get('channel_id'),
+                        channel_url=f"https://www.youtube.com/channel/{video.get('channel_id')}" if video.get('channel_id') else None,
                         created_at=video.get('published_at'),
                         # Required fields:
                         difficulty=difficulty,
