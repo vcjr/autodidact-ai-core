@@ -50,23 +50,49 @@ def process_validation(message_data: dict) -> dict:
         except (ValueError, AttributeError):
             pass
     
+    # Build a meaningful query from metadata for relevance scoring
+    # This allows the scorer to check if the content matches its own domain/topic
+    query_parts = []
+    if metadata.get('domain_id'):
+        query_parts.append(metadata['domain_id'].replace('_', ' ').lower())
+    if metadata.get('subdomain_id'):
+        query_parts.append(metadata['subdomain_id'].replace('_', ' ').lower())
+    if metadata.get('skill_level'):
+        query_parts.append(metadata['skill_level'])
+    
+    # Fallback: use title keywords if no domain metadata
+    query = ' '.join(query_parts) if query_parts else metadata.get('title', '')
+    
+    # Ensure counts are integers (handle None or string values)
+    subscriber_count = int(metadata.get('subscriber_count', 0) or 0)
+    view_count = int(metadata.get('view_count', 0) or 0)
+    like_count = int(metadata.get('like_count', 0) or 0)
+    comment_count = int(metadata.get('comment_count', 0) or 0)
+    duration_seconds = int(metadata.get('duration_seconds', 0) or 0)
+    
     # Create ContentMetrics from metadata
     metrics = ContentMetrics(
         title=metadata.get('title', ''),
         description=metadata.get('description', ''),
         transcript=content or '',
-        query='',  # No specific query in the pipeline
+        query=query,  # Use constructed query for better relevance scoring
         tags=metadata.get('tags', []),
         channel_name=metadata.get('channel_name', ''),
-        subscriber_count=metadata.get('subscriber_count', 0),
+        subscriber_count=subscriber_count,
         is_verified=metadata.get('is_verified', False),
-        view_count=metadata.get('view_count', 0),
-        like_count=metadata.get('like_count', 0),
-        comment_count=metadata.get('comment_count', 0),
+        view_count=view_count,
+        like_count=like_count,
+        comment_count=comment_count,
         published_at=published_at,
-        duration_seconds=metadata.get('duration_seconds', 0),
+        duration_seconds=duration_seconds,
         has_captions=bool(content),
     )
+    
+    # Debug: Log what we're scoring with
+    print(f"   Query for relevance: '{query}'")
+    print(f"   Subscriber count: {subscriber_count:,}")
+    print(f"   View count: {view_count:,}")
+    print(f"   Has transcript: {bool(content)} ({len(content) if content else 0} chars)")
     
     # Score the content
     scorer = QualityScorer()

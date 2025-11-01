@@ -150,7 +150,7 @@ elif page == "📋 Video Review Queue":
         return df
 
     def update_status_callback(video_id, new_status, notes=""):
-        """Callback to update video status in the database."""
+        """Callback to update video status in the database and queue for ingestion if approved."""
         conn = database_utils.get_db_connection()
         try:
             with conn.cursor() as cur:
@@ -160,9 +160,121 @@ elif page == "📋 Video Review Queue":
                 )
             conn.commit()
             st.toast(f"Video {video_id} status updated to '{new_status}'!", icon="🎉")
+            
+            # 🚀 NEW: Auto-queue approved videos for ingestion
+            if new_status == 'approved':
+                try:
+                    queue_approved_video_for_ingestion(video_id)
+                    st.toast(f"Video {video_id} queued for ingestion!", icon="✅")
+                except Exception as e:
+                    st.error(f"Failed to queue video for ingestion: {e}")
+                    st.info("You can manually queue it with: `python scripts/queue_approved_video.py {video_id}`")
         finally:
             conn.close()
         st.cache_data.clear()
+    
+    def queue_approved_video_for_ingestion(video_id: str):
+        """Queue an approved video for ingestion into ChromaDB."""
+        import json
+        import pika
+        from dotenv import load_dotenv
+        
+        load_dotenv()
+        
+        # Get video data from database
+        conn = database_utils.get_db_connection()
+        try:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    SELECT 
+                        v.video_id, 
+                        v.video_url, 
+                        v.title, 
+                        v.quality_score,
+                        c.channel_name,
+                        c.channel_url
+                    FROM videos v
+                    JOIN channels c ON v.channel_id = c.id
+                    WHERE v.video_id = %s AND v.status = 'approved'
+                """, (video_id,))
+                
+                row = cur.fetchone()
+                if not row:
+                    raise ValueError(f"Video {video_id} not found or not approved")
+                
+                video_data = {
+                    'video_id': row[0],
+                    'video_url': row[1],
+                    'title': row[2],
+                    'quality_score': float(row[3]) if row[3] else None,
+                    'channel_name': row[4],
+                    'channel_url': row[5],
+                }
+        finally:
+            conn.close()
+        
+        # Get transcript using Apify
+        from src.scrapers.youtube_transcript_fetcher import get_youtube_transcript
+        
+        content, metadata = get_youtube_transcript(video_data['video_url'], scraper='apify')
+        
+        if not content:
+            raise ValueError(f"Could not fetch transcript for {video_id}")
+        
+        # Enrich metadata
+        enriched_metadata = {
+            'quality_score': video_data['quality_score'],
+            'domain_id': 'UNCATEGORIZED',
+            'subdomain_id': None,
+            'source': video_data['video_url'],
+            'platform': 'youtube',
+            'content_type': 'video',
+            'difficulty': 'intermediate',
+            'helpfulness_score': video_data['quality_score'] or 0.5,
+            'text_length': len(content),
+            'title': metadata.get('title'),
+            'author': metadata.get('channel_name'),
+            'channel_id': metadata.get('channel_id'),
+            'channel_url': metadata.get('channel_url'),
+            'video_id': metadata.get('video_id'),
+            'views': metadata.get('views', 0),
+            'video_length_seconds': metadata.get('video_length_seconds', 0),
+            'language': metadata.get('language', 'en'),
+        }
+        
+        # Prepare message for ingestion queue
+        message = {
+            'youtube_url': video_data['video_url'],
+            'content': content,
+            'metadata': enriched_metadata,
+            'video_id': video_id,
+        }
+        
+        # Connect to RabbitMQ
+        credentials = pika.PlainCredentials(
+            os.getenv('RABBITMQ_USER', 'autodidact'),
+            os.getenv('RABBITMQ_PASSWORD', 'rabbitmq_password')
+        )
+        connection = pika.BlockingConnection(
+            pika.ConnectionParameters(
+                os.getenv('RABBITMQ_HOST', 'localhost'),
+                credentials=credentials
+            )
+        )
+        channel = connection.channel()
+        
+        # Publish to validation queue (which feeds into embedding)
+        channel.basic_publish(
+            exchange='',
+            routing_key='tasks.video.validated',
+            body=json.dumps(message),
+            properties=pika.BasicProperties(
+                delivery_mode=2,
+                content_type='application/json',
+            )
+        )
+        
+        connection.close()
 
     # Main review interface
     st.header("Videos Awaiting Manual Approval")
@@ -172,7 +284,27 @@ elif page == "📋 Video Review Queue":
     if pending_videos_df.empty:
         st.success("No videos are currently pending review. Great job! ✨")
     else:
-        st.info(f"Found **{len(pending_videos_df)}** videos to review.")
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.info(f"Found **{len(pending_videos_df)}** videos to review.")
+        with col2:
+            if st.button("🚀 Approve & Queue All", use_container_width=True, type="primary"):
+                with st.spinner("Approving and queueing all videos..."):
+                    success_count = 0
+                    fail_count = 0
+                    for _, video in pending_videos_df.iterrows():
+                        try:
+                            update_status_callback(video['video_id'], 'approved', "Batch approved")
+                            success_count += 1
+                        except Exception as e:
+                            fail_count += 1
+                            st.error(f"Failed to process {video['video_id']}: {e}")
+                    
+                    if success_count > 0:
+                        st.success(f"✅ Successfully approved and queued {success_count} videos!")
+                    if fail_count > 0:
+                        st.warning(f"⚠️ Failed to process {fail_count} videos.")
+                    st.rerun()
 
         for index, video in pending_videos_df.iterrows():
             with st.container(border=True):

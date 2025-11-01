@@ -266,6 +266,87 @@ class ApifyYouTubeCrawler:
             print(f"   ⚠️  Channel lookup failed: {e}")
             return None
     
+    def get_playlist_videos(
+        self,
+        playlist_url: str,
+        max_videos: Optional[int] = None
+    ) -> List[Dict[str, Any]]:
+        """
+        Get all videos from a YouTube playlist.
+        
+        Args:
+            playlist_url: YouTube playlist URL (e.g., https://www.youtube.com/playlist?list=PLxxx)
+            max_videos: Maximum number of videos to fetch (None = all videos)
+        
+        Returns:
+            List of video dicts with metadata and transcripts
+        """
+        print(f"📋 Apify: Fetching playlist {playlist_url}")
+        if max_videos:
+            print(f"   📊 Limited to {max_videos} videos")
+        
+        try:
+            run_input = {
+                "startUrls": [{"url": playlist_url}],
+                "downloadSubtitles": True,
+                "subtitlesLanguage": "en",
+                "downloadThumbnails": False,
+                "downloadVideos": False
+            }
+            
+            if max_videos:
+                run_input["maxResults"] = max_videos
+            
+            run = self.client.actor("streamers/youtube-scraper").call(
+                run_input=run_input,
+                timeout_secs=self.timeout_seconds
+            )
+            
+            self.stats['apify_runs'] += 1
+            
+            # Get results from dataset
+            results = []
+            for item in self.client.dataset(run["defaultDatasetId"]).iterate_items():
+                # Extract transcript from subtitles list
+                transcript = ''
+                subtitles = item.get('subtitles', [])
+                if subtitles and isinstance(subtitles, list):
+                    # Find English subtitle
+                    for sub in subtitles:
+                        if sub.get('language') == 'en':
+                            transcript = sub.get('srt', '')
+                            break
+                
+                video_data = {
+                    'video_id': item.get('id'),
+                    'title': item.get('title'),
+                    'description': item.get('text'),
+                    'channel_title': item.get('channelName'),
+                    'channel_id': item.get('channelId'),
+                    'published_at': item.get('date'),
+                    'duration': item.get('duration'),
+                    'view_count': item.get('viewCount'),
+                    'like_count': item.get('likes'),
+                    'comment_count': item.get('commentsCount'),
+                    'transcript': transcript,
+                    'url': f"https://www.youtube.com/watch?v={item.get('id')}",
+                    'thumbnail_url': item.get('thumbnailUrl')
+                }
+                
+                results.append(video_data)
+                self.stats['total_videos_scraped'] += 1
+                
+                if video_data['transcript']:
+                    self.stats['total_transcripts_extracted'] += 1
+            
+            print(f"✅ Apify: Found {len(results)} videos in playlist, {sum(1 for r in results if r['transcript'])} with transcripts")
+            return results
+            
+        except Exception as e:
+            self.stats['errors'] += 1
+            print(f"❌ Apify playlist fetch failed: {e}")
+            return []
+    
     def get_video_details(self, video_id: str) -> Optional[Dict[str, Any]]:
         """
         Get details for a specific video by ID.
