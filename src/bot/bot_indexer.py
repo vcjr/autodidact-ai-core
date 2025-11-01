@@ -241,9 +241,9 @@ class BotIndexer:
                     'video_id': video_id,
                     'url': video_url,
                     'title': indexable.metadata.technique,  # Use technique as title (contains video title)
-                    'channel_id': indexable.metadata.author or 'unknown',  # author contains channel name
+                    'channel_id': indexable.metadata.channel_id or 'unknown',
                     'channel_name': indexable.metadata.author or 'Unknown Channel',
-                    'channel_url': f"https://www.youtube.com/channel/{indexable.metadata.author or 'unknown'}",
+                    'channel_url': indexable.metadata.channel_url or f"https://www.youtube.com/channel/{indexable.metadata.channel_id or 'unknown'}",
                     'upload_date': indexable.metadata.created_at
                 }
                 

@@ -164,6 +164,43 @@ class QuestionEngine:
             substitutions['${CONCEPT_A}'] = concepts[0] if len(concepts) > 0 else 'first approach'
             substitutions['${CONCEPT_B}'] = concepts[1] if len(concepts) > 1 else 'second approach'
         
+        # Add tool comparison placeholders for ${TOOL_A} and ${TOOL_B}
+        if '${TOOL_A}' in query or '${TOOL_B}' in query:
+            tools = ['essential tools', 'recommended software', 'key equipment',
+                    'useful utilities', 'productivity tools', 'popular frameworks',
+                    'industry-standard tools', 'modern solutions']
+            random.shuffle(tools)
+            substitutions['${TOOL_A}'] = tools[0] if len(tools) > 0 else 'first tool'
+            substitutions['${TOOL_B}'] = tools[1] if len(tools) > 1 else 'second tool'
+        
+        # Add method comparison placeholders for ${METHOD_A} and ${METHOD_B}
+        if '${METHOD_A}' in query or '${METHOD_B}' in query:
+            methods = ['structured learning', 'self-directed study', 'hands-on practice',
+                      'guided instruction', 'peer collaboration', 'online courses',
+                      'traditional classroom', 'project-based learning']
+            random.shuffle(methods)
+            substitutions['${METHOD_A}'] = methods[0] if len(methods) > 0 else 'first method'
+            substitutions['${METHOD_B}'] = methods[1] if len(methods) > 1 else 'second method'
+        
+        # Add domain comparison placeholders for ${DOMAIN_A} and ${DOMAIN_B}
+        if '${DOMAIN_A}' in query or '${DOMAIN_B}' in query:
+            # Get two different domains for comparison
+            available_domains = [d for d in self.domains if d != domain_id]
+            if len(available_domains) >= 2:
+                random.shuffle(available_domains)
+                substitutions['${DOMAIN_A}'] = available_domains[0].replace('_', ' ').title()
+                substitutions['${DOMAIN_B}'] = available_domains[1].replace('_', ' ').title()
+            else:
+                substitutions['${DOMAIN_A}'] = 'related field'
+                substitutions['${DOMAIN_B}'] = 'alternative field'
+        
+        # Add field placeholder for career-related questions
+        if '${FIELD}' in query:
+            fields = ['software development', 'creative arts', 'professional practice',
+                     'technical field', 'industry work', 'freelance work',
+                     'academic research', 'teaching']
+            substitutions['${FIELD}'] = random.choice(fields)
+        
         # Add subdomain comparison placeholders if applicable
         if subdomain_id and '${SUBDOMAIN_A}' in query:
             # Get another random subdomain from same domain for comparison
