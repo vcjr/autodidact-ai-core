@@ -46,6 +46,7 @@ try:
     from src.bot.crawlers.mock_youtube_crawler import MockYouTubeCrawler
     from src.agents.intake_agent import IntakeAgent
     from src.models.unified_metadata_schema import UnifiedMetadata
+    from autodidact.database import database_utils  # Import database utilities
 except ModuleNotFoundError:
     import sys
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
@@ -56,6 +57,7 @@ except ModuleNotFoundError:
     from src.bot.crawlers.mock_youtube_crawler import MockYouTubeCrawler
     from src.agents.intake_agent import IntakeAgent
     from src.models.unified_metadata_schema import UnifiedMetadata
+    from autodidact.database import database_utils  # Import database utilities
 
 
 class BotIndexer:
@@ -224,9 +226,36 @@ class BotIndexer:
         
         indexed_count = 0
         error_count = 0
+        logged_count = 0
         
         for i, indexable in enumerate(videos, 1):
             try:
+                # --- NEW: Log video to PostgreSQL database first ---
+                # Extract video metadata for database logging
+                # The source URL contains the video_id
+                video_url = indexable.metadata.source
+                video_id = video_url.split('v=')[-1] if 'v=' in video_url else video_url.split('/')[-1]
+                
+                # Prepare database-compatible metadata
+                db_video_data = {
+                    'video_id': video_id,
+                    'url': video_url,
+                    'title': indexable.metadata.technique,  # Use technique as title (contains video title)
+                    'channel_id': indexable.metadata.author or 'unknown',  # author contains channel name
+                    'channel_name': indexable.metadata.author or 'Unknown Channel',
+                    'channel_url': f"https://www.youtube.com/channel/{indexable.metadata.author or 'unknown'}",
+                    'upload_date': indexable.metadata.created_at
+                }
+                
+                # Log to PostgreSQL
+                try:
+                    database_utils.log_channel_and_video(db_video_data)
+                    logged_count += 1
+                except Exception as db_error:
+                    print(f"   ⚠️  [{i}/{len(videos)}] DB logging failed: {db_error}")
+                    # Continue with indexing even if DB logging fails
+                # ------------------------------------------------------
+                
                 # Index via IntakeAgent using the metadata and content from IndexableContent
                 doc_id = self.intake_agent.process_and_add_document(
                     content=indexable.content,
@@ -235,14 +264,37 @@ class BotIndexer:
                 )
                 
                 indexed_count += 1
+                
+                # Update video status in database
+                try:
+                    database_utils.update_video_status(
+                        video_id, 
+                        'ingested', 
+                        score=indexable.metadata.helpfulness_score,
+                        reason="Successfully indexed to ChromaDB"
+                    )
+                except Exception as db_error:
+                    print(f"   ⚠️  Status update failed: {db_error}")
+                
                 print(f"   ✅ [{i}/{len(videos)}] Indexed: {indexable.metadata.technique[:60]}...")
                 
             except Exception as e:
                 error_count += 1
                 print(f"   ❌ [{i}/{len(videos)}] Error indexing {indexable.metadata.source}: {e}")
+                
+                # Update video status to error
+                try:
+                    database_utils.update_video_status(
+                        video_id, 
+                        'error_ingestion', 
+                        reason=str(e)
+                    )
+                except:
+                    pass  # Silently fail on status update if video wasn't logged
                 continue
         
         self.stats['videos_indexed'] = indexed_count
+        self.stats['videos_logged_to_db'] = logged_count
         self.stats['errors'] = error_count
         self.stats['end_time'] = datetime.now()
         
@@ -359,6 +411,59 @@ class BotIndexer:
         return total_stats
     
     def get_statistics(self) -> Dict[str, Any]:
+        """
+        Get comprehensive pipeline statistics.
+        
+        Returns:
+            Dict with indexing stats, YouTube/Apify stats, and template stats
+        """
+        stats = {
+            'queries_generated': self.stats['queries_generated'],
+            'videos_crawled': self.stats['videos_crawled'],
+            'videos_indexed': self.stats['videos_indexed'],
+            'videos_logged_to_db': self.stats.get('videos_logged_to_db', 0),
+            'errors': self.stats['errors'],
+            'start_time': self.stats.get('start_time'),
+            'end_time': self.stats.get('end_time')
+        }
+        
+        # Add duration if both timestamps exist
+        if stats['start_time'] and stats['end_time']:
+            stats['duration_seconds'] = (stats['end_time'] - stats['start_time']).total_seconds()
+        
+        # Get crawler stats
+        crawler_stats = self.youtube_crawler.get_statistics()
+        
+        # Check if using Apify or legacy YouTube API
+        if hasattr(self.youtube_crawler, 'stats') and 'apify_runs' in self.youtube_crawler.stats:
+            # Apify-specific stats
+            stats['crawler_type'] = 'apify'
+            stats['apify_stats'] = {
+                'runs': crawler_stats.get('apify_runs', 0),
+                'total_transcripts_extracted': crawler_stats.get('total_transcripts_extracted', 0),
+                'success_rate': crawler_stats.get('success_rate', 0),
+                'transcript_rate': crawler_stats.get('transcript_rate', 0),
+                'filter_rate': crawler_stats.get('filter_rate', 0)
+            }
+            if 'quality_scorer' in crawler_stats:
+                stats['apify_stats']['quality_scorer'] = crawler_stats['quality_scorer']
+        else:
+            # Legacy YouTube API stats
+            stats['crawler_type'] = 'youtube_api'
+            stats['youtube_quota'] = {
+                'quota_used': crawler_stats.get('quota_used', 0),
+                'max_quota': crawler_stats.get('max_quota', 10000),
+                'videos_seen': crawler_stats.get('total_videos_fetched', 0)
+            }
+        
+        # Question engine stats
+        stats['question_templates'] = {
+            'total_templates': len(self.question_engine.templates),
+            'categories': len(set(t['category'] for t in self.question_engine.templates)),
+            'total_domains': len(self.question_engine.domains)
+        }
+        
+        return stats
         """Get current indexing statistics."""
         return {
             **self.stats,
@@ -411,12 +516,28 @@ if __name__ == "__main__":
     print(f"   Queries: {all_stats['queries_generated']}")
     print(f"   Videos Crawled: {all_stats['videos_crawled']}")
     print(f"   Videos Indexed: {all_stats['videos_indexed']}")
+    print(f"   Videos Logged to DB: {all_stats.get('videos_logged_to_db', 0)}")
     print(f"   Errors: {all_stats['errors']}")
     
-    print(f"\n🎬 YouTube Stats:")
-    yt_stats = all_stats['youtube_quota']
-    print(f"   Quota Used: {yt_stats['quota_used']}/{yt_stats['max_quota']}")
-    print(f"   Videos Seen: {yt_stats['videos_seen']}")
+    # Display crawler-specific stats
+    if all_stats['crawler_type'] == 'apify':
+        print(f"\n🚀 Apify Stats:")
+        apify = all_stats['apify_stats']
+        print(f"   Runs: {apify['runs']}")
+        print(f"   Transcripts: {apify['total_transcripts_extracted']}")
+        print(f"   Success Rate: {apify['success_rate']:.1%}")
+        print(f"   Transcript Rate: {apify['transcript_rate']:.1%}")
+        if 'quality_scorer' in apify:
+            qs = apify['quality_scorer']
+            print(f"\n🎯 Quality Scorer:")
+            print(f"   Scores Calculated: {qs['scores_calculated']}")
+            print(f"   Above Threshold: {qs['scores_above_threshold']}")
+            print(f"   Average Score: {qs['average_score']}")
+    else:
+        print(f"\n🎬 YouTube API Stats:")
+        yt_stats = all_stats['youtube_quota']
+        print(f"   Quota Used: {yt_stats['quota_used']}/{yt_stats['max_quota']}")
+        print(f"   Videos Seen: {yt_stats['videos_seen']}")
     
     print(f"\n📝 Template Stats:")
     template_stats = all_stats['question_templates']

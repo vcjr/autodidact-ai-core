@@ -10,18 +10,15 @@ import json
 from typing import Dict, Any, Optional
 
 # Import all agents and utilities
-# NOTE: Ensure these import paths match your file structure exactly
 from src.scrapers.youtube_spider import get_youtube_transcript 
 from src.agents.validation_agent import ValidationAgent
 from src.agents.intake_agent import IntakeAgent 
+from autodidact.database import database_utils # Import the new database utilities
 
 def run_indexing_pipeline(youtube_url: str) -> Optional[Dict[str, Any]]:
     """
-    Executes the full Autodidact AI Indexing Pipeline for a single resource:
-    Scrape -> Validate/Score -> Ingest/Embed.
-    
-    Returns:
-        The final combined metadata dictionary if successful, or None if rejected/failed.
+    Executes the full Autodidact AI Indexing Pipeline for a single resource.
+    This version includes logging all scraped videos to a persistent database.
     """
     print("="*60)
     print(f"STARTING INDEXING FOR URL: {youtube_url}")
@@ -35,39 +32,57 @@ def run_indexing_pipeline(youtube_url: str) -> Optional[Dict[str, Any]]:
         print("❌ Pipeline Halted: Failed to scrape content or metadata.")
         return None
 
+    # --- NEW: Log all scraped videos to PostgreSQL database ---
+    try:
+        print("PHASE 1.5: Logging video metadata to persistent database...")
+        database_utils.log_channel_and_video(metadata)
+        print(f"✅ Successfully logged video '{metadata.get('title')}' for tracking.")
+    except Exception as e:
+        print(f"❌ CRITICAL: Failed to log video to PostgreSQL. Error: {e}")
+        # Halt the pipeline if we can't even log the initial record.
+        return None
+    # ---------------------------------------------------------
+
     # 2. VALIDATE: Use the LLM to score the content quality and categorize it
+    print("PHASE 2: Validating content with ValidationAgent...")
     validator = ValidationAgent()
     validation_data = validator.validate_and_score(content, metadata)
 
     if not validation_data:
         print("❌ Pipeline Halted: Validation Agent failed to produce structured data.")
+        # Update status to reflect the error
+        database_utils.update_video_status(metadata['video_id'], 'error_validation', reason="Validation agent failed.")
         return None
 
-    # Check if the score meets the minimum quality threshold (0.8)
-    # The score comes from the 'args' dictionary of the function call
     helpfulness_score = validation_data.get("helpfulness_score", 0.0)
+    video_id = metadata.get('video_id')
     
-    # Ensure score is treated as a float for comparison
     try:
         helpfulness_score = float(helpfulness_score)
     except (TypeError, ValueError):
         print(f"❌ Pipeline Halted: Invalid helpfulness_score received: {helpfulness_score}")
+        database_utils.update_video_status(video_id, 'error_validation', reason=f"Invalid score format: {helpfulness_score}")
         return None
 
+    # --- MODIFIED: Decision point now updates status instead of discarding ---
     if helpfulness_score < 0.8:
-        print(f"⚠️ Resource Rejected: Helpfulness score {helpfulness_score:.2f} is below threshold (0.8).")
-        return None
+        rejection_reason = f"Helpfulness score {helpfulness_score:.2f} is below threshold (0.8)."
+        print(f"⚠️ Resource Pended: {rejection_reason}")
+        database_utils.update_video_status(video_id, 'pending_review', score=helpfulness_score, reason=rejection_reason)
+        return None # Stop the pipeline for this video, it's now in the review queue
     
     print(f"✅ Resource Accepted: Score {helpfulness_score:.2f} is sufficient.")
+    database_utils.update_video_status(video_id, 'approved', score=helpfulness_score, reason="Passed quality threshold.")
+    # ----------------------------------------------------------------------
 
     # 3. COMBINE METADATA: Merge scraped data with validation data
-    # Validation data (LLM tags) takes precedence and includes the score
     final_metadata = {
-        **metadata, # Scraped rich data (title, views, channel, etc.)
-        **validation_data # LLM-determined quality score, instrument_id, difficulty, technique
+        **metadata,
+        **validation_data
     }
     
     # 4. INGEST: Chunk, Embed, and write to ChromaDB
+    print("PHASE 3: Ingesting document into ChromaDB...")
     ingestor = IntakeAgent()
     first_chunk_id = ingestor.process_and_add_document(
         content=content,
@@ -77,19 +92,20 @@ def run_indexing_pipeline(youtube_url: str) -> Optional[Dict[str, Any]]:
 
     if first_chunk_id:
         print("\n✅ INDEXING PIPELINE COMPLETE. Document Ingested.")
+        database_utils.update_video_status(video_id, 'ingested') # Final status update
         return final_metadata
     else:
         print("\n❌ INDEXING PIPELINE FAILED at ingestion step.")
+        database_utils.update_video_status(video_id, 'error_ingestion', reason="IntakeAgent failed.")
         return None
 
 # --- END-TO-END TEST ---
 if __name__ == "__main__":
-    # Test URL that should succeed (often used for reliable testing)
-    test_url_success = "https://www.youtube.com/watch?v=5QjRzD-oUaQ" 
-    
-    # --- Run the full pipeline ---
-    result = run_indexing_pipeline(test_url_success)
-    
+    # Test URL that should be approved
+    print("--- RUNNING SUCCESS CASE ---")
+    test_url_success = "https://www.youtube.com/watch?v=vpn4qv4A1Aw" 
+    run_indexing_pipeline(test_url_success)
+
     if result:
         print("\n--- FINAL INGESTION RESULT SUMMARY ---")
         print(json.dumps({
@@ -97,7 +113,15 @@ if __name__ == "__main__":
             "Score": result.get('helpfulness_score'),
             "Instrument": result.get('instrument_id'),
             "Technique": result.get('technique'),
-            "First Chunk ID": result.get('video_id') + "-0" # Manual check of ID format
+            "First Chunk ID": result.get('video_id') + "-0"
         }, indent=2))
+    
+    print("\n" + "="*60 + "\n")
+
+    # Test URL that should be sent to the review queue
+    # Assuming a low-quality or irrelevant video would get a low score
+    print("--- RUNNING PENDING REVIEW CASE ---")
+    test_url_pending = "https://www.youtube.com/watch?v=afRiqumTOPA"
+    run_indexing_pipeline(test_url_pending)
         
     print("\n" + "="*60)
