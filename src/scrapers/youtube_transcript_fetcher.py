@@ -109,6 +109,27 @@ def _fetch_with_apify(url: str) -> Tuple[Optional[str], Optional[Dict[str, Any]]
         
         video = results[0]
         
+        # Parse duration string (e.g., "15:23" or "1:05:30") to seconds
+        duration_seconds = 0
+        duration_str = video.get('duration', '')
+        if duration_str:
+            try:
+                parts = duration_str.split(':')
+                if len(parts) == 2:  # MM:SS
+                    duration_seconds = int(parts[0]) * 60 + int(parts[1])
+                elif len(parts) == 3:  # HH:MM:SS
+                    duration_seconds = int(parts[0]) * 3600 + int(parts[1]) * 60 + int(parts[2])
+            except:
+                pass
+        
+        # Try to get channel details for subscriber count
+        channel_details = None
+        if video.get('channel_id'):
+            try:
+                channel_details = crawler.get_channel_details(video['channel_id'])
+            except:
+                pass
+        
         # Format metadata to match expected schema
         metadata = {
             'source_url': url,
@@ -116,16 +137,32 @@ def _fetch_with_apify(url: str) -> Tuple[Optional[str], Optional[Dict[str, Any]]
             'title': video.get('title', f'Video {video_id}'),
             'channel_name': video.get('channel_title'),
             'channel_title': video.get('channel_title'),
+            'channel_id': video.get('channel_id'),
+            'channel_url': f"https://www.youtube.com/channel/{video.get('channel_id')}" if video.get('channel_id') else None,
             'views': video.get('view_count', 0),
-            'video_length_seconds': video.get('duration_seconds', 0),
+            'view_count': video.get('view_count', 0),
+            'like_count': video.get('like_count', 0),
+            'comment_count': video.get('comment_count', 0),
+            'duration': video.get('duration'),
+            'duration_seconds': duration_seconds,
+            'video_length_seconds': duration_seconds,
+            'published_at': video.get('published_at'),
+            'description': video.get('description', ''),
+            'thumbnail_url': video.get('thumbnail_url'),
             'language': video.get('language', 'en'),
             'is_generated': False,  # Apify provides manual transcripts
             'transcript_language': video.get('language', 'en'),
             'is_translatable': True,
         }
         
+        # Add channel metrics if available
+        if channel_details:
+            metadata['subscriber_count'] = channel_details.get('subscriber_count', 0)
+            metadata['is_verified'] = channel_details.get('is_verified', False)
+        
         transcript = video['transcript']
         print(f"✅ Apify: Fetched '{metadata['title']}' ({len(transcript)} chars)")
+        print(f"   📊 Metadata: {metadata['view_count']:,} views, {metadata['like_count']:,} likes, {metadata['comment_count']:,} comments")
         
         return transcript, metadata
         

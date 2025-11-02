@@ -22,6 +22,7 @@ from src.workers.rabbitmq_utils import (
 )
 from src.scrapers.youtube_transcript_fetcher import get_youtube_transcript
 from autodidact.database import database_utils
+from src.storage.gcs_manager import store_video_in_gcs, video_exists_in_gcs
 
 
 def process_transcription(message_data: dict) -> dict:
@@ -36,16 +37,37 @@ def process_transcription(message_data: dict) -> dict:
     """
     youtube_url = message_data.get('youtube_url')
     scraper = message_data.get('scraper')  # Optional: 'default', 'apify', or 'api'
+    video_id = message_data.get('video_id')
     
     print(f"🎬 Transcribing video: {youtube_url}")
     if scraper:
         print(f"   Using scraper: {scraper}")
     
-    # Get transcript and metadata using the unified fetcher
-    content, metadata = get_youtube_transcript(youtube_url, scraper=scraper)
+    # Check if already in GCS (avoid re-fetching)
+    if video_id and video_exists_in_gcs(video_id):
+        print(f"   💾 Content already in GCS, skipping API call")
+        from src.storage.gcs_manager import retrieve_video_from_gcs
+        content, metadata = retrieve_video_from_gcs(video_id)
+        if content and metadata:
+            print(f"   ✅ Retrieved from GCS")
+        else:
+            print(f"   ⚠️  GCS retrieval failed, fetching from YouTube")
+            content, metadata = get_youtube_transcript(youtube_url, scraper=scraper)
+    else:
+        # Get transcript and metadata using the unified fetcher
+        content, metadata = get_youtube_transcript(youtube_url, scraper=scraper)
     
     if not content or not metadata:
         raise ValueError(f"Failed to scrape content or metadata for {youtube_url}")
+    
+    # Store in GCS for future use
+    video_id = metadata.get('video_id')
+    if video_id:
+        try:
+            store_video_in_gcs(video_id, content, metadata)
+        except Exception as e:
+            print(f"   ⚠️  Failed to store in GCS: {e}")
+            # Continue anyway - GCS is nice-to-have, not critical
     
     # Log to database
     try:

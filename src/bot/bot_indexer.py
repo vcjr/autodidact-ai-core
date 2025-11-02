@@ -78,29 +78,21 @@ class BotIndexer:
     
     def __init__(
         self,
-        youtube_api_key: Optional[str] = None,
         apify_api_token: Optional[str] = None,
         collection_name: Optional[str] = None,
         use_mock_crawler: bool = False,
-        use_apify: bool = True,
         min_quality_score: float = 0.55,
-        use_quality_scorer: bool = True,
-        use_proxies: bool = False,
-        proxy_config: Optional[str] = None
+        use_quality_scorer: bool = True
     ):
         """
         Initialize bot indexer pipeline.
         
         Args:
-            youtube_api_key: YouTube Data API v3 key (defaults to env var) - DEPRECATED, use Apify instead
             apify_api_token: Apify API token (defaults to APIFY_API_TOKEN env var)
             collection_name: ChromaDB collection name (defaults to v2)
             use_mock_crawler: Use MockYouTubeCrawler instead of real API (default False)
-            use_apify: Use Apify crawler instead of YouTube API (default True - RECOMMENDED)
             min_quality_score: Minimum quality score to index (0.0-1.0, default 0.55 for educational content)
             use_quality_scorer: Enable intelligent quality scoring (default True)
-            use_proxies: Enable proxy rotation for transcript requests (default False) - DEPRECATED
-            proxy_config: Path to proxy config file or None for default - DEPRECATED
         """
         print("=" * 70)
         print("Initializing Bot Indexer Pipeline")
@@ -112,7 +104,7 @@ class BotIndexer:
         if use_mock_crawler:
             print("\n⚠️  Using MOCK YouTube Crawler (no real API calls)")
             self.youtube_crawler = MockYouTubeCrawler(max_results_per_query=5)
-        elif use_apify:
+        else:
             print("\n🚀 Using Apify YouTube Crawler (managed scraping, no IP blocking)")
             self.youtube_crawler = ApifyYouTubeCrawler(
                 api_token=apify_api_token,
@@ -120,16 +112,6 @@ class BotIndexer:
                 timeout_seconds=300,
                 min_quality_score=min_quality_score,
                 use_quality_scorer=use_quality_scorer
-            )
-        else:
-            print("\n⚠️  Using legacy YouTube API Crawler (may hit quota/IP limits)")
-            self.youtube_crawler = YouTubeCrawler(
-                api_key=youtube_api_key,
-                max_results_per_query=5,
-                min_quality_score=min_quality_score,
-                use_quality_scorer=use_quality_scorer,
-                use_proxies=use_proxies,
-                proxy_config=proxy_config
             )
         
         self.intake_agent = IntakeAgent(collection_name=collection_name) if collection_name else IntakeAgent()

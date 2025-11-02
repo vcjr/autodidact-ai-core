@@ -291,11 +291,9 @@ class ApifyYouTubeCrawler:
                 "downloadSubtitles": True,
                 "subtitlesLanguage": "en",
                 "downloadThumbnails": False,
-                "downloadVideos": False
+                "downloadVideos": False,
+                "maxResults": max_videos if max_videos else 999,  # Default to high limit if not specified
             }
-            
-            if max_videos:
-                run_input["maxResults"] = max_videos
             
             run = self.client.actor("streamers/youtube-scraper").call(
                 run_input=run_input,

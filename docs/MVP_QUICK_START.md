@@ -1,32 +1,36 @@
-# MVP Quick Start - Two Options
+# MVP Quick Start - Playlist-Based Indexing
 
-You have **two ways** to populate ChromaDB for your MVP:
+## 🎯 Recommended Approach: Playlist Indexing
 
-## ⚡ Option 1: Legacy Sync (Fastest to run, but blocks)
-
-**Best for:** Quick local testing, no infrastructure setup
+**Best for:** MVP where users bring their own curated learning playlists
 
 ```bash
-# 5-10 minutes, processes synchronously
-python scripts/minimal_index.py
-
-# Or 30-45 minutes for more content
-python scripts/quick_mvp_index.py
+# Index an entire YouTube playlist with quality filtering
+python scripts/index_playlist_mvp.py \
+  "https://www.youtube.com/playlist?list=YOUR_PLAYLIST_ID" \
+  --domain MUSIC \
+  --subdomain GUITAR \
+  --difficulty beginner \
+  --min-quality 0.55
 ```
 
-**Pros:**
-- ✅ No infrastructure needed (just ChromaDB)
-- ✅ Simple to run
-- ✅ Immediate results
+**Features:**
+- ✅ Fetches all videos from playlist automatically
+- ✅ Quality scoring filters low-quality content  
+- ✅ Stores transcripts in GCS for instant future access
+- ✅ Indexes high-quality videos to ChromaDB
+- ✅ No re-scraping needed for review/approval
 
-**Cons:**
-- ❌ Blocks while processing
-- ❌ Not scalable
-- ❌ Single point of failure
+**What it does:**
+1. Fetches playlist videos via Apify (with transcripts)
+2. Scores each video with 5-factor quality algorithm
+3. Stores ALL videos in GCS cache (permanent storage)
+4. Indexes videos scoring ≥ 0.55 to ChromaDB
+5. Logs everything to PostgreSQL
 
 ---
 
-## 🚀 Option 2: Message Queue (Production-ready, async)
+## 🚀 Alternative: Message Queue (Production-ready, async)
 
 **Best for:** MVP demo, production deployment, scalability
 

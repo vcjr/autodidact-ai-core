@@ -12,9 +12,8 @@ load_dotenv()
 CHROMA_HOST = os.getenv("CHROMA_HOST", "localhost")
 CHROMA_PORT = int(os.getenv("CHROMA_PORT", 8000))
 
-# Collection names
-COLLECTION_NAME_LEGACY = "autodidact_ai_core"  # Old collection (384d, deprecated)
-COLLECTION_NAME_V2 = "autodidact_ai_core_v2"   # New collection (768d)
+# Collection name
+COLLECTION_NAME_V2 = "autodidact_ai_core_v2"   # Current collection (768d embeddings)
 
 def get_embedding_function():
     """

@@ -280,7 +280,7 @@ class UnifiedMetadata(BaseModel):
 | **Component**            | **Existing RAG**          | **New Bot**                              | **Recommendation**                            |
 | ------------------------ | ------------------------- | ---------------------------------------- | --------------------------------------------- |
 | **Programming Language** | Python 3.x                | Python 3.x                               | ✅ Aligned                                     |
-| **Web Framework**        | FastAPI (`api.py`)        | Not specified                            | ✅ Keep FastAPI for API layer                  |
+| **Web Framework**        | FastAPI (`api_v2.py`)     | Not specified                            | ✅ Keep FastAPI for API layer                  |
 | **Orchestration**        | LangChain (custom)        | asyncio + Celery (proposed)              | 🔄 Use Prefect for bot scheduling              |
 | **Vector Store**         | ChromaDB (HTTP)           | ChromaDB (proposed)                      | ✅ Aligned                                     |
 | **Relational DB**        | None                      | PostgreSQL (proposed)                    | ❌ Drop PostgreSQL - use ChromaDB metadata     |
@@ -1189,7 +1189,6 @@ The Autodidact AI Core project has a **solid foundation** in the existing RAG sy
 - [ ] `src/db_utils/chroma_client.py` - Configure `all-mpnet-base-v2` embedding function
 - [ ] `docker-compose.yml` - Add Redis, update ChromaDB settings
 - [ ] `requirements.txt` - Add dependencies (sentence-transformers, redis, praw, selenium, etc.)
-- [ ] `main.py` - Add bot orchestration entry point
 
 ### Files to Delete (Deprecated)
 
