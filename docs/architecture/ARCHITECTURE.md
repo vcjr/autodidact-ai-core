@@ -24,7 +24,7 @@ Repository Structure
 ├── .env                       # API keys
 ├── docker-compose.yml         # Defines local Vector DB, etc.
 ├── requirements.txt           # Python dependencies
-├── main.py                    # Orchestrator for the entire workflow
+├── api_v2.py                  # FastAPI server with endpoints
 ├── /src
 │   ├── /agents                # Individual bot logic (LangChain Agents/Runnable)
 │   │   ├── intake_agent.py

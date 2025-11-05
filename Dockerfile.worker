@@ -1,0 +1,31 @@
+# Dockerfile for Worker Services
+# This image is used by all worker services in the pipeline
+
+FROM python:3.13.5-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+  gcc \
+  g++ \
+  postgresql-client \
+  && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy only the necessary application code
+# .dockerignore will prevent large files/dirs from being copied
+COPY src/ ./src/
+COPY autodidact/ ./autodidact/
+COPY config/ ./config/
+COPY data/prompts/ ./data/prompts/
+COPY data/question_templates.json ./data/
+
+# Set Python path
+ENV PYTHONPATH=/app
+
+# Default command (will be overridden by docker-compose)
+CMD ["python", "--version"]
