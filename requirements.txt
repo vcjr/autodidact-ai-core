@@ -1,69 +1,38 @@
 # ============================================================================
-# Autodidact AI Core - Dependencies (Python 3.13.5)
+# Autodidact AI Core - runtime dependencies (Python 3.13)
+# Extras: requirements-admin.txt (Streamlit UI), requirements-dev.txt (tests/lint)
 # ============================================================================
 
-# Core Orchestration & Schema Validation
-langchain>=0.1.0
-langgraph>=0.0.20
-pydantic>=2.5.0              # v2 for better performance and validation
-python-dotenv>=1.0.0
+# --- API & schemas ----------------------------------------------------------
+# fastapi is capped below 0.120 because newer releases require
+# opentelemetry-api>=1.44, which conflicts with chromadb's pinned otel stack.
+fastapi>=0.115,<0.120
+uvicorn>=0.30
+pydantic>=2.5
+python-dotenv>=1.0
+requests>=2.31
 
-# LLM Providers
-google-generativeai>=0.3.0   # Google Gemini (primary)
-# openai>=1.0.0              # Optional: OpenAI GPT-4
-# anthropic>=0.7.0           # Optional: Claude
+# --- LLM providers (src/llm: choose with LLM_PROVIDER=anthropic|gemini) ------
+anthropic>=1.0              # Claude (default model: claude-opus-5-5, override ANTHROPIC_MODEL)
+google-genai>=1.0           # Gemini (new SDK) - agents, structured output, embeddings
+google-generativeai>=0.3    # DEPRECATED: only for legacy v1/v2 agents; remove with them
 
-# Vector Database & Embeddings
-chromadb>=0.4.22             # Vector store (HTTP client mode)
-sentence-transformers>=2.3.0 # For all-mpnet-base-v2 embeddings (768d)
+# --- Retrieval --------------------------------------------------------------
+chromadb>=1.0
+numpy>=1.26
+networkx>=3.0               # concept graph
+# Local embeddings (EMBEDDING_PROVIDER=local, the default). Pulls in torch.
+# Set EMBEDDING_PROVIDER=gemini and drop this line to remove the heavy ML stack.
+sentence-transformers>=2.3
 
-# Web Scraping & Content Extraction
-scrapy>=2.11.0
-playwright>=1.40.0           # Dynamic page rendering
-beautifulsoup4>=4.12.0
-lxml>=4.9.0                  # Fast HTML/XML parsing
-newspaper3k>=0.2.8           # Article extraction for blogs
+# --- Ingestion pipeline (workers, crawlers) ---------------------------------
+apify-client>=1.7
+google-api-python-client>=2.100
+youtube-transcript-api>=0.6
+pika>=1.3                   # RabbitMQ
+psycopg2-binary>=2.9.9      # PostgreSQL metadata DB
+google-cloud-storage>=2.10  # transcript/metadata cache
 
-# YouTube Integration
-google-api-python-client>=2.100.0  # YouTube Data API v3
-youtube-transcript-api>=0.6.0
-yt-dlp>=2023.12.0            # Modern youtube-dl replacement
-apify-client>=1.7.0          # Apify scraping platform (for YouTube transcripts)
-
-# Reddit Integration
-praw>=7.7.0                  # Python Reddit API Wrapper
-
-# Data Processing
-pandas>=2.1.0
-numpy>=1.26.0
-
-# NLP & Quality Scoring
-transformers>=4.36.0         # HuggingFace models for sentiment/quality
-scikit-learn>=1.3.0          # ML utilities
-torch>=2.1.0                 # Required by transformers (CPU version)
-
-# Caching & Deduplication (Phase 2)
-redis>=5.0.0                 # For deduplication hashes and rate limiting
-
-# Message Queue for Asynchronous Processing
-pika>=1.3.0                  # RabbitMQ Python client
-
-# Metadata Database
-psycopg2-binary>=2.9.9       # PostgreSQL adapter for Python
-
-# Cloud Storage for Video Content Caching
-google-cloud-storage>=2.10.0 # GCS for persistent transcript/metadata storage
-
-# UI for Manual Review
-streamlit>=1.30.0            # Web app framework for review UI
-
-# Utilities
-requests>=2.31.0
-urllib3>=2.1.0
-certifi>=2023.0.0
-
-# Development & Testing (optional but recommended)
-pytest>=7.4.0
-pytest-asyncio>=0.21.0
-black>=23.12.0               # Code formatting
-ruff>=0.1.0                  # Fast linting
+# Removed (no imports found in the codebase): langchain, langgraph, scrapy,
+# playwright, beautifulsoup4, lxml, newspaper3k, praw, transformers, scikit-learn,
+# redis, yt-dlp, urllib3, certifi. Restore from git history if you start using them.

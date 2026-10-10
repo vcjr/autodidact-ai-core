@@ -1,0 +1,4 @@
+# Streamlit review dashboard (autodidact/ui/admin_dashboard.py)
+-r requirements.txt
+streamlit>=1.30
+pandas>=2.1

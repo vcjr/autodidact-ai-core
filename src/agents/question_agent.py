@@ -102,7 +102,7 @@ class QuestionAgent:
     # 3. GENERATE: Create the augmented prompt
     system_prompt = textwrap.dedent("""
       You are the Autodidact AI Curriculum Generator. 
-      Your goal is to act as an expert music instructor.
+      Your goal is to act as an expert instructor in whatever subject the user asks about.
       
       Based ONLY on the provided context, you must generate a structured, multi-step 
       learning roadmap (a curriculum) to address the user's request. 
