@@ -53,6 +53,36 @@ Traditional learning platforms rely on static, curator-created content. **Autodi
 
 ---
 
+## 🧠 v3: Agentic Architecture (current)
+
+The original fixed pipeline (Intake → Scope → Retrieve → Generate) is superseded by a
+tool-using agent. See [docs/MODERNIZATION.md](docs/MODERNIZATION.md) for the full story.
+
+```
+ query ─► CurriculumAgent (Claude or Gemini, tool loop)
+            ├─ list_domains / get_prerequisites
+            ├─ search_resources ─► HybridRetriever: BM25 + vector → RRF → LLM rerank
+            └─ submit_curriculum ─► validator (grounded URLs, prerequisite order,
+                                    difficulty steps) ─ errors go back to the model
+```
+
+| Capability | Where |
+| --- | --- |
+| Provider-neutral LLM (Claude / Gemini), native structured output, tool loop | `src/llm/` |
+| Hybrid retrieval + reranker, pluggable embeddings | `src/retrieval/` |
+| Curriculum agent + deterministic validator | `src/agents/curriculum_agent.py`, `curriculum_validation.py` |
+| Grounded tutor (verified quote citations) | `src/agents/tutor_agent.py` |
+| Diagnostic quiz, flashcards, adaptive re-plan | `src/agents/study_agent.py` |
+| FSRS-4.5 spaced repetition | `src/learning/fsrs.py` |
+| LLM pedagogy judge for ingestion quality | `src/bot/pedagogy_judge.py` |
+| Eval harness (`python scripts/run_evals.py`) | `src/evals/`, `evals/cases.jsonl` |
+| HTTP API (`/v3/*`, SSE streaming) | `src/api/v3.py` |
+
+Configure with `LLM_PROVIDER`, `ANTHROPIC_API_KEY` / `GEMINI_API_KEY`, `EMBEDDING_PROVIDER` (see `.env.example`).
+Run the offline test suite (no keys or servers needed): `python -m pytest tests/unit`.
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites

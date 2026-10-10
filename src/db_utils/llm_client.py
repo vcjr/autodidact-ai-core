@@ -7,21 +7,32 @@ from google.api_core import exceptions as google_exceptions
 # This must be done before attempting to access os.environ
 load_dotenv()
 
-# Configure the Gemini API key
-try:
+_configured = False
+
+
+def _configure() -> None:
+    """Configure the (legacy) Gemini SDK on first use, not at import time.
+
+    Importing this module must not require GEMINI_API_KEY, otherwise a deployment
+    that only uses Claude would crash when the legacy v1/v2 agents are imported.
+    """
+    global _configured
+    if _configured:
+        return
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
-        raise ValueError("GEMINI_API_KEY not found in environment variables.")
+        raise ValueError(
+            "GEMINI_API_KEY not found in environment variables "
+            "(required by the legacy v1/v2 agents; the v3 agents use src.llm.get_llm)."
+        )
     genai.configure(api_key=api_key)
-except ValueError as e:
-    print(f"ERROR: {e}")
-    print("Please ensure your GEMINI_API_KEY is set correctly in the .env file.")
-    exit(1)
+    _configured = True
 
 
 def get_llm_client():
-  """Initialize and returns the Gemini API client."""
+  """Initialize and returns the legacy Gemini API client (deprecated: use src.llm.get_llm)."""
   try:
+    _configure()
     model = genai.GenerativeModel('models/gemini-flash-latest')
     return model
   except Exception as e:

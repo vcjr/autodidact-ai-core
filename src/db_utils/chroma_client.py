@@ -17,13 +17,21 @@ COLLECTION_NAME_V2 = "autodidact_ai_core_v2"   # Current collection (768d embedd
 
 def get_embedding_function():
     """
-    Returns the sentence-transformers embedding function for all-mpnet-base-v2.
-    This produces 768-dimensional embeddings (vs 384d from all-MiniLM-L6-v2).
+    Returns the configured embedding function (EMBEDDING_PROVIDER=local|gemini).
+
+    Default ``local`` is sentence-transformers all-mpnet-base-v2 (768d), which matches
+    existing collections. See src/retrieval/embeddings.py.
     """
-    return embedding_functions.SentenceTransformerEmbeddingFunction(
-        model_name="sentence-transformers/all-mpnet-base-v2",
-        device="cpu"  # Use "cuda" if GPU available
-    )
+    from src.retrieval.embeddings import get_embedding_function as _get
+
+    return _get()
+
+
+def default_collection_name() -> str:
+    """Collection matching the configured embedding provider."""
+    from src.retrieval.embeddings import collection_name_for
+
+    return collection_name_for()
 
 def get_chroma_client():
     """Initializes and returns the ChromaDB HTTP client."""
@@ -45,7 +53,7 @@ def get_chroma_client():
         print(f"Please ensure ChromaDB is running and accessible at {CHROMA_HOST}:{CHROMA_PORT}.")
         raise e
 
-def get_or_create_collection(client=None, collection_name=COLLECTION_NAME_V2):
+def get_or_create_collection(client=None, collection_name=None):
     """
     Gets or creates a ChromaDB collection with the upgraded embedding model.
     
@@ -58,6 +66,8 @@ def get_or_create_collection(client=None, collection_name=COLLECTION_NAME_V2):
     """
     if client is None:
         client = get_chroma_client()
+    if collection_name is None:
+        collection_name = default_collection_name()
     
     embedding_function = get_embedding_function()
     
@@ -67,12 +77,12 @@ def get_or_create_collection(client=None, collection_name=COLLECTION_NAME_V2):
             embedding_function=embedding_function,
             metadata={
                 "description": "Autodidact AI Core - Educational content vectors",
-                "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+                "embedding_provider": os.getenv("EMBEDDING_PROVIDER", "local"),
                 "embedding_dimension": 768,
                 "schema_version": "1.0.0"
             }
         )
-        print(f"✅ Collection '{collection_name}' ready (768d embeddings)")
+        print(f"✅ Collection '{collection_name}' ready")
         return collection
     
     except Exception as e:

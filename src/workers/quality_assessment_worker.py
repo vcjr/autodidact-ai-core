@@ -108,8 +108,35 @@ def process_validation(message_data: dict) -> dict:
     
     # Get overall quality score
     quality_score = score_result.overall
-    
+    pedagogy_meta = {}
+
     print(f"📊 Quality breakdown:\n{score_result}")
+
+    # Optional: blend in an LLM judgement of how well the content actually teaches.
+    # Off by default; enable with LLM_QUALITY_JUDGE=1 (weight via LLM_QUALITY_WEIGHT).
+    if os.getenv('LLM_QUALITY_JUDGE') == '1' and content:
+        try:
+            from src.llm import get_llm
+            from src.bot.pedagogy_judge import PedagogyJudge, blend_scores
+
+            assessment = PedagogyJudge(get_llm()).assess(
+                metadata.get('title', ''),
+                content,
+                domain=metadata.get('domain_id'),
+                subdomain=metadata.get('subdomain_id'),
+                stated_difficulty=metadata.get('skill_level'),
+            )
+            weight = float(os.getenv('LLM_QUALITY_WEIGHT', '0.5'))
+            blended = blend_scores(quality_score, assessment, weight)
+            print(f"🎓 Pedagogy {assessment.score:.2f} ({assessment.rationale}) -> blended {blended:.2f}")
+            quality_score = blended
+            pedagogy_meta = {
+                'pedagogy_score': assessment.score,
+                'pedagogy_difficulty': assessment.difficulty,
+                'pedagogy_teaches_well': assessment.teaches_well,
+            }
+        except Exception as e:  # judge is an enhancement; never block ingestion on it
+            print(f"⚠️  LLM pedagogy judge failed, using heuristic score: {e}")
     
     # Check if score meets threshold
     if quality_score < 0.8:
@@ -137,6 +164,7 @@ def process_validation(message_data: dict) -> dict:
         **metadata,
         'quality_score': quality_score,
         'quality_breakdown': score_result.to_dict(),
+        **pedagogy_meta,
     }
     
     return {

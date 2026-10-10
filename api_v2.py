@@ -45,19 +45,23 @@ app = FastAPI(
     version="2.0.0"
 )
 
-# CORS - Configure for your frontend
+# CORS - set CORS_ORIGINS to a comma-separated list of allowed origins in production
+_default_origins = ["http://localhost:3000", "http://localhost:5173"]
+_cors_origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()] or _default_origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",  # React dev server
-        "http://localhost:5173",  # Vite dev server
-        "https://your-app.vercel.app",  # Production (update this)
-        "https://your-app.web.app",  # Firebase hosting (update this)
-    ],
+    allow_origins=_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# v3: agentic curriculum, tutor, study tools (see src/api/v3.py).
+# The /curriculum/generate endpoint below (v1/v2 agents) is deprecated.
+from src.api.v3 import router as v3_router  # noqa: E402
+
+app.include_router(v3_router)
 
 # Initialize agents (lazy loading for performance)
 _question_agent_v1 = None
